@@ -77,7 +77,7 @@ scrollX.interpolate({
 
 });
 
-// const scale = 
+// const scale = dfdghyg
 // scrollX.interpolate({
 //     inputRange,
 //     outputRange:[0.8, 1, 0.8],
