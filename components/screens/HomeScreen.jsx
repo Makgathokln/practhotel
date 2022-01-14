@@ -153,11 +153,19 @@ const TopHotelCard = ({hotel}) =>{
     <SafeAreaView style={{flex:1, backgroundColor:'#fff'}}> 
         <View style={style.header}>
         <View style={{paddingBottom:15}}>
-            <Text style={{fontSize:25, fontWeight:'bold', color:'#ff6e1a'}}> Welcome! Leah</Text>
+            <Text style={{fontSize:25, fontWeight:'bold', color:'#ff6e1a'}}> Welcome! Leah Hi</Text>
         </View>
-        <Icon name="person-outline" size={38} color='gray' />
-{/* <Image source={require('./images/signIn.png')} style={{height:80, width:80,top:40, borderRadius:40, justifyContent:'space-between', left:150 }}/>  */}
 
+        <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
+        <Icon name="person-outline" size={38} color='gray' />
+
+        </TouchableOpacity>
+ {/* <TouchableOpacity  onPress={()=> navigation.navigate("profile")}
+>
+ <Image source={require('./images/signIn.png')} 
+ style={{height:"80%", width:'12%', borderRadius:20}}
+ />  
+</TouchableOpacity> */}
 </View>
 
 <ScrollView showsVerticalScrollIndicator={false}>
