@@ -15,6 +15,9 @@ import HotelDetails from './components/screens/HotelDetails';
 import Leah from './components/screens/Leah';
 import Rooms from './components/screens/rooms';
 import Availability from './components/screens/availability';
+import Profile from './components/screens/profile';
+import Edit from './components/screens/edit';
+
 
 const Menu = ()=>{
   const Stack = createNativeStackNavigator()
@@ -36,7 +39,8 @@ const Menu = ()=>{
             <Stack.Screen name={"Bookings"} component={Bookings} />   
             <Stack.Screen name={"Rooms"} component={Rooms} />   
             <Stack.Screen name={"Availability"} component={Availability} />   
-
+            <Stack.Screen name={"Profile"} component={Profile} />    
+            <Stack.Screen name={"edit"} component={Edit} />    
 
           </Stack.Navigator>
       </NavigationContainer>
