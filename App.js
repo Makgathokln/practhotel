@@ -17,7 +17,7 @@ import Rooms from './components/screens/rooms';
 import Availability from './components/screens/availability';
 import Profile from './components/screens/profile';
 import Edit from './components/screens/edit';
-
+import Payment from './components/screens/payment';
 
 const Menu = ()=>{
   const Stack = createNativeStackNavigator()
@@ -41,6 +41,7 @@ const Menu = ()=>{
             <Stack.Screen name={"Availability"} component={Availability} />   
             <Stack.Screen name={"Profile"} component={Profile} />    
             <Stack.Screen name={"edit"} component={Edit} />    
+            <Stack.Screen name={"Payment"} component={Payment} />    
 
           </Stack.Navigator>
       </NavigationContainer>
