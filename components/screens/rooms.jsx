@@ -8,6 +8,7 @@ import { FlatList,
     TextInput, 
     } from 'react-native-gesture-handler';
 import {Picker} from '@react-native-picker/picker';
+import SelectDropdown from 'react-native-select-dropdown'
 
 
 const Rooms=({navigation}) =>{
@@ -15,13 +16,15 @@ const Rooms=({navigation}) =>{
     const categories = ['All', 'Popular','Top Rated']
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
     // const [selectedPrice, setSelectedPrice] = useState();
+    const sort = ["highest to lowest", "lowest to highest"]
 
 const Card = ({room,index}) =>{
    return( 
+    <ScrollView showsVerticalScrollIndicator={false}>
     <View style={{
         flex:1,
         flexDirection:'row', justifyContent:'space-between',
-        alignContent:'space-between', marginTop:20,
+        alignContent:'space-between', marginTop:10,
         borderColor: COLORS.primary,
         borderRadius:10,
         borderWidth: 3,
@@ -53,13 +56,14 @@ const Card = ({room,index}) =>{
     <View style={{flexDirection:'row',justifyContent:'space-between', alignContent:'space-between' }}>
 
     <TouchableOpacity onPress={() => navigation.navigate('Payment') }>
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>Select</Text>
+    {/* <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>Select</Text> */}
     <Icon name="add-circle" size={24} color={COLORS.primary} />
 
     </TouchableOpacity>
 </View>
 </View>
     </View> 
+    </ScrollView>
    )}
 
     return(
@@ -71,7 +75,7 @@ const Card = ({room,index}) =>{
         style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>      
 
        
-            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}> Select Room Type</Text>
+            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}>  Warloff Hotel</Text>
             {/* <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white}}> {room.name}</Text> */}
 
         </View>
@@ -79,7 +83,8 @@ const Card = ({room,index}) =>{
         <View>
         <Text style={{ fontSize:26, 
             fontWeight:'bold', 
-            color:COLORS.secondary}}> Warloff Hotel {room.name}</Text>
+            color:COLORS.secondary,
+             paddingTop:10, paddingHorizontal:20, textAlign:'center'}}> Select Room Type {room.name}</Text>
  
         </View>
 
@@ -87,9 +92,24 @@ const Card = ({room,index}) =>{
         justifyContent:'flex-end', 
         alignContent:'flex-end', }}>
            
-
-            <Text style={{color:COLORS.gray, fontWeight:'bold', marginTop:'5%'}}>Sort By</Text>
-           
+           <SelectDropdown
+	        data={sort}
+            containerStyle= {
+                styles. dropdownStyle }
+	        onSelect={(selectedItem, index) => {
+		    console.log(selectedItem, index)
+	}}
+	buttonTextAfterSelection={(selectedItem, index) => {
+		// text represented after item is selected
+		// if data array is an array of objects then return selectedItem.property to render after item is selected
+		return selectedItem
+	}}
+	rowTextForSelection={(item, index) => {
+		// text represented for each item in dropdown
+		// if data array is an array of objects then return item.property to represent item in dropdown
+		return item
+	}}
+/>              
         </View>
         
       
@@ -98,7 +118,7 @@ const Card = ({room,index}) =>{
         <View>
             <FlatList 
             data={room}
-            contentContainerStyle={{paddingVertical:20,paddingLeft:20}}
+            contentContainerStyle={{paddingLeft:20}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item,index}) => <Card room={item} index={index}/>}
             />

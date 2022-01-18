@@ -1,5 +1,7 @@
 import React,{useState} from 'react';
-import {View, Text,StyleSheet, ImageBackground,     TouchableOpacity,
+import {View, Text,StyleSheet, 
+  ImageBackground, Pressable, 
+     TouchableOpacity,
 } from 'react-native';
 // import { FlatList,
 //     ScrollView,
@@ -9,6 +11,7 @@ import {View, Text,StyleSheet, ImageBackground,     TouchableOpacity,
 import COLORS from '../consts/colors'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import DatePicker from 'react-native-datepicker';
+import Feather from 'react-native-vector-icons/Feather';
 
 
 const  bookings = ({navigation}) => {
@@ -16,7 +19,8 @@ const  bookings = ({navigation}) => {
     // console.log(item);
    
     const [CheckIn,setCheckIn] = useState('2022-02-02');
-     
+     const [adultPlus,setAdultPlus]=useState(0);
+     const [childPlus,setChildPlus]=useState(0);
 
     return(
 
@@ -110,14 +114,84 @@ const  bookings = ({navigation}) => {
       />
                         </View>
 
+               
                 </View>
 
-      <View style={{fontWeight:'bold', flexDirection:'row',paddingHorizontal:20,alignContent:'space-between', justifyContent:'space-between', marginTop:10}}>
-        <Text style={{fontSize:16, fontWeight:'bold', color:COLORS.secondary, marginBottom:10}}>No. of Adults</Text>
+      <View style={{fontWeight:'bold', flexDirection:'row',paddingHorizontal:20, 
+      justifyContent:'space-between', marginTop:10}}>
+      <Text style={{fontSize:16, fontWeight:'bold', color:COLORS.secondary, marginBottom:10}}>No. of Adults</Text>
+         
+      
+        
         <Text style={{fontSize:16, fontWeight:'bold', color:COLORS.secondary, marginBottom:10}}>No. of Children</Text>
 
       </View>
-<View style={{marginTop:80}}>
+
+      <View style={{flexDirection:'row', justifyContent:'space-between', 
+      alignContent:'space-between', paddingHorizontal:20}}>
+
+
+
+      <View style={{flexDirection:'row',
+      alignContent:'space-between', 
+      justifyContent:'space-between',
+       borderRadius:10,
+      padding:10, backgroundColor:'#EDEDED',
+       elevation:2, width:'40%',
+    }}>
+
+
+<Pressable style={[styles.buttonAdding, {backgroundColor:'#fff',
+       flexDirection:'row'}]}
+       onPress={()=>setAdultPlus(Math.max(1,adultPlus+1))}
+        >
+    <Feather name="plus" color={COLORS.primary} size={22}/>
+
+      </Pressable>
+      <Text style={{fontSize:21}}>{adultPlus}</Text>
+      <Pressable style={[styles.buttonAdding, {backgroundColor:'#fff',
+       flexDirection:'row'}]}
+       onPress={()=>setAdultPlus(Math.max(1,adultPlus-1))}
+        >
+    <Feather name="minus" color={COLORS.primary} size={22}/>
+
+      </Pressable>
+
+</View>
+
+      <View style={{flexDirection:'row',
+      alignContent:'space-between', 
+      justifyContent:'space-between',
+       borderRadius:10,
+      padding:10, backgroundColor:'#EDEDED',
+       elevation:2, width:'40%',
+    }}>
+
+
+<Pressable style={[styles.buttonAdding, {backgroundColor:'#fff',
+       flexDirection:'row'}]}
+       onPress={()=>setChildPlus(Math.max(1,childPlus+1))}
+        >
+    <Feather name="plus" color={COLORS.primary} size={22}/>
+
+      </Pressable>
+      <Text style={{fontSize:21}}>{childPlus}</Text>
+      <Pressable style={[styles.buttonAdding, {backgroundColor:'#fff',
+       flexDirection:'row'}]}
+       onPress={()=>setChildPlus(Math.max(1,childPlus-1))}
+        >
+    <Feather name="minus" color={COLORS.primary} size={22}/>
+
+      </Pressable>
+</View>
+
+      </View>
+
+    
+      
+
+     
+<View style={{paddingTop:30}}>
       <TouchableOpacity
                  style={{backgroundColor:COLORS.secondary,width:'55%',height:'35%',
                  borderRadius:10, flexDirection:'column', 
@@ -196,4 +270,12 @@ const styles = StyleSheet.create({
         fontSize:17,
         fontWeight:'bold',
     },
+
+    buttonAdding:{
+      width:30,
+      height:30,
+      borderRadius:1,
+      justifyContent:'center',
+      alignItems:'center',
+    }
 })

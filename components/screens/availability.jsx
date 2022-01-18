@@ -68,14 +68,14 @@ const Card = ({room,index}) =>{
         <Icon name="keyboard-arrow-left" size={38} color='#fff' style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>      
 
        
-            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}> Rooms Available</Text>
+            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}>Warloff Hotel </Text>
             {/* <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white}}> {room.name}</Text> */}
 
         </View>
 
         <View >
        
-        <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.secondary, marginTop:'10%', textAlign:'center'}}> Warloff Hotel {room.name}</Text>
+        <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.secondary, marginTop:10, textAlign:'center'}}>  Rooms Available{room.name}</Text>
  
         </View>
 
@@ -86,7 +86,7 @@ const Card = ({room,index}) =>{
         <View>
             <FlatList 
             data={room}
-            contentContainerStyle={{paddingVertical:20,paddingLeft:20}}
+            contentContainerStyle={{paddingVertical:10,paddingLeft:20}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item,index}) => <Card room={item} index={index}/>}
             />

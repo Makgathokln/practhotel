@@ -90,7 +90,7 @@ const  DetailsScreen = ({navigation, route}) => {
                         flexDirection:'row',justifyContent:'space-between',
                         borderRadius:10, borderColor:'#D9FCD9',
                          borderWidth:40, width:'10%', height:'40%'}}>
-                    <Icon name="star" color={COLORS.gray} size={22}/>
+                    <Icon name="star" color={'#00cc00'} size={20}/>
                     
 
                     </View>
@@ -98,7 +98,7 @@ const  DetailsScreen = ({navigation, route}) => {
                     <View style={{border:3 ,width:'10%',height:'40%',
                      flexDirection:'row',justifyContent:'space-between',
                      borderRadius:10, borderColor:'#F6ED96', borderWidth:40}}>
-                    <Icon name="wifi" color={COLORS.gray} size={22}/>
+                    <Icon name="wifi" color={'#ff9933'} size={22}/>
                     
 
                     </View>
@@ -106,7 +106,7 @@ const  DetailsScreen = ({navigation, route}) => {
                     <View style={{border:3 , width:'10%',height:'40%',
                     flexDirection:'row',justifyContent:'space-between',
                     borderRadius:10, borderColor:'#DCBFFC', borderWidth:40}}>
-                    <Icon name="local-restaurant" color={COLORS.gray} size={22}/>
+                    <Icon name="local-restaurant" color={'#6600cc'} size={22}/>
                     
 
                     </View>
