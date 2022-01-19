@@ -18,6 +18,8 @@ import Availability from './components/screens/availability';
 import Profile from './components/screens/profile';
 import Edit from './components/screens/edit';
 import Payment from './components/screens/payment';
+import PaymentScreen from './components/screens/PaymentScreen';
+import PaymentView from './components/screens/PaymentView';
 
 const Menu = ()=>{
   const Stack = createNativeStackNavigator()
@@ -42,7 +44,8 @@ const Menu = ()=>{
             <Stack.Screen name={"Profile"} component={Profile} />    
             <Stack.Screen name={"edit"} component={Edit} />    
             <Stack.Screen name={"Payment"} component={Payment} />    
-
+            <Stack.Screen name={"PaymentScreen"} component={PaymentScreen}/>
+            <Stack.Screen name={"PaymentView"} component={PaymentView}/>
           </Stack.Navigator>
       </NavigationContainer>
   )
