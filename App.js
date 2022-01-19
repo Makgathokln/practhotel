@@ -25,7 +25,7 @@ import MyCard from './components/screens/MyCard';
 import AddCard from './components/screens/AddCard';
 import FormInput from './components/screens/FormInput';
 import Confirm from './components/screens/Confirm';
-import PaymentConfirm from './components/screens/PaymentConfirm'
+import PaymentConfirmation from './components/screens/PaymentConfirmation'
 
 
 const Menu = ()=>{
