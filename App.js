@@ -20,6 +20,8 @@ import Edit from './components/screens/edit';
 import Payment from './components/screens/payment';
 import PaymentScreen from './components/screens/PaymentScreen';
 import PaymentView from './components/screens/PaymentView';
+import CardItem from './components/screens/CardItem'
+import MyCard from './components/screens/MyCard'
 
 const Menu = ()=>{
   const Stack = createNativeStackNavigator()
