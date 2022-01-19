@@ -58,7 +58,7 @@ const Menu = ()=>{
             <Stack.Screen name={"AddCard"} component={AddCard}/>
             <Stack.Screen name={"FormInput"} component={FormInput}/>
             <Stack.Screen name={"Confirm"} component={Confirm}/>
-            <Stack.Screen name={"PaymentConfirm"} component={PaymentConfirm}/>
+            <Stack.Screen name={"PaymentConfirmation"} component={PaymentConfirmation}/>
 
 
 
