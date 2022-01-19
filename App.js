@@ -23,6 +23,7 @@ import PaymentView from './components/screens/PaymentView';
 import CardItem from './components/screens/CardItem'
 import MyCard from './components/screens/MyCard';
 import AddCard from './components/screens/AddCard';
+import FormInput from './components/screens/FormInput';
 
 const Menu = ()=>{
   const Stack = createNativeStackNavigator()
@@ -52,6 +53,8 @@ const Menu = ()=>{
             <Stack.Screen name={"MyCard"} component={MyCard}/>
             <Stack.Screen name={"CardItem"} component={CardItem}/>
             <Stack.Screen name={"AddCard"} component={AddCard}/>
+            <Stack.Screen name={"FormInput"} component={FormInput}/>
+
 
 
           </Stack.Navigator>
