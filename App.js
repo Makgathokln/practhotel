@@ -24,7 +24,9 @@ import CardItem from './components/screens/CardItem'
 import MyCard from './components/screens/MyCard';
 import AddCard from './components/screens/AddCard';
 import FormInput from './components/screens/FormInput';
-import Confirm from './components/screens/Confirm'
+import Confirm from './components/screens/Confirm';
+import PaymentConfirm from './components/screens/PaymentConfirm'
+
 
 const Menu = ()=>{
   const Stack = createNativeStackNavigator()
@@ -56,6 +58,8 @@ const Menu = ()=>{
             <Stack.Screen name={"AddCard"} component={AddCard}/>
             <Stack.Screen name={"FormInput"} component={FormInput}/>
             <Stack.Screen name={"Confirm"} component={Confirm}/>
+            <Stack.Screen name={"PaymentConfirm"} component={PaymentConfirm}/>
+
 
 
 
