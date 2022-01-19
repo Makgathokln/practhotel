@@ -7,7 +7,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 
-const PaymentConfirmation = ({item, isSelected, onPress}) =>{
+const PaymentConfirmation = ({navigation}) =>{
 //    function renderHeader(){
 
 //    }
@@ -26,8 +26,8 @@ const PaymentConfirmation = ({item, isSelected, onPress}) =>{
 
         <View>
         <Text style={{fontWeight:'bold', fontSize:22, paddingTop:10, 
-         color:COLORS.secondary, textAlign:'center'}}>
-           Congratulations</Text>
+         color:'green', textAlign:'center'}}>
+           Thank you for your payment</Text>
 
         </View>
         </View>
