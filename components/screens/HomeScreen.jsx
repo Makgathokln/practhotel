@@ -157,8 +157,9 @@ const TopHotelCard = ({hotel}) =>{
         </View>
 
         <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
-        <Icon name="person-outline" size={38} color='gray' />
-
+        {/* <Icon name="person-outline" size={38} color='gray' /> */}
+        <Image source={require('./images/profile.jpeg')}
+               style={{flex:1, width:60,height:60,borderRadius:40, resizeMode: 'cover'}}></Image>
         </TouchableOpacity>
  {/* <TouchableOpacity  onPress={()=> navigation.navigate("profile")}
 >

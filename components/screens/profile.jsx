@@ -26,19 +26,20 @@ const profile =({navigation})=>{
 <View style={{flex:1, backgroundColor:'#fff'}}>
 <View style={{paddingTop:40, 
     flexDirection:'row',paddingHorizontal:20}}>
-          <Icon name="arrow-back-ios" size={38} color='gray' />
+          <Icon name="arrow-back-ios" size={38} color='gray'
+          onPress={navigation.goBack} />
  
     <Text style={{fontSize:20, fontWeight:'bold',color:COLORS.secondary, paddingLeft:"20%"}}>My Profile</Text>
 
     </View>
 
-    <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:20, paddingLeft:"35%"}}>
+    <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:20,}}>
 {/* 
     <Image source={require('./images/exec.jpg')} 
     style={{height:'20%',width:'20%'}}
  />   */}
-           <Icon name="accessibility" size={78} color='gray' />
-
+ <Image source={require('./images/profile.jpeg')}
+               style={{ width:100,height:100,marginLeft:100 , borderRadius:20}}></Image>
            <View style={{paddingTop:'20%'}}>
            <Icon name="create" size={20} color='gray' />
 
@@ -50,7 +51,7 @@ const profile =({navigation})=>{
     </View>
     <View>
 <Text style={{fontSize:20, fontWeight:'bold',
-color:COLORS.secondary, paddingLeft:"20%", 
+color:COLORS.primary, paddingLeft:"30%", 
 paddingTop:'5%'}}>Leah Makgatho</Text>
 
 </View>
