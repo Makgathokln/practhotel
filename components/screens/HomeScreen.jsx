@@ -39,7 +39,7 @@ const HomeScreen =({navigation})  =>{
                     <View>
                         <Text style={{...style.categoryListText, color:selectedCategoryIndex == index
          ? '#0b1674'
-        : '#ff6e1a' }}>
+        : '#ff6e1a' }}  onPress={()=> navigation.navigate("Popular")}>
                             {item}
                         </Text>
                     {selectedCategoryIndex == index && (

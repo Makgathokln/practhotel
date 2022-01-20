@@ -26,7 +26,7 @@ const profile =({navigation})=>{
 <View style={{flex:1, backgroundColor:'#fff'}}>
 <View style={{paddingTop:40, 
     flexDirection:'row',paddingHorizontal:20}}>
-          <Icon name="arrow-back-ios" size={38} color='gray'
+          <Icon name="arrow-back-ios" size={34} style={{color:COLORS.secondary}}
           onPress={navigation.goBack} />
  
     <Text style={{fontSize:20, fontWeight:'bold',color:COLORS.secondary, paddingLeft:"20%"}}>My Profile</Text>
@@ -41,7 +41,7 @@ const profile =({navigation})=>{
  <Image source={require('./images/profile.jpeg')}
                style={{ width:100,height:100,marginLeft:100 , borderRadius:20}}></Image>
            <View style={{paddingTop:'20%'}}>
-           <Icon name="create" size={20} color='gray' />
+           <Icon name="create" size={20} style={{color:COLORS.secondary}} />
 
 
 
@@ -55,8 +55,60 @@ color:COLORS.primary, paddingLeft:"30%",
 paddingTop:'5%'}}>Leah Makgatho</Text>
 
 </View>
+
+<View style={{paddingHorizontal:20}}>
+      <Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>First Name</Text>
+      <TextInput
+        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+        inlineImageLeft="username"
+        inlineImagePadding={2}
+
+      />
+      
+
+          <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Last Name</Text>
+
+
+
+      <TextInput
+        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+        inlineImageLeft="username"
+        inlineImagePadding={2}
+      />
+
+<Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Email Address</Text>
+
+
+
+<TextInput
+  style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+  inlineImageLeft="username"
+  inlineImagePadding={2}
+/>
+
+
+<Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Home Address</Text>
+
+
+
+<TextInput
+  style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+  inlineImageLeft="username"
+  inlineImagePadding={2}
+/>
+
+
 </View>
 
+<TouchableOpacity
+                 style={{margin:20,backgroundColor:'#0b1674',width:'55%',height:60,borderRadius:10,
+                alignItems:'center', marginTop:40, paddingHorizontal:20}}
+                 onPress={()=>navigation.navigate('MainContainer')}>
+                <Text style={{padding:10,color:'#fff',fontSize: 24}}>
+                    Update
+                </Text>
+</TouchableOpacity>
+</View>
 </>
     )
 }

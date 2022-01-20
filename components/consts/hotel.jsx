@@ -5,7 +5,9 @@ const hotel = [
     location:'66 Hoog Street Polokwane',
     price:2500,
     image:require('../screens/images/pin1.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'currently booked',
 },
 {
     id:'2',
@@ -13,7 +15,9 @@ const hotel = [
     location: '15 Biccard Street Polokwane',
     price:1000,
     image:require('../screens/images/pin2.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Currently booked',
 
 },
 {
@@ -22,7 +26,9 @@ const hotel = [
     location:'66 Hoog Street Polokwane',
     price:2500,
     image:require('../screens/images/pin3.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Currently booked',
 },
 {
     id:'4',
@@ -30,7 +36,9 @@ const hotel = [
     location: '15 Biccard Street Polokwane',
     price:1000,
     image:require('../screens/images/pin4.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Checked out',
 
 },
 {
@@ -39,7 +47,9 @@ const hotel = [
     location:'66 Hoog Street Polokwane',
     price:2500,
     image:require('../screens/images/pin5.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Currently booked',
 },
 {
     id:'6',
@@ -47,8 +57,9 @@ const hotel = [
     location: '15 Biccard Street Polokwane',
     price:1000,
     image:require('../screens/images/pin6.jpg'),
-    details:'Lorem ipsum dolor set amet'
-
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Currently booked',
 },
 {
     id: '7',
@@ -56,7 +67,9 @@ const hotel = [
     location:'66 Hoog Street Polokwane',
     price:2500,
     image:require('../screens/images/pin7.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Checked Out',
 },
 {
     id:'8',
@@ -64,7 +77,9 @@ const hotel = [
     location: '15 Biccard Street Polokwane',
     price:1000,
     image:require('../screens/images/pin8.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Currently booked',
 
 },
 {
@@ -73,7 +88,9 @@ const hotel = [
     location:'66 Hoog Street Polokwane',
     price:2500,
     image:require('../screens/images/pin9.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Currently booked',
 },
 {
     id:'10',
@@ -81,7 +98,9 @@ const hotel = [
     location: '15 Biccard Street Polokwane',
     price:1000,
     image:require('../screens/images/pin10.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Checked out',
 
 },
 {
@@ -90,7 +109,9 @@ const hotel = [
     location:'66 Hoog Street Polokwane',
     price:2500,
     image:require('../screens/images/hotel11.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Checked out',
 },
 {
     id:'12',
@@ -98,7 +119,9 @@ const hotel = [
     location: '15 Biccard Street Polokwane',
     price:1000,
     image:require('../screens/images/hotel1A.jpg'),
-    details:'Lorem ipsum dolor set amet'
+    details:'Lorem ipsum dolor set amet',
+    date:'25-02-22 - 27-02-22',
+    status:'Checked Out',
 
 },
 ]

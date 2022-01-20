@@ -58,17 +58,17 @@ const Card = ({hotel,index}) =>{
         height:'150%'
     }}> 
 
-    <Image source={hotel.image} style={{width:'30%',height:'80%', borderRadius:10,marginTop:10,}}>
+    <Image source={hotel.image} style={{width:'30%',height:'80%', borderRadius:10,marginTop:7,}}>
     </Image>
 
     <View style={{flex:1,
         flexDirection:'column', paddingHorizontal:15}}>
     
     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18}}>{hotel.name}</Text>
-    <Text style={{fontWeight:'bold', color:COLORS.gray, fontSize:16}}>dd/mm/yyyy - dd/mm/yyyy</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.gray, fontSize:16}}>{hotel.date}</Text>
     
     <TouchableOpacity onPress={() => navigation.navigate('signIn') }>
-    <Text style={{fontWeight:'bold', color:COLORS.primary, fontSize:16}}>Status</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.primary, fontSize:16}}>{hotel.status}</Text>
     </TouchableOpacity>
 
 
@@ -84,7 +84,7 @@ const Card = ({hotel,index}) =>{
         <Icon name="keyboard-arrow-left" size={38} color='#fff' style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>      
 
        
-            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}> Booking History</Text>
+            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}> Notifications</Text>
         </View>
  
         <View style={{
@@ -95,7 +95,7 @@ const Card = ({hotel,index}) =>{
            
             <TextInput 
             styles={styles.inputText}
-            placeholder='Search For History'/>
+            placeholder='Search For Notifications'/>
       
         </View>
 
@@ -111,7 +111,7 @@ const Card = ({hotel,index}) =>{
         <View>
             <FlatList 
             data={hotel}
-            contentContainerStyle={{paddingVertical:30,paddingLeft:20}}
+            contentContainerStyle={{paddingVertical:10,paddingLeft:20}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item,index}) => <Card hotel={item} index={index}/>}
             />

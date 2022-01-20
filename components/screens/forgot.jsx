@@ -19,17 +19,17 @@ style={{height:Dimensions.get('window').height / 2.5}}>
 <View style={styles.bottomView}>
 <View style={styles.innerBottom}>
 <Text style= {{fontWeight:'bold', color:'#0b1674', fontSize:30 }}>
-Forgot Your {"\n"}Password
+Forgot Your Password
 </Text>
 
-<Text style={{margin: 10, color:'gray', fontWeight:'bold'}}>
-Enter Your Email Address{"\n"}And We Will Email You A {"\n"}Link To Reset Your Password</Text>
+<Text style={{margin: 10, color:'gray', fontWeight:'bold', fontSize:16}}>
+Enter Your Email Address And We Will Email You A Link To Reset Your Password</Text>
 
 
 <View >
       <Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>Email</Text>
       <TextInput
-        style={{height: '22%', width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
         inlineImageLeft="username"
         inlineImagePadding={2}
 
@@ -41,10 +41,11 @@ Enter Your Email Address{"\n"}And We Will Email You A {"\n"}Link To Reset Your P
 
  
 <TouchableOpacity
-                 style={{margin:15,backgroundColor:'#0b1674',width:'95%',height:'22%',borderRadius:30,
+                 style={{paddingHorizontal:20,backgroundColor:'#0b1674',width:'95%',height:60,borderRadius:30,
+                 marginTop:50,
                 alignItems:'center'}}
                  onPress={()=>navigation.navigate('signIn')}>
-                <Text style={{padding:5,color:'#fff',fontSize: 24}}>
+                <Text style={{padding:10,color:'#fff',fontSize: 24}}>
                     Continue
                 </Text>
 </TouchableOpacity>

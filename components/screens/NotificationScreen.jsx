@@ -86,7 +86,7 @@ const Card = ({hotel,index}) =>{
         style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>      
 
        
-            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}> Notifications</Text>
+            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}> Booking History</Text>
         </View>
  
         <View style={{

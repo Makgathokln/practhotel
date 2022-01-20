@@ -15,6 +15,7 @@ const PaymentConfirmation = ({navigation}) =>{
         
         <View style={{
             flex:1,
+           
         }}>
         
       
@@ -24,12 +25,23 @@ const PaymentConfirmation = ({navigation}) =>{
         <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>      
         </View>
 
-        <View>
-        <Text style={{fontWeight:'bold', fontSize:22, paddingTop:10, 
-         color:'green', textAlign:'center'}}>
-           Thank you for your payment</Text>
+        <View style={{
+            flex:1,
+            alignItems: 'center',
+             justifyContent:'center',
+            
+        }}>
+        <Text style={{fontWeight:'bold', fontSize:24,  
+         color:'#00cc00', textAlign:'center', }}>
+           Payment Successful </Text>
+           <View>
+           <Icon name="done" size={60} color={'#00cc00'} />
 
-        </View>
+           </View>
+
+        </View >
+
+        
         </View>
         
     )

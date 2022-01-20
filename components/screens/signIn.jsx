@@ -5,6 +5,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 //import TextInput from 'react-native-textinput-with-icons'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const signIn =({navigation})=>{
     return(
@@ -25,15 +26,26 @@ style={{height:Dimensions.get('window').height / 2.5}}>
 
 </Text>
 <View >
-      <Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>Email</Text>
-      <TextInput
-        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+<Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>Email</Text>
+
+    <View style={{flexDirection:'row', alignItems:'center'}}>
+    {/* <View >
+<Icon name="search" size={30} style={{marginLeft:20}}/>
+<TextInput placeholder="Search" 
+style={{paddingLeft:10}} 
+/>
+</View> */}
+
+       <TextInput
+        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20, flex:1}}
         inlineImageLeft="username"
         inlineImagePadding={2}
 
       />
-    <FontAwesome icon="check-square" size={40}  />
 
+{/* <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{marginRight:80}} onPress={navigation.goBack}/>       */}
+
+    </View>
           <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
 
 
@@ -55,10 +67,10 @@ style={{height:Dimensions.get('window').height / 2.5}}>
 
  
 <TouchableOpacity
-                 style={{margin:10,backgroundColor:'#0b1674',width:'95%',height:'16%',borderRadius:30,
+                 style={{margin:10,backgroundColor:'#0b1674',width:'95%',height:60,borderRadius:30,
                 alignItems:'center'}}
                  onPress={()=>navigation.navigate('MainContainer')}>
-                <Text style={{padding:5,color:'#fff',fontSize: 24}}>
+                <Text style={{padding:10,color:'#fff',fontSize: 24}}>
                     Sign In
                 </Text>
 </TouchableOpacity>
