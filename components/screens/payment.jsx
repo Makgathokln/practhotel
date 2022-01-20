@@ -40,13 +40,15 @@ const Payment=({navigation}) =>{
         <View>
         <Text style={{ fontSize:26, 
             fontWeight:'bold', 
-            color:COLORS.secondary, textAlign:'center', paddingTop:10}}> Confirmation {room.name}</Text>
+            color:COLORS.secondary, 
+            textAlign:'center', paddingTop:10}}> 
+            Confirmation {room.name}</Text>
  
         </View>
 
         <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'space-between', paddingHorizontal:20, paddingTop:10}}>
                 <Text style={{fontSize:16,
-                           fontWeight:'bold', color:COLORS.secondary, marginTop:10}}>Room Type</Text>
+                           fontWeight:'bold', color:COLORS.secondary, marginTop:10}}>Room Type(s)</Text>
                           
         <SelectDropdown
 	        data={roomtype}
@@ -242,7 +244,7 @@ const Payment=({navigation}) =>{
             <TouchableOpacity
                  style={{backgroundColor:COLORS.secondary,width:'45%',height:'155%',borderRadius:10,
                 alignItems:'center'}}
-                 onPress={()=>navigation.navigate('signIn')}>
+                 onPress={()=>navigation.navigate('PaymentScreen')}>
                 <Text style={{color:'#fff',fontSize: 16, marginTop:10, fontWeight:'bold'}}>
                     Pay Now
                 </Text>

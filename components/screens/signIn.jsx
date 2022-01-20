@@ -32,7 +32,7 @@ style={{height:Dimensions.get('window').height / 2.5}}>
         inlineImagePadding={2}
 
       />
-    <FontAwesome icon="check-square" size={40} style={{right:30}} />
+    <FontAwesome icon="check-square" size={40}  />
 
           <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
 
