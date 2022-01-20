@@ -9,4 +9,4 @@ const PaymentScreen = () =>{
         
     )
 }
-export default PaymenScreen
+export default PaymentScreen

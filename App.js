@@ -25,7 +25,10 @@ import MyCard from './components/screens/MyCard';
 import AddCard from './components/screens/AddCard';
 import FormInput from './components/screens/FormInput';
 import Confirm from './components/screens/Confirm';
-import PaymentConfirmation from './components/screens/PaymentConfirmation'
+import PaymentConfirmation from './components/screens/PaymentConfirmation';
+import Popular from './components/screens/Popular';
+import Luxury from './components/screens/Luxury';
+import Top from './components/screens/Top';
 
 
 const Menu = ()=>{
@@ -59,6 +62,8 @@ const Menu = ()=>{
             <Stack.Screen name={"FormInput"} component={FormInput}/>
             <Stack.Screen name={"Confirm"} component={Confirm}/>
             <Stack.Screen name={"PaymentConfirmation"} component={PaymentConfirmation}/>
+            <Stack.Screen name={"Popular"} component={Popular}/>
+
 
 
 
