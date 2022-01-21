@@ -40,12 +40,14 @@ const  DetailsScreen = ({navigation, route}) => {
             source={item.image}> 
             
             <View style={style.header}>
-            <Icon name="arrow-back-ios" size={28} color={COLORS.white} onPress={navigation.goBack} />
+            <Icon name="arrow-back-ios" size={28}
+             color={COLORS.white} onPress={navigation.goBack}
+             style={{paddingBottom:5}} />
             
             <Icon
-             name="bookmark-border"
+             name="favorite"
               size={28} 
-              color={COLORS.white}  />
+              color={COLORS.primary}  />
 
             </View>
             </ImageBackground>
@@ -87,11 +89,10 @@ const  DetailsScreen = ({navigation, route}) => {
                 <View style={{flexDirection:'row',alignContent:'space-between',justifyContent:'space-between', }}>
                     
                     <View style={{
-                          width: 10, 
-                          height: 10, 
-                          borderRadius: 5, 
-                          borderWidth: 2, 
-                          borderColor: 'rgb(170, 207, 202)'}}>
+                        border:3 , 
+                        flexDirection:'row',justifyContent:'space-between',
+                        borderRadius:10, borderColor:'#D9FCD9',
+                         borderWidth:40, width:'10%', height:'40%'}}>
                     <Icon name="star" color={'#00cc00'} size={20}/>
                     
 

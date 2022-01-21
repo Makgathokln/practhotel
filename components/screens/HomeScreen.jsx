@@ -153,7 +153,7 @@ const TopHotelCard = ({hotel}) =>{
     <SafeAreaView style={{flex:1, backgroundColor:'#fff'}}> 
         <View style={style.header}>
         <View style={{paddingBottom:15}}>
-            <Text style={{fontSize:25, fontWeight:'bold', color:'#ff6e1a'}}> Welcome! Leah Hi</Text>
+            <Text style={{fontSize:25, fontWeight:'bold', color:'#ff6e1a'}}> Welcome! Leah</Text>
         </View>
 
         <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
