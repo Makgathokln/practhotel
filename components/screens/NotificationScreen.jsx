@@ -59,9 +59,7 @@ const Card = ({hotel,index}) =>{
     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:20}}>{hotel.name}</Text>
     <Text style={{fontWeight:'bold', color:COLORS.gray, fontSize:16}}>{hotel.location}</Text>
     
-    <TouchableOpacity onPress={() => navigation.navigate('signIn') }>
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>Book Again</Text>
-    </TouchableOpacity>
+    
 
 <View  style={{
         flex:1,

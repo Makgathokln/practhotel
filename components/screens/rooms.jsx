@@ -55,7 +55,7 @@ const Card = ({room,index}) =>{
 
     <View style={{flexDirection:'row',justifyContent:'space-between', alignContent:'space-between' }}>
 
-    <TouchableOpacity onPress={() => navigation.navigate('Payment') }>
+    <TouchableOpacity onPress={() => navigation.navigate('Confirm') }>
     {/* <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>Select</Text> */}
     <Icon name="add-circle" size={24} color={COLORS.primary} />
 

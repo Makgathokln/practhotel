@@ -89,36 +89,49 @@ const  DetailsScreen = ({navigation, route}) => {
                 <View style={{flexDirection:'row',alignContent:'space-between',justifyContent:'space-between', }}>
                     
                     <View style={{
-                        border:3 , 
-                        flexDirection:'row',justifyContent:'space-between',
-                        borderRadius:10, borderColor:'#D9FCD9',
-                         borderWidth:40, width:'10%', height:'40%'}}>
-                    <Icon name="star" color={'#00cc00'} size={20}/>
+                       flexDirection:'row',justifyContent:'space-between',
+                        }}>
                     
+                    <View  style={{backgroundColor:'#ccffcc',width:50,
+                    height:50,borderRadius:10, marginRight:20,
+                    alignItems:'center'}}>
+                    <Icon name="car" color={'#00cc00'} size={30} style={{padding:10}}/>
+                    </View>
 
                     </View>
 
-                    <View style={{border:3 ,width:'10%',height:'40%',
-                     flexDirection:'row',justifyContent:'space-between',
-                     borderRadius:10, borderColor:'#F6ED96', borderWidth:40}}>
-                    <Icon name="wifi" color={'#ff9933'} size={22}/>
-                    
+                    <View style={{
+                     flexDirection:'row',justifyContent:'space-between'}}>
+                   
+                   <View  style={{backgroundColor:'#fff0b3',width:50,
+                 height:50,borderRadius:10, marginRight:20,
+                alignItems:'center'}}>
+                    <Icon name="wifi" color={'#ff9933'}  size={30} style={{padding:10}}/>
+                   </View> 
 
                     </View>
 
-                    <View style={{border:3 , width:'10%',height:'40%',
+                    <View style={{
                     flexDirection:'row',justifyContent:'space-between',
-                    borderRadius:10, borderColor:'#DCBFFC', borderWidth:40}}>
-                    <Icon name="local-restaurant" color={'#6600cc'} size={22}/>
-                    
+                   }}>
+                       <View  style={{backgroundColor:'#e6ccff',width:50,
+                 height:50,borderRadius:10, marginRight:20,
+                alignItems:'center'}}>
+                    <Icon name="local-restaurant" color={'#6600cc'} size={30} style={{padding:10}}/>
+                    </View>
 
                     </View>
 
-                    <View style={{border:3 , width:'10%',height:'40%',
-                    flexDirection:'row',justifyContent:'space-between',
-                    borderRadius:10, borderColor:'#D9E7FC', borderWidth:40}}>
-                    <Icon name="drive-eta" color={COLORS.gray} size={22}/>
-                    
+                    <View style={{
+                    flexDirection:'row',justifyContent:'space-between'}}>
+                   <View
+                 style={{backgroundColor:'#ffcc99',width:50,
+                 height:50,borderRadius:10, marginRight:20,
+                alignItems:'center'}}
+                 >
+                                   <Icon name="directions-car" color={'#ff9933'} size={30} style={{padding:10}}/>
+
+            </View>
 
                     </View>
                 
@@ -130,14 +143,15 @@ const  DetailsScreen = ({navigation, route}) => {
                  justifyContent:'space-between',
                  paddingLeft:20,
                  alignItems:'center' }}>
-                     <Text style={{color:COLORS.primary, fontWeight:'bold', fontSize:20}}>R {item.price} / Night</Text>
+                     <Text style={{color:COLORS.primary, fontWeight:'bold', 
+                     fontSize:20}}>R {item.price} / Night</Text>
                
                      <TouchableOpacity
                  style={{backgroundColor:COLORS.secondary,width:'55%',height:'135%',borderRadius:10, marginRight:20,
                 alignItems:'center'}}
                  onPress={()=>navigation.navigate('Bookings')}>
                 <Text style={{padding:5,color:'#fff',fontSize: 18, marginTop: 20}}>
-                    Select Rooms
+                    Book Now
                 </Text>
             </TouchableOpacity>
                  </View>

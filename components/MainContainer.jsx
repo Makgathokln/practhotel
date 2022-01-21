@@ -51,14 +51,14 @@ const MainContainer =({navigation})=>{
                     if (rn === homeName){
                         iconName = focused ? 'home' : 'home-outline'
                     }else if (rn === notificationName){
-                        iconName = focused ? 'alert-circle' : 'alert-circle-outline'
+                        iconName = focused ? 'notifications-sharp' : 'notifications-sharp'
                     }else if (rn ===historyName){
                         iconName = focused ? 'repeat' : 'repeat-outline';
 
                     }else if (rn ===userName){
-                        iconName = focused ? 'ios-body' : 'ios-body-outline';
+                        iconName = focused ? 'person' : 'person';
                     }else if (rn ===detailsName){
-                        iconName = focused ? 'ios-body' : 'ios-body-outline';
+                        iconName = focused ? 'person' : 'person';
 
                     }
                     
@@ -75,8 +75,8 @@ const MainContainer =({navigation})=>{
             > 
 
             <Tab.Screen name={homeName} options={{headerShown: false}} component={HomeScreen}/>
-            <Tab.Screen name={notificationName} options={{headerShown: false}} component={NotificationScreen}/>
-            <Tab.Screen name={historyName} options={{headerShown: false}} component={HistoryScreen}/>
+            <Tab.Screen name={notificationName} options={{headerShown: false}} component={HistoryScreen}/>
+            <Tab.Screen name={historyName} options={{headerShown: false}} component={NotificationScreen}/>
             <Tab.Screen name={userName} options={{headerShown: false}} component={Profile}/>
             {/* <Tab.Screen name={detailsName} options={{headerShown: false}} component={DetailsScreen}/> */}
 

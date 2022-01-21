@@ -199,7 +199,7 @@ const  bookings = ({navigation}) => {
                 alignItems:'center'}}
                  onPress={()=>navigation.navigate('Availability')}>
                 <Text style={{padding:5,color:'#fff',fontSize: 18, }}>
-                Make bookings
+                Proceed
                 </Text>
             </TouchableOpacity>
             </View>
