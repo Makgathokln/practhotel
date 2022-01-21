@@ -18,7 +18,7 @@ const  bookings = ({navigation}) => {
     // const item = route.params;
     // console.log(item);
    
-    const [CheckIn,setCheckIn] = useState('2022-02-02');
+    const [CheckIn,setCheckIn] = useState(0);
      const [adultPlus,setAdultPlus]=useState(0);
      const [childPlus,setChildPlus]=useState(0);
 
