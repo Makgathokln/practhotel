@@ -86,10 +86,12 @@ const  DetailsScreen = ({navigation, route}) => {
                 
                 <View style={{flexDirection:'row',alignContent:'space-between',justifyContent:'space-between', }}>
                     
-                    <View style={{border:3 , 
-                        flexDirection:'row',justifyContent:'space-between',
-                        borderRadius:10, borderColor:'#D9FCD9',
-                         borderWidth:40, width:'10%', height:'40%'}}>
+                    <View style={{
+                          width: 10, 
+                          height: 10, 
+                          borderRadius: 5, 
+                          borderWidth: 2, 
+                          borderColor: 'rgb(170, 207, 202)'}}>
                     <Icon name="star" color={'#00cc00'} size={20}/>
                     
 
