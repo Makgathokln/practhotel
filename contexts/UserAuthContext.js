@@ -47,13 +47,12 @@ export function UserAuthContextProvider({ children }) {
         };
     }, []);
 
-    //     return ( <
-    //         userAuthContext.Provider value = {
-    //             { user, logIn, logOut }
-    //         } > { children } <
-    //         /userAuthContext.Provider>
-    //     );
-    // }
+         return ( 
+             <userAuthContext.Provider value = {{ user, logIn, logOut }}> 
+             { children } 
+            </userAuthContext.Provider>
+        );
+    }
 
 
 
