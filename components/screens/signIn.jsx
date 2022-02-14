@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import {Text,  Pressable,
     TouchableOpacity,
     ImageBackground,
@@ -15,9 +15,20 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const signIn =({navigation})=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const { logIn} = useUserAuth();
-    const navigate = useNavigate();
+   // const [error, setError] = useState("");
+   // const { logIn} = useUserAuth();
+    //const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+        try {
+          await logIn(email, password);
+          navigate("/HomeScreen");
+        } catch (err) {
+          setError(err.message);
+        }
+      };
 
     return(
         <>
@@ -49,42 +60,38 @@ style={{paddingLeft:10}}
 
        <TextInput
         style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20, flex:1}}
-        inlineImageLeft="username"
-        inlineImagePadding={2}
-
-      />
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        />
 
 {/* <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{marginRight:80}} onPress={navigation.goBack}/>       */}
 
     </View>
-          <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
-
-
-
-      <TextInput
+    <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
+        <TextInput
         style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
-        inlineImageLeft="username"
-        inlineImagePadding={2}
-      />
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        />
 
  
-<TouchableOpacity
+{/* <TouchableOpacity
                  style={{ margin:10, justifyContent:'flex-end'}}
                  onPress={()=>navigation.navigate('forgot')}>
                 <Text style={{padding:5,color:'#0b1674',fontWeight:'bold', textAlign:'right'}}>
                 Forgot Your Password?
                 </Text>
-</TouchableOpacity>
+</TouchableOpacity> */}
 
  
-<TouchableOpacity
+                <TouchableOpacity
                  style={{margin:10,backgroundColor:'#0b1674',width:'95%',height:60,borderRadius:30,
                 alignItems:'center'}}
-                 onPress={()=>navigation.navigate('MainContainer')}>
+                 onPress={handleSubmit}>
                 <Text style={{padding:10,color:'#fff',fontSize: 24}}>
                     Sign In
                 </Text>
-</TouchableOpacity>
+                </TouchableOpacity>
 
 <TouchableOpacity
                  style={{ margin:10}}
