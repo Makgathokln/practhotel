@@ -197,7 +197,7 @@ const  bookings = ({navigation}) => {
                  borderRadius:10, flexDirection:'column', 
                  justifyContent:'center', alignContent:'center', marginLeft:100,
                 alignItems:'center'}}
-                 onPress={()=>navigation.navigate('Availability')}>
+                 onPress={()=>navigation.navigate('Rooms')}>
                 <Text style={{padding:5,color:'#fff',fontSize: 18, }}>
                 Proceed
                 </Text>

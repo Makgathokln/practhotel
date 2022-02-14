@@ -5,24 +5,28 @@ const { height, width } = Dimensions.get('window');
 
 const start =({navigation})=>{
     return(
-        <View style={{flex:1}}>
-            <ImageBackground source={require('./images/signIn.png')} style={{flex:1,  backgroundColor: 'black',
-        opacity: 0.9}}>
-            <View style={{justifyContent: 'center', alignItems: 'center', height: height + 220}}>
+        <View style={{flex:1, }}>
+            <ImageBackground source={require('./images/signIn.png')} style={{flex:1,  backgroundColor: '#595959',
+        opacity: 0.8}}>
 
-                <Text style={{justifyContent: 'center', alignItems: 'center', fontSize: 40, color: '#fff'}}>
-                Enjoy The {"\n"}Beauty Of {"\n"}Hotels          
+
+            <View style={{justifyContent: 'center',  height: height + 220, backgroundColor:'black'}}>
+
+                <Text style={{justifyContent: 'center',paddingHorizontal:20, alignItems: 'center', fontSize: 40, color: '#fff'}}>
+                Enjoy The Beauty Of Hotels          
                 </Text>
 
-                <Text style={{justifyContent: 'center', alignItems: 'center', 
+                <Text style={{justifyContent: 'center',paddingHorizontal:20, alignItems: 'center', 
                 textTransform: 'capitalize',fontSize: 20, color: '#fff'}}>
-                Rest Yourself By {"\n"}Booking Yourself To {"\n"}Your Dream Hotel  
+                Rest Yourself By Booking Yourself To Your Dream Hotel  
                 </Text>
 
                 
                 <TouchableOpacity
-                 style={{marginBottom: -150,marginTop:30,backgroundColor:'#ff6e1a',width:'65%',height:'5%',borderRadius:10,
-                alignItems:'center'}}
+                 style={{marginBottom: -150,marginTop:30,
+                    backgroundColor:'#ff6e1a',width:'65%',
+                    height:'5%',borderRadius:10, justifyContent: 'center',
+                alignItems:'center',  marginLeft:60}}
                  onPress={()=>navigation.navigate('signIn')}>
                 <Text style={{padding:5,color:'#fff',fontSize: 24}}>
                     Get Started

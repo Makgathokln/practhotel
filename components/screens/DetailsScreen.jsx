@@ -20,6 +20,7 @@ import { FlatList,
 import hotel from '../consts/hotel';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import COLORS from '../consts/colors';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 
 const  DetailsScreen = ({navigation, route}) => {
@@ -42,12 +43,14 @@ const  DetailsScreen = ({navigation, route}) => {
             <View style={style.header}>
             <Icon name="arrow-back-ios" size={28}
              color={COLORS.white} onPress={navigation.goBack}
-             style={{paddingBottom:5}} />
+            />
             
             <Icon
              name="favorite"
               size={28} 
-              color={COLORS.primary}  />
+              color={COLORS.primary} 
+            
+              />
 
             </View>
             </ImageBackground>
@@ -83,19 +86,25 @@ const  DetailsScreen = ({navigation, route}) => {
 
                 </View>
 
-                <View style={{marginTop: 14, paddingHorizontal:20}}>
-                    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, marginBottom:20}}>Amenities</Text>
+                <View style={{marginTop: 14, 
+                    paddingHorizontal:20}}>
+                    <Text style={{fontWeight:'bold', 
+                    color:COLORS.secondary, fontSize:18, marginBottom:20}}>Amenities</Text>
                 
-                <View style={{flexDirection:'row',alignContent:'space-between',justifyContent:'space-between', }}>
+                <View style={{flexDirection:'row',
+                alignContent:'space-between',justifyContent:'space-between', }}>
                     
                     <View style={{
                        flexDirection:'row',justifyContent:'space-between',
+                        
                         }}>
                     
-                    <View  style={{backgroundColor:'#ccffcc',width:50,
-                    height:50,borderRadius:10, marginRight:20,
-                    alignItems:'center'}}>
-                    <Icon name="car" color={'#00cc00'} size={30} style={{padding:10}}/>
+                    <View style={{backgroundColor:'#ccffcc',width:50,
+                    height:50,borderRadius:10, 
+                    alignItems:'center', }}>
+                        
+                    <FontAwesome5 name="swimmer" color={'#00cc44'} size={30} 
+                    style={{padding:10, }} />
                     </View>
 
                     </View>
@@ -104,7 +113,7 @@ const  DetailsScreen = ({navigation, route}) => {
                      flexDirection:'row',justifyContent:'space-between'}}>
                    
                    <View  style={{backgroundColor:'#fff0b3',width:50,
-                 height:50,borderRadius:10, marginRight:20,
+                 height:50,borderRadius:10, 
                 alignItems:'center'}}>
                     <Icon name="wifi" color={'#ff9933'}  size={30} style={{padding:10}}/>
                    </View> 
@@ -115,7 +124,7 @@ const  DetailsScreen = ({navigation, route}) => {
                     flexDirection:'row',justifyContent:'space-between',
                    }}>
                        <View  style={{backgroundColor:'#e6ccff',width:50,
-                 height:50,borderRadius:10, marginRight:20,
+                 height:50,borderRadius:10, 
                 alignItems:'center'}}>
                     <Icon name="local-restaurant" color={'#6600cc'} size={30} style={{padding:10}}/>
                     </View>
@@ -125,11 +134,11 @@ const  DetailsScreen = ({navigation, route}) => {
                     <View style={{
                     flexDirection:'row',justifyContent:'space-between'}}>
                    <View
-                 style={{backgroundColor:'#ffcc99',width:50,
-                 height:50,borderRadius:10, marginRight:20,
+                 style={{backgroundColor:'#D9E7FC',width:50,
+                 height:50,borderRadius:10, 
                 alignItems:'center'}}
                  >
-                                   <Icon name="directions-car" color={'#ff9933'} size={30} style={{padding:10}}/>
+                <Icon name="directions-car" color={'#0047b3'} size={30} style={{padding:10}}/>
 
             </View>
 
@@ -147,11 +156,11 @@ const  DetailsScreen = ({navigation, route}) => {
                      fontSize:20}}>R {item.price} / Night</Text>
                
                      <TouchableOpacity
-                 style={{backgroundColor:COLORS.secondary,width:'55%',height:'135%',borderRadius:10, marginRight:20,
-                alignItems:'center'}}
+                 style={{backgroundColor:COLORS.secondary,width:'50%',height:'100%',borderRadius:10, marginRight:20,
+                alignItems:'center', marginTop:20}}
                  onPress={()=>navigation.navigate('Bookings')}>
-                <Text style={{padding:5,color:'#fff',fontSize: 18, marginTop: 20}}>
-                    Book Now
+                <Text style={{padding:5,color:'#fff',fontSize: 18, marginTop: 20, marginRight:4,}}>
+                    Check Availability
                 </Text>
             </TouchableOpacity>
                  </View>
@@ -170,7 +179,7 @@ marginTop:40,
 backgroundColor: COLORS.secondary
         },
         headerImage:{
-            height:340,
+            height:280,
             borderBottomRightRadius:40,
             borderBottomLeftRadius:40,
             overflow:'hidden',

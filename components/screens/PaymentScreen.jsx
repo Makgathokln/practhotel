@@ -53,7 +53,7 @@ const PaymentScreen = ({navigation}) =>{
             <Text style={{fontWeight:'bold', fontSize:22, paddingTop:10, 
          color:COLORS.secondary}}>
                 <Image source={require('./images/master.png')}
-               style={{flex:1, width:60,height:60, resizeMode: 'cover'}}></Image>
+               style={{flex:1, width:50,height:40, resizeMode: 'cover'}}></Image>
              My Card</Text>
            </TouchableOpacity>
             </View>
@@ -71,7 +71,7 @@ const PaymentScreen = ({navigation}) =>{
          
          }}
          onPress={() => navigation.navigate('AddCard') }>Add new Card</Text>
-            <Icon name="add-circle" size={24} color={COLORS.primary} style={{paddingTop:40, marginLeft:120}}
+            <Icon name="add-circle" size={24} color={COLORS.primary} style={{paddingTop:40, marginLeft:100}}
               onPress={() => navigation.navigate('AddCard') }/>
       
             {/* <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>       */}

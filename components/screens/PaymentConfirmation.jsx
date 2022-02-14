@@ -22,7 +22,7 @@ const PaymentConfirmation = ({navigation}) =>{
         <View style={{flexDirection:'row',
          
          paddingTop:20 }}>
-        <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>      
+       {/* <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>       */}
         </View>
 
         <View style={{

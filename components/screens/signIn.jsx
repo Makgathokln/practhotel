@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text,  Pressable,
-    TouchableOpacity,ImageBackground,ScrollView, Dimensions,View,Button, StyleSheet} from 'react-native';
+    TouchableOpacity,
+    ImageBackground,ScrollView, Dimensions,View,Button, StyleSheet} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'

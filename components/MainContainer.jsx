@@ -21,6 +21,7 @@ import HistoryScreen from './screens/HistoryScreen'
 import NotificationScreen from './screens/NotificationScreen'
 import Profile from './screens/profile'
 import DetailsScreen from './screens/DetailsScreen';
+import userDetails from './screens/UserDetails';
 
 
 //Screen bames
@@ -76,8 +77,8 @@ const MainContainer =({navigation})=>{
 
             <Tab.Screen name={homeName} options={{headerShown: false}} component={HomeScreen}/>
             <Tab.Screen name={notificationName} options={{headerShown: false}} component={HistoryScreen}/>
-            <Tab.Screen name={historyName} options={{headerShown: false}} component={NotificationScreen}/>
-            <Tab.Screen name={userName} options={{headerShown: false}} component={Profile}/>
+            <Tab.Screen name={historyName} options={{headerShown: false, footerShown:false}} component={NotificationScreen}/>
+            <Tab.Screen name={userName} options={{headerShown: false, footerShown:false}} component={userDetails}/>
             {/* <Tab.Screen name={detailsName} options={{headerShown: false}} component={DetailsScreen}/> */}
 
 

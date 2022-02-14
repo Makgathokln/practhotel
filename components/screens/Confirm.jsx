@@ -19,11 +19,12 @@ const Confirm = ({navigation}) =>{
 
             <ImageBackground 
             source={require('./images/master.png')}
-            style={{ width:350,
-                height:200, 
+            style={{ width:310,
+                height:180, 
                 resizeMode: 'cover',
                 paddingBottom:20,
-                marginLeft:20,
+                marginLeft:25,
+               paddingHorizontal:5,
                 borderRadius:20, overflow:'hidden'}}>
 
                     {/* Logo */}
@@ -100,10 +101,7 @@ const Confirm = ({navigation}) =>{
         
         <View>
         <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:20, fontWeight:'bold', paddingHorizontal:20,paddingTop:20,}}>
-           Please note that you are about to make </Text>
-           <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:20, fontWeight:'bold', paddingHorizontal:20,}}>
-           a payment for your bookings. </Text>
-
+           Please note that you are about to make a payment for your bookings. </Text>
         </View>
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
@@ -114,26 +112,26 @@ const Confirm = ({navigation}) =>{
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:20}}>
         <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold'}}>Arrival</Text>
-        <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold', paddingLeft:176}}>Departure</Text>
+        <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold', paddingLeft:140}}>Departure</Text>
 
         </View>
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
         <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold'}}>23/03/2022</Text>
-        <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold', paddingLeft:130}}>25/2/2022</Text>
+        <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold', paddingLeft:100}}>25/2/2022</Text>
 
         </View>
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
         <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold'}}>No. Of Adults</Text>
-        <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold', paddingLeft:120}}>No. Of Children</Text>
+        <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold', paddingLeft:90}}>No. Of Children</Text>
 
         </View>
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
         <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18,
          fontWeight:'bold',paddingLeft:50}}>3</Text>
-        <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold', paddingLeft:220}}>3</Text>
+        <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold', paddingLeft:190}}>3</Text>
 
         </View>
 
@@ -144,7 +142,7 @@ const Confirm = ({navigation}) =>{
 
         </View>
 
-        <View style={{paddingTop:50, paddingHorizontal:20}}>
+        <View style={{paddingTop:10, paddingHorizontal:20}}>
 <TouchableOpacity
                  style={{backgroundColor:COLORS.secondary,width:'100%',height:55,borderRadius:10,
                 alignItems:'center'}}

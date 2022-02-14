@@ -40,7 +40,7 @@ const Card = ({room,index}) =>{
     <View style={{flex:1,
         flexDirection:'column', paddingHorizontal:15}}>
     
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:24}}>{room.type}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:20}}>{room.type}</Text>
     <View style={{flexDirection:'row', }}>
     <Icon name="airline-seat-flat" size={24} color={COLORS.primary} style={{marginRight:10}}/>
     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{room.availability}</Text>
@@ -68,6 +68,8 @@ const Card = ({room,index}) =>{
 
     return(
 
+        <ScrollView showsVerticalScrollIndicator={false}>
+
         <View style={{ flex:1}}>
 
         <View style={styles.header} >
@@ -88,7 +90,7 @@ const Card = ({room,index}) =>{
  
         </View>
 
-        <View style={{flexDirection:'row', 
+        {/* <View style={{flexDirection:'row', 
         justifyContent:'flex-end', 
         alignContent:'flex-end', }}>
            
@@ -110,7 +112,7 @@ const Card = ({room,index}) =>{
 		return item
 	}}
 />              
-        </View>
+        </View> */}
         
       
 
@@ -124,8 +126,16 @@ const Card = ({room,index}) =>{
             />
         </View>
 
+        <TouchableOpacity
+                 style={{ margin:10, justifyContent:'flex-end'}}
+                 onPress={()=>navigation.navigate('PaymentScreen')}>
+                <Text style={{padding:5,color:COLORS.secondary,fontWeight:'bold', textAlign:'right'}}>
+                Proceed to payment
+                </Text>
+</TouchableOpacity>
         
         </View>
+        </ScrollView>
     )
 }
 
