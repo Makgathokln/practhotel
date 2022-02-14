@@ -3,32 +3,56 @@ import {Text,  Pressable,
     TouchableOpacity,
     ImageBackground,
     ScrollView, Dimensions,
-    View,Button, StyleSheet} from 'react-native';
-import { useUserAuth } from "../contexts/UserAuthContext";
+    View,Button, StyleSheet, ToastAndroid} from 'react-native';
+import { useAuth } from "../contexts/UserAuthContext";
 import { auth } from "../backend/firebase";
 import { TextInput } from 'react-native-gesture-handler';
+import { Formik } from 'formik'
+
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 //import TextInput from 'react-native-textinput-with-icons'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const signIn =({navigation})=>{
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-   // const [error, setError] = useState("");
-   // const { logIn} = useUserAuth();
-    //const navigate = useNavigate();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError("");
+    const [isSelected,setSelection]=useState(false)
+    const [isPasswordShow,setPasswordShow]=useState(false)
+   
+    
+    const {login}=useAuth()
+    const Submit = async (data) => {
+        console.log('run <<<<<<')
         try {
-          await logIn(email, password);
-          navigate("/HomeScreen");
-        } catch (err) {
-          setError(err.message);
+          const { email, password } = data
+          const user = await login(
+              email.trim().toLowerCase(), password
+            ).then(res=>{
+                if(res.user){
+                    navigation.navigate('HomeTap')
+                }
+            })
+
+            // .then(async res => {
+            //   try {
+            //     const jsonValue = JSON.stringify(res.user)
+            //     await AsyncStorage.setItem("user", res.user.uid)
+            //   } catch (e) {
+            //     // saving error
+            //     console.log('no data')
+            //   }
+            // })
+          
+    
+          setToastMsg('succesfully logged in')
         }
-      };
+        catch (error) {
+    
+          Alert.alert(
+            error.name,
+            error.message
+          )
+        }
+    }
 
     return(
         <>
@@ -47,6 +71,18 @@ style={{height:Dimensions.get('window').height / 2.5}}>
 
 
 </Text>
+<Formik 
+        initialValues={{email:'',password:''}}
+        validationSchema={ReviewSchem}
+        onSubmit={(values,action)=>{
+            action.resetForm()
+            Submit(values)
+        }}
+        >
+{(props)=>(
+        
+        <KeyboardAwareScrollView
+         >
 <View >
 <Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>Email</Text>
 
@@ -102,6 +138,9 @@ style={{paddingLeft:10}}
 </TouchableOpacity>
 
     </View>
+    </KeyboardAwareScrollView>
+            )}
+    </Formik>
     </View>
 </View>
 </ScrollView>
