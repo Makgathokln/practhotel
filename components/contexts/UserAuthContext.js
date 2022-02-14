@@ -9,14 +9,14 @@ import {
 import { auth, db } from "../backend/firebase";
 
 import { child, get, ref } from "firebase/database";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 export const userAuthContext = createContext();
 
 
 export function UserAuthContextProvider({ children }) {
     const [user, setUser] = useState({});
-    const navigate = useNavigate();
+   // const navigate = useNavigate();
 
 
     function logIn(email, password) {
