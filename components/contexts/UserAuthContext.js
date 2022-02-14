@@ -6,7 +6,7 @@ import {
     signOut,
 } from "firebase/auth";
 
-import { auth, db } from "../firebase";
+import { auth, db } from "../backend/firebase";
 
 import { child, get, ref } from "firebase/database";
 import { useNavigate } from "react-router-dom";
