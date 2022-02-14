@@ -29,7 +29,7 @@ import PaymentConfirmation from './components/screens/PaymentConfirmation';
 import Popular from './components/screens/Popular';
 import Luxury from './components/screens/Luxury';
 import Top from './components/screens/Top';
-import { AuthProvider } from './components/contexts/AuthContext';
+import { AuthProvider } from './components/contexts/UserAuthContext'
 
 
 const Menu = ()=>{
