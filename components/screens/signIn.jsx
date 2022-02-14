@@ -3,11 +3,14 @@ import {Text,  Pressable,
     TouchableOpacity,
     ImageBackground,
     ScrollView, Dimensions,
-    View,Button, StyleSheet, ToastAndroid} from 'react-native';
+    View,Button, StyleSheet,Alert, ToastAndroid} from 'react-native';
 import { useAuth } from "../contexts/UserAuthContext";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 import { auth } from "../backend/firebase";
 import { TextInput } from 'react-native-gesture-handler';
 import { Formik } from 'formik'
+import * as yup from 'yup'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -17,7 +20,15 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const signIn =({navigation})=>{
     const [isSelected,setSelection]=useState(false)
     const [isPasswordShow,setPasswordShow]=useState(false)
-   
+    const ReviewSchem =yup.object({
+        email:yup.string().required().min(6),
+        password:yup.string().required().min(6),
+    })
+
+
+    const setToastMsg =msg=>{
+        ToastAndroid.showWithGravity(msg,ToastAndroid.SHORT,ToastAndroid.CENTER)
+    }
     
     const {login}=useAuth()
     const Submit = async (data) => {
@@ -28,19 +39,11 @@ const signIn =({navigation})=>{
               email.trim().toLowerCase(), password
             ).then(res=>{
                 if(res.user){
-                    navigation.navigate('HomeTap')
+                    navigation.navigate('HomeScreen')
                 }
             })
 
-            // .then(async res => {
-            //   try {
-            //     const jsonValue = JSON.stringify(res.user)
-            //     await AsyncStorage.setItem("user", res.user.uid)
-            //   } catch (e) {
-            //     // saving error
-            //     console.log('no data')
-            //   }
-            // })
+        
           
     
           setToastMsg('succesfully logged in')
@@ -96,8 +99,9 @@ style={{paddingLeft:10}}
 
        <TextInput
         style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20, flex:1}}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChangeText={props.handleChange('email')}
+        value={props.values.email}
+        onBlur={props.handleBlur('email')}
         />
 
 {/* <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{marginRight:80}} onPress={navigation.goBack}/>       */}
@@ -106,24 +110,27 @@ style={{paddingLeft:10}}
     <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
         <TextInput
         style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        secureTextEntry={isPasswordShow? false :true}
+
+        onChangeText={props.handleChange('password')}
+        value={props.values.password}
+        onBlur={props.handleBlur('password')}
         />
 
  
-{/* <TouchableOpacity
+<TouchableOpacity
                  style={{ margin:10, justifyContent:'flex-end'}}
                  onPress={()=>navigation.navigate('forgot')}>
                 <Text style={{padding:5,color:'#0b1674',fontWeight:'bold', textAlign:'right'}}>
                 Forgot Your Password?
                 </Text>
-</TouchableOpacity> */}
+</TouchableOpacity>
 
  
                 <TouchableOpacity
                  style={{margin:10,backgroundColor:'#0b1674',width:'95%',height:60,borderRadius:30,
                 alignItems:'center'}}
-                 onPress={handleSubmit}>
+                onPress={props.handleSubmit}>
                 <Text style={{padding:10,color:'#fff',fontSize: 24}}>
                     Sign In
                 </Text>
