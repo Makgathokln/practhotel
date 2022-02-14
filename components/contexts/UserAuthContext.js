@@ -1,61 +1,55 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from 'react';
 
-import {
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut,
-} from "firebase/auth";
+import { auth } from '../screens/firebase';
+const AuthContext = React.createContext()
 
-import { auth, db } from "../backend/firebase";
-
-import { child, get, ref } from "firebase/database";
-//import { useNavigate } from "react-router-dom";
-
-export const userAuthContext = createContext();
-
-
-export function UserAuthContextProvider({ children }) {
-    const [user, setUser] = useState({});
-   // const navigate = useNavigate();
-
-
-    function logIn(email, password) {
-        get(child(ref(db), "/users")).then((data) => {
-            const userAuth = Object.values(data.val()).filter(
-                (item) => item.email === email && item.isAdmin === true
-            );
-            if (userAuth[0]) {
-                return signInWithEmailAndPassword(auth, email, password).then(() => navigate("/rooms"))
-            }
-            alert("Please Sign in with Admin Account.");
-        });
+export function useAuth() {
+    return useContext(AuthContext)
+}
+export function AuthProvider({ children }) {
+    const [currentUser, setCurrentUser] = useState()
+    const [loading, setLoading] = useState(true)
+    const signup = (email, password) => {
+        return auth.createUserWithEmailAndPassword(email, password)
     }
 
-
-    function logOut() {
-        return signOut(auth);
+    const login = (email, password) => {
+        return auth.signInWithEmailAndPassword(email, password)
+    }
+    const logOut = () => {
+        return auth.signOut()
+    }
+    const resetPassword = (email) => {
+        return auth.sendPasswordResetEmail(email)
+    }
+    const updateEmail = (email) => {
+        return currentUser.updateEmail(email)
     }
 
+    const updatePassword = (password) => {
+        currentUser.updatePassword(password)
+    }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-            setUser(currentuser);
-        });
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            setLoading(false)
+            setCurrentUser(user)
+        })
+        return unsubscribe
+    }, [])
 
-        return () => {
-            unsubscribe();
-        };
-    }, []);
 
-         return ( 
-             <userAuthContext.Provider value = {{ user, logIn, logOut }}> 
-             { children } 
-            </userAuthContext.Provider>
-        );
+    const value = {
+        currentUser,
+        signup,
+        login,
+        logOut,
+        resetPassword,
+        updateEmail,
+        updatePassword
     }
-
-
-
-    export function useUserAuth() {
-        return useContext(userAuthContext);
-    }
+    return ( <
+        AuthContext.Provider value = { value } > {!loading && children } <
+        /AuthContext.Provider>
+    )
+}
