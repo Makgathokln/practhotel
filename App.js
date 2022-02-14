@@ -35,6 +35,7 @@ import { AuthProvider } from './components/contexts/AuthContext';
 const Menu = ()=>{
   const Stack = createNativeStackNavigator()
   return(
+    <AuthProvider>
       <NavigationContainer independent={true}>
           <Stack.Navigator initialRouteName = { "start" } screenOptions={{headerShown:false}}
            >
@@ -72,6 +73,7 @@ const Menu = ()=>{
 
           </Stack.Navigator>
       </NavigationContainer>
+</AuthProvider>
   )
 }
 export default Menu
