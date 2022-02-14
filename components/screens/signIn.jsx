@@ -1,14 +1,11 @@
 import React from 'react';
 import {Text,  Pressable,
     TouchableOpacity,
-    ImageBackground,ScrollView, Dimensions,View,Button, StyleSheet} from 'react-native';
-import {
-        signInWithEmailAndPassword,
-        onAuthStateChanged,
-        createUserWithEmailAndPassword,
-      } from "firebase/auth";
-      
-      import { auth } from "../firebase.js";
+    ImageBackground,
+    ScrollView, Dimensions,
+    View,Button, StyleSheet} from 'react-native';
+import { useUserAuth } from "../contexts/UserAuthContext";
+import { auth } from "../backend/firebase";
 import { TextInput } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -16,6 +13,12 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const signIn =({navigation})=>{
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const { logIn} = useUserAuth();
+    const navigate = useNavigate();
+
     return(
         <>
 <ScrollView style={{flex:1, backgroundColor:'#ffffff'}} showsVerticalScrollIndicator={false}>
