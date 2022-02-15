@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import {Text,  Pressable,
-    TouchableOpacity,ImageBackground,ScrollView, Dimensions,View,Button, StyleSheet} from 'react-native';
+    TouchableOpacity,ImageBackground,
+    ScrollView,
+    Dimensions,View,Button, StyleSheet} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useAuth } from "../contexts/UserAuthContext";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const forgot =({navigation})=>{
-    
+    const {resetPassword}=useAuth()
+    const [email,setEmail]=useState();
+    const reset =async()=>{
+        try{
+            await resetPassword(email)
+            setEmail('')
+        }catch(error){
+            Alert.alert(error.message)
+        }
+    }
     return(
         <>
 <ScrollView style={{flex:1, backgroundColor:'#ffffff'}} showsVerticalScrollIndicator={false}>
@@ -26,31 +40,29 @@ Forgot Your Password
 Enter Your Email Address And We Will Email You A Link To Reset Your Password</Text>
 
 
-<View >
+<View>
       <Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>Email</Text>
       <TextInput
         style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
-        inlineImageLeft="username"
-        inlineImagePadding={2}
+        value={email}
+        onChangeText={(e)=>(setEmail(e))}
 
       />
-      
-
- 
-
-
- 
-<TouchableOpacity
-                 style={{paddingHorizontal:20,backgroundColor:'#0b1674',width:'95%',height:60,borderRadius:30,
+       
+<TouchableOpacity style={{paddingHorizontal:20,backgroundColor:'#0b1674',
+                width:'95%',height:60,
+                borderRadius:30,
                  marginTop:50,
                 alignItems:'center'}}
-                 onPress={()=>navigation.navigate('signIn')}>
+                onPress={()=>reset()}>
                 <Text style={{padding:10,color:'#fff',fontSize: 24}}>
                     Continue
                 </Text>
 </TouchableOpacity>
 
-
+<Icon name="arrow-back-ios" size={28}
+             color={COLORS.white} onPress={navigation.goBack}
+            />
 
     </View>
 </View>

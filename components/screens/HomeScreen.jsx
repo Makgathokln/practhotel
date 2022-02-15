@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import { FlatList,
     ScrollView,
     TextInput 
@@ -22,7 +22,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import hotel from '../consts/hotel';
 import COLORS from '../consts/colors';
-
+//import hoteldata from "../backend/hoteldata";
+import firebase from "../backend/firebase";
+import { db } from "../backend/firebase";
 const {width} = Dimensions.get('screen');
 const cardWidth = width /1.8;
 
@@ -30,6 +32,42 @@ const HomeScreen =({navigation})  =>{
     const categories = ['All', 'Popular', 'Top Rated', 'Featured', 'Luxury'];
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
     const scrollX = React.useRef(new Animated.Value(0)).current;
+    const [name, setName] = useState('');
+    const [location, setLocation] = useState('');
+    const [images, setImages] = useState('');
+    const [addHotels,setAddHotels] = useState([]);
+
+
+    useEffect(()=>{
+        db.ref('/addHotels').on('value', snapshot => {
+            const addHotels = []
+            snapshot.forEach(action=>{
+                const key = action.key
+                
+                const data = action.val()
+                addHotels.push({
+                    key:key,
+                    name:data.name,
+                    images:data.images[0].url,
+                    location:data.location
+                })
+                setAddHotels(addHotels)
+            })
+            console.log(addHotels)
+        })
+    },[])
+    console.log(addHotels[0]?.images,'<------------')
+    // React.useEffect(() =>{
+    //     onValue(ref(db, "/addRooms/"), (snapshot) =>{
+    //       setAddRooms([]);
+    //       const data = snapshot.val();
+    //       if(data !== null) {
+    //         Object.values(data).map((addRoom) => {
+    //           setAddRooms((oldArray) => [...oldArray,addRoom ]);
+    //         });
+    //       }
+    //     });
+    //   },[])
 
     const CategoryList = () => {
         return(
@@ -91,7 +129,7 @@ return(
 <Animated.View style={{...style.card}}>
 
 <Animated.View style={{...style.cardOverlay, opacity}}/>
-<Image source={hotel.image} style={style.cardImage}/>
+<Image source={hotel?.images} style={style.cardImage}/>
 
 
 
@@ -132,7 +170,7 @@ const TopHotelCard = ({hotel}) =>{
              }}></View>
 
         <Image style={style.topHotelCardImage}
-        source={hotel.image}
+        source={{uri:hotel?.images}}
         />
 
         <View style={{paddingVertical:10, paddingHorizontal:10}}>
@@ -182,7 +220,7 @@ style={{paddingLeft:10}}
 <View>
     <FlatList 
     horizontal
-    data={hotel}
+    data={addHotels}
     contentContainerStyle={{paddingVertical:30,paddingLeft:20, paddingRight: cardWidth / 2 - 40, }}
     showsHorizontalScrollIndicator={false}
     renderItem={({item,index}) =><Card hotel={item} index={index} /> }
@@ -202,12 +240,17 @@ style={{paddingLeft:10}}
 </View>
 
 <FlatList
-data={hotel} 
+data={addHotels} 
 horizontal 
 showsHorizontalScrollIndicator={false}
 contentContainerStyle={{paddingLeft:20,marginTop:20, paddingBottom:30}}
 renderItem={({item})=><TopHotelCard hotel={item}/>}
 />
+{
+    addHotels.map((item)=>{
+        <Text>{item.name}</Text>
+    })
+}
     </ScrollView>
     </SafeAreaView>
 )}

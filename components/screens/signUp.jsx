@@ -25,27 +25,28 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 const signUp =({navigation})=>{
 
   const [isPasswordShow,setPasswordShow]=useState(false)
-    const ReviewSchem=yup.object({
+  const ReviewSchem=yup.object({
         name:yup.string().required().min(2),
         phonenumber:yup.string().required().min(10).max(10),
         email:yup.string().required().min(6),
         password:yup.string().required().min(6),
-        confirmpassword:yup.string().required().min(6).oneOf([yup.ref('password'),null],'password does not match')
+        //confirmpassword:yup.string().required().min(6).oneOf([yup.ref('password'),null],'password does not match')
     })
     const {signup}=useAuth()
     const addUser= async (data)=>{
         try{
-          const {uid,email,password,name,phonenumber} =data
-        // const user = await auth
-        // .createUserWithEmailAndPassword(
-        //   email.trim().toLowerCase(),password
-        // )
+          const {uid,email,password,firstname,lastname} =data
+        const user = await auth
+        .createUserWithEmailAndPassword(
+          email.trim().toLowerCase(),password
+        )
         await signup(email.trim().toLowerCase(),password)
         .then(res =>{
           db.ref(`/user`).child(res.user.uid).set({
-            name:name,
+            firstname:firstname,
+            lastname:lastname,
             email:email,
-            Phonenumber:phonenumber,
+            password:password,
             uid:res.user.uid
           })
           })
@@ -89,7 +90,7 @@ style={{height:Dimensions.get('window').height / 3.5}}>
 </Text>
 
 <Formik
-        initialValues={{name:'',phonenumber:'',email:'',password:'',confirmpassword:''}}
+        initialValues={{name:'',phonenumber:'',email:'',password:''}}
         validationSchema={ReviewSchem}
         onSubmit={(values,action)=>{
             action.resetForm()
@@ -100,7 +101,7 @@ style={{height:Dimensions.get('window').height / 3.5}}>
          <KeyboardAwareScrollView
              style={styles.innerContainer}>
 <View >
-      <Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>First Name</Text>
+      <Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>{props.touched.firstname && props.errors.firstname}</Text>
       <TextInput
         style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
         onChangeText={props.handleChange('firstname')}
@@ -110,7 +111,7 @@ style={{height:Dimensions.get('window').height / 3.5}}>
       />
       
 
-          <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Last Name</Text>
+          <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>{props.touched.lastname && props.errors.lastname}</Text>
 
 
 
@@ -121,7 +122,7 @@ style={{height:Dimensions.get('window').height / 3.5}}>
              onBlur={props.handleBlur('lastname')}
       />
 
-<Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Email Address</Text>
+<Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>{props.touched.email && props.errors.email}</Text>
 
 
 
@@ -133,7 +134,7 @@ style={{height:Dimensions.get('window').height / 3.5}}>
   onBlur={props.handleBlur('email')}
 />
 
-<Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password </Text>
+<Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>{props.touched.password && props.errors.password} </Text>
 
 
 
@@ -146,7 +147,7 @@ style={{height:Dimensions.get('window').height / 3.5}}>
 />
 
 
-<Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Confirm Password</Text>
+{/* <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Confirm Password</Text>
 
 
 
@@ -156,7 +157,7 @@ style={{height:Dimensions.get('window').height / 3.5}}>
   onChangeText={props.handleChange('confirmpassword')}
   value={props.values.confirmpassword}
   onBlur={props.handleBlur('confirmpassword')}
-/>
+/> */}
 
 
 <TouchableOpacity style={{ margin:10, justifyContent:'flex-end'}}

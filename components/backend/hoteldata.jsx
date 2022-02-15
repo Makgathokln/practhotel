@@ -1,17 +1,18 @@
 import { getDatabase } from "firebase/database";
-import { db } from "./firebase";
+//import { db } from "./firebase";
+import firebase from "../backend/firebase";
 
-//const db = firebase.ref('./addRooms')
+// const db = firebase.ref('/addHotels')
 
 
 class hoteldata {
-    getData(addRooms){
-        return firebase.ref(`./${addRooms}`).fetch(data)
-    }
+    // getData(){
+    //     return db
+    // }
 
-    getData(addHotels){
-        return firebase.ref(`./${addHotels}`).fetch(data)
-    }
+    // getData(addHotels){
+    //     return firebase.ref(`./${addHotels}`).fetch(data)
+    // }
 
     
 

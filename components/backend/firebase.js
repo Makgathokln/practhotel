@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/database'
 
+
 const fire = firebase.initializeApp({
     apiKey: "AIzaSyDaO7bCngukYSWp-BtBiHy59_rL3HJ81wg",
     authDomain: "hotel-dashboard-d8fae.firebaseapp.com",
@@ -17,4 +18,3 @@ const fire = firebase.initializeApp({
 export const auth = fire.auth();
 //export const db = fire.firestore();
 export const db = firebase.database();
-export default { fire, };
