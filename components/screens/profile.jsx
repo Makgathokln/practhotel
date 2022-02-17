@@ -1,14 +1,14 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Text,
-     ImageBackground,
-     ScrollView,
-     Dimensions,
-     View,
-     Image,
-     Button,
-      StyleSheet,
-      Pressable,
-      TouchableOpacity
+    ImageBackground,
+    ScrollView,
+    Dimensions,
+    View,
+    Image,
+    Button,
+    StyleSheet,
+    Pressable,
+    TouchableOpacity
     } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 //import CheckBox from 'react-native-check-box';
@@ -17,97 +17,88 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import COLORS from '../consts/colors';
 
+import * as yup from 'yup';
+import { Formik } from 'formik';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import * as ImagePicker from 'expo-image-picker';
 
 const profile =({navigation})=>{
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [isPasswordShow,setPasswordShow]=useState(false)
+    const ReviewSchem=yup.object({
+        name:yup.string().required().min(2),
+        phonenumber:yup.string().required().min(10).max(10),
+        email:yup.string().required().min(6),
+        password:yup.string().required().min(6),
+        confirmpassword:yup.string().required().min(6).oneOf([yup.ref('password'),null],'password does not match')
+    })
+    let openImagePickerAsync = async () => {
+        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    
+        if (permissionResult.granted === false) {
+          alert("Permission to access camera roll is required!");
+          return;
+        }
+    
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        if (pickerResult.cancelled === true) {
+            return;
+          }
+      
+          setSelectedImage({ localUri: pickerResult.uri });
+      }
     return(
         <>
 
 
-<View style={{flex:1, backgroundColor:'#fff'}}>
+<View style={{flex:1, backgroundColor:'#fff',
+       }}>
+
 <View style={{paddingTop:40, 
     flexDirection:'row',paddingHorizontal:20}}>
-          <Icon name="arrow-back-ios" size={34} style={{color:COLORS.secondary}}
-          onPress={navigation.goBack} />
- 
-    <Text style={{fontSize:20, fontWeight:'bold',color:COLORS.secondary, paddingLeft:"20%"}}>My Profile</Text>
-
-    </View>
-
-    <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:20,}}>
-{/* 
-    <Image source={require('./images/exec.jpg')} 
-    style={{height:'20%',width:'20%'}}
- />   */}
- <Image source={require('./images/profile.jpeg')}
-               style={{ width:100,height:100,marginLeft:100 , borderRadius:20}}></Image>
-           <View style={{paddingTop:'20%'}}>
-           <Icon name="create" size={20} style={{color:COLORS.secondary}} />
-
-
-
-           </View>
-
-
-    </View>
-    <View>
-<Text style={{fontSize:20, fontWeight:'bold',
-color:COLORS.primary, paddingLeft:"30%", 
-paddingTop:'5%'}}>Leah Makgatho</Text>
+          <Icon name="arrow-back-ios" size={30} style={{color:COLORS.secondary}}
+          onPress={navigation.goBack} /> 
+<Text style={{fontSize:18,color:COLORS.primary, fontWeight:'bold', left:70, top:30}}>Update Profile</Text>
 
 </View>
 
-<View style={{paddingHorizontal:20}}>
-      <Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>First Name</Text>
-      <TextInput
-        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
-        inlineImageLeft="username"
-        inlineImagePadding={2}
-
-      />
-      
-
-          <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Last Name</Text>
-
-
-
-      <TextInput
-        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
-        inlineImageLeft="username"
-        inlineImagePadding={2}
-      />
-
-<Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Email Address</Text>
-
-
-
-<TextInput
-  style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
-  inlineImageLeft="username"
-  inlineImagePadding={2}
-/>
-
-
-<Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Home Address</Text>
-
-
-
-<TextInput
-  style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
-  inlineImageLeft="username"
-  inlineImagePadding={2}
-/>
-
-
+<View style={{marginLeft:120}}>
+                {
+                   selectedImage?(<Image
+              source={{ uri: selectedImage.localUri }}
+              style={{height:120,width:120,borderRadius:60,}}
+            />
+                   ):(
+                    <Image source={require('./images/profile.jpeg')}
+                    style={{height:120,width:120,borderRadius:60,top:30}}/>
+                   ) 
+                }
+            {/* <Image source={{ uri: 'https://image.shutterstock.com/image-vector/male-avatar-profile-picture-use-600w-193292033.jpg'}}
+                style={{height:120,width:120,borderRadius:60,}}/> */}
+                <TouchableOpacity style={{marginLeft:90,marginTop:-20}}
+               mode="contained" onPress={openImagePickerAsync}>
+                <FontAwesome name='camera' size={29} color='grey'/>
+                </TouchableOpacity>
 </View>
 
-<TouchableOpacity
-                 style={{margin:20,backgroundColor:'#0b1674',width:'55%',height:60,borderRadius:10,
-                alignItems:'center', marginTop:40, paddingHorizontal:20}}
-                 onPress={()=>navigation.navigate('MainContainer')}>
-                <Text style={{padding:10,color:'#fff',fontSize: 24}}>
-                    Update
-                </Text>
-</TouchableOpacity>
+<View>
+<Formik
+        initialValues={{name:'',phonenumber:'',email:'',password:'',confirmpassword:''}}
+        validationSchema={ReviewSchem}
+        >
+{(props)=>(
+         <KeyboardAwareScrollView
+           >
+               <View>
+
+                   
+               </View>
+               
+               
+               </KeyboardAwareScrollView>
+            )}</Formik>
+</View>
+
 </View>
 </>
     )

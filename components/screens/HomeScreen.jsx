@@ -211,7 +211,7 @@ const TopHotelCard = ({hotel}) =>{
             <Text style={{fontSize:25, fontWeight:'bold', color:'#ff6e1a'}}> Welcome! Leah</Text>
         </View>
 
-        <TouchableOpacity onPress={()=> navigation.navigate("userDetails")}>
+        <TouchableOpacity onPress={()=> navigation.navigate("UserDetails")}>
         {/* <Icon name="person-outline" size={38} color='gray' /> */}
         <Image source={require('./images/profile.jpeg')}
                style={{flex:1, width:60,height:60,borderRadius:40, resizeMode: 'cover'}}></Image>

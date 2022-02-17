@@ -26,7 +26,7 @@ const userDetails =({navigation})=>{
 <View style={{flex:1, backgroundColor:'#fff'}}>
 <View style={{paddingTop:40, 
     flexDirection:'row',paddingHorizontal:20}}>
-          <Icon name="arrow-back-ios" size={34} style={{color:COLORS.secondary}}
+          <Icon name="arrow-back-ios" size={30} style={{color:COLORS.secondary}}
           onPress={navigation.goBack} />
  
     {/* <Text style={{fontSize:20, fontWeight:'bold',color:COLORS.secondary, paddingLeft:"20%"}}>My Profile</Text> */}
@@ -51,7 +51,7 @@ const userDetails =({navigation})=>{
     </View>
     <View>
 <Text style={{fontSize:20, fontWeight:'bold',
-color:COLORS.secondary, paddingLeft:"30%", 
+color:COLORS.primary, paddingLeft:"30%", 
 paddingTop:'5%'}}>Leah Makgatho</Text>
 
 </View>
