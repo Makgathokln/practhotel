@@ -29,6 +29,7 @@ import PaymentConfirmation from './components/screens/PaymentConfirmation';
 import Popular from './components/screens/Popular';
 import Luxury from './components/screens/Luxury';
 import Top from './components/screens/Top';
+import UserDetails from './components/screens/UserDetails';
 import { AuthProvider } from './components/contexts/UserAuthContext'
 
 
@@ -63,6 +64,8 @@ const Menu = ()=>{
             <Stack.Screen name={"AddCard"} component={AddCard}/>
             <Stack.Screen name={"FormInput"} component={FormInput}/>
             <Stack.Screen name={"Confirm"} component={Confirm}/>
+            <Stack.Screen name={"UserDetails"} component={UserDetails}/>
+
             <Stack.Screen name={"PaymentConfirmation"} component={PaymentConfirmation}/>
             <Stack.Screen name={"Popular"} component={Popular}/>
 
