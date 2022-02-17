@@ -39,7 +39,7 @@ const signIn =({navigation})=>{
               email.trim().toLowerCase(), password
             ).then(res=>{
                 if(res.user){
-                    navigation.navigate('HomeScreen')
+                    navigation.navigate('MainContainer')
                 }
             })
 

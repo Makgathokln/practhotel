@@ -9,6 +9,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useAuth } from "../contexts/UserAuthContext";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import COLORS from "../consts/colors";
 
 const forgot =({navigation})=>{
     const {resetPassword}=useAuth()

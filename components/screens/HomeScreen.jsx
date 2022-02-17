@@ -6,6 +6,7 @@ import { FlatList,
 
 import {
      View,
+     ActivityIndicator,
      Text, 
      ImageBackground, 
      Image, 
@@ -25,6 +26,8 @@ import COLORS from '../consts/colors';
 //import hoteldata from "../backend/hoteldata";
 import firebase from "../backend/firebase";
 import { db } from "../backend/firebase";
+import SearchUserItem from "../search/userItem/hotelitem";
+import queryHotelsByName from "../services/addHotel";
 const {width} = Dimensions.get('screen');
 const cardWidth = width /1.8;
 
@@ -36,8 +39,19 @@ const HomeScreen =({navigation})  =>{
     const [location, setLocation] = useState('');
     const [images, setImages] = useState('');
     const [addHotels,setAddHotels] = useState([]);
+    const [textInput, setTextInput] = useState('')
+    const [searchName, setsearchName] = useState([])
+    
+    // useEffect(() =>{
+    //     queryHotelsByName(textInput)
+    //     .then(setsearchName)
+    // }, [textInput])
 
 
+    
+    
+
+    
     useEffect(()=>{
         db.ref('/addHotels').on('value', snapshot => {
             const addHotels = []
@@ -49,7 +63,9 @@ const HomeScreen =({navigation})  =>{
                     key:key,
                     name:data.name,
                     images:data.images[0].url,
-                    location:data.location
+                    location:data.location,
+                    description:data.description,
+                    city: data.city
                 })
                 setAddHotels(addHotels)
             })
@@ -128,8 +144,9 @@ return(
 
 <Animated.View style={{...style.card}}>
 
-<Animated.View style={{...style.cardOverlay, opacity}}/>
-<Image source={hotel?.images} style={style.cardImage}/>
+<Animated.View style={{...style.cardOverlay,opacity}}/>
+<Image source={{uri:hotel?.images}}
+ style={style.cardImage}/>
 
 
 
@@ -194,7 +211,7 @@ const TopHotelCard = ({hotel}) =>{
             <Text style={{fontSize:25, fontWeight:'bold', color:'#ff6e1a'}}> Welcome! Leah</Text>
         </View>
 
-        <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
+        <TouchableOpacity onPress={()=> navigation.navigate("userDetails")}>
         {/* <Icon name="person-outline" size={38} color='gray' /> */}
         <Image source={require('./images/profile.jpeg')}
                style={{flex:1, width:60,height:60,borderRadius:40, resizeMode: 'cover'}}></Image>
@@ -214,10 +231,22 @@ const TopHotelCard = ({hotel}) =>{
 style={{paddingLeft:10}} 
 />
 </View>
+{/* <TextInput placeholder="Search"
+onChangeText={setTextInput}
+
+ style={{backgroundColor:'#2f363c', height:50}}/>
+
+<FlatList
+data={searchName}
+renderItem={SearchUserItem}
+keyExtractor={(item) => item.id}
+/> */}
 
 <CategoryList/>
 
 <View>
+
+
     <FlatList 
     horizontal
     data={addHotels}

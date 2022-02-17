@@ -78,7 +78,7 @@ const MainContainer =({navigation})=>{
             <Tab.Screen name={homeName} options={{headerShown: false}} component={HomeScreen}/>
             <Tab.Screen name={notificationName} options={{headerShown: false}} component={HistoryScreen}/>
             <Tab.Screen name={historyName} options={{headerShown: false, footerShown:false}} component={NotificationScreen}/>
-            <Tab.Screen name={userName} options={{headerShown: false, footerShown:false}} component={userDetails}/>
+            <Tab.Screen name={userName} options={{headerShown: false, footerShown:false}} component={Profile}/>
             {/* <Tab.Screen name={detailsName} options={{headerShown: false}} component={DetailsScreen}/> */}
 
 

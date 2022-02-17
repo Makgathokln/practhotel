@@ -16,6 +16,7 @@ import { FlatList,
     ScrollView,
      TextInput 
    } from 'react-native-gesture-handler';
+import Slideshow from "react-native-image-slider-show";
 
 import hotel from '../consts/hotel';
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -38,7 +39,7 @@ const  DetailsScreen = ({navigation, route}) => {
             backgroundColor="rgba(0,0,0,0)"/>     
             
             <ImageBackground style={style.headerImage}
-            source={item.image}> 
+            source={{uri:item?.images}}> 
             
             <View style={style.header}>
             <Icon name="arrow-back-ios" size={28}
@@ -72,15 +73,14 @@ const  DetailsScreen = ({navigation, route}) => {
                <View style={{flexDirection:'row', marginTop:14 }}>
                
                <Icon name="place" color={COLORS.gray} size={22}/>
-                <Text style={{fontSize:16, fontWeight:'bold', color:COLORS.gray}}>{item.location}</Text>
+                <Text style={{fontSize:16, fontWeight:'bold', color:COLORS.gray}}>{item.location} {item.city}</Text>
                
                 </View>
                 </View>
 
                 <View style={{marginTop: 14, paddingHorizontal:20}}>
                     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18}}>Details</Text>
-                    <Text style={{ color:COLORS.gray, fontSize:14}}>Featuring an outdoor Pool. Warlof Hotel is located in Polokwane. 
-                    Free Wi-fi acces is Available in all guest rooms. Read More
+                    <Text style={{ color:COLORS.gray, fontSize:14}}>{item.description}
                     </Text>
 
 
