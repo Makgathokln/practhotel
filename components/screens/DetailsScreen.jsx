@@ -153,7 +153,7 @@ const  DetailsScreen = ({navigation, route}) => {
                  paddingLeft:20,
                  alignItems:'center' }}>
                      <Text style={{color:COLORS.primary, fontWeight:'bold', 
-                     fontSize:20}}>R {item.price} / Night</Text>
+                     fontSize:20}}>R {item.price1} / Night</Text>
                
                      <TouchableOpacity
                  style={{backgroundColor:COLORS.secondary,width:'50%',height:'100%',borderRadius:10, marginRight:20,
