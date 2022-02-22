@@ -30,7 +30,8 @@ import Popular from './components/screens/Popular';
 import Luxury from './components/screens/Luxury';
 import Top from './components/screens/Top';
 import UserDetails from './components/screens/UserDetails';
-import { AuthProvider } from './components/contexts/UserAuthContext'
+import Search from './components/screens/Search';
+import { AuthProvider } from './components/contexts/UserAuthContext';
 
 
 const Menu = ()=>{
@@ -65,6 +66,7 @@ const Menu = ()=>{
             <Stack.Screen name={"FormInput"} component={FormInput}/>
             <Stack.Screen name={"Confirm"} component={Confirm}/>
             <Stack.Screen name={"UserDetails"} component={UserDetails}/>
+            <Stack.Screen name={"Search"} component={Search}/>
 
             <Stack.Screen name={"PaymentConfirmation"} component={PaymentConfirmation}/>
             <Stack.Screen name={"Popular"} component={Popular}/>
