@@ -47,8 +47,28 @@ const HomeScreen = ({ navigation }) => {
     const [searchtext, setSearchtext] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
-    const [ search, setSearch] = useState("");
-    const history = useHistory();
+    
+    // useEffect(() => {
+    //     setFilteredDataSource(NearHotels);
+    //     setMasterDataSource(NearHotels);
+    // }, [])
+
+    const searchFilterFunction =(text)=>{
+        if(text){
+            const newData = masterDataSource.filter(function(item){
+                const itemData = item.name ? item.name.toUpperCase()
+                :''.toUpperCase();
+                const textData = text.toUpperCase();
+                return itemData.indexOf( textData)>-1;
+
+            })
+            setFilteredDataSource(newData);
+            setSearchtext(text)
+        }else {
+            setFilteredDataSource(masterDataSource);
+            setSearchtext(text)
+        }
+    }    //const history = useHistory();
 
     // useEffect(() => {
     //     setFilteredDataSource(NearHotels);
@@ -179,7 +199,7 @@ const HomeScreen = ({ navigation }) => {
 
         return (
             <TouchableOpacity activeOpacity={1}
-                onPress={() => navigation.navigate("DetailsScreen", hotel)}>
+                onPress={() => navigation.navigate("Search", hotel)}>
 
                 <Animated.View style={{ ...style.card }}>
 
@@ -274,9 +294,7 @@ const HomeScreen = ({ navigation }) => {
                     <Icon name="search" size={30} style={{ marginLeft: 20 }} />
                     <TextInput placeholder="Search"
                         style={{ paddingLeft: 10 }}
-                        onChange={(e) => setSearch(e.target.value)}
-                        value={search}
-                    />
+                        onChangeText={(text) => searchFilterFunction(text)}                    />
                 </View>
                 {/* <TextInput placeholder="Search"
 onChangeText={setTextInput}
