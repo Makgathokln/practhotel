@@ -31,6 +31,7 @@ import Luxury from './components/screens/Luxury';
 import Top from './components/screens/Top';
 import UserDetails from './components/screens/UserDetails';
 import Search from './components/screens/Search';
+import Leah from './components/screens/Leah';
 import { AuthProvider } from './components/contexts/UserAuthContext';
 
 
@@ -67,6 +68,7 @@ const Menu = ()=>{
             <Stack.Screen name={"Confirm"} component={Confirm}/>
             <Stack.Screen name={"UserDetails"} component={UserDetails}/>
             <Stack.Screen name={"Search"} component={Search}/>
+            <Stack.Screen name={"Leah"} component={Leah}/>
 
             <Stack.Screen name={"PaymentConfirmation"} component={PaymentConfirmation}/>
             <Stack.Screen name={"Popular"} component={Popular}/>
