@@ -31,7 +31,6 @@ import Luxury from './components/screens/Luxury';
 import Top from './components/screens/Top';
 import UserDetails from './components/screens/UserDetails';
 import Search from './components/screens/Search';
-import Leah from './components/screens/Leah';
 import { AuthProvider } from './components/contexts/UserAuthContext';
 
 
