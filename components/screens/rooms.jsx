@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
@@ -9,14 +9,43 @@ import { FlatList,
     } from 'react-native-gesture-handler';
 import {Picker} from '@react-native-picker/picker';
 import SelectDropdown from 'react-native-select-dropdown'
+import { auth, db } from "../backend/firebase";
 
 
-const Rooms=({navigation}) =>{
-    
+const Rooms=({navigation,route}) =>{
+    const [addHotels, setAddHotels] = useState([]);
+
+    const CheckIn=route.params.CheckIn
+    const CheckOut=route.params.CheckOut
     const categories = ['All', 'Popular','Top Rated']
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
     // const [selectedPrice, setSelectedPrice] = useState();
     const sort = ["highest to lowest", "lowest to highest"]
+
+    useEffect(() => {
+        db.ref('/addHotels').on('value', snapshot => {
+            const addHotels = []
+            snapshot.forEach(action => {
+                const key = action.key
+
+                const data = action.val()
+                addHotels.push({
+                    key: key,
+                    name: data.name,
+                    images: data.images[0].url,
+                    image2: data.image2,
+                    image3: data.image3,
+                    location: data.location,
+                    description: data.description,
+                    city: data.city,
+                    price1: data.price1
+                })
+                setAddHotels(addHotels)
+            })
+            console.log(addHotels)
+        })
+    }, [])
+    // console.log(addHotels[0]?.images, '<------------')
 
 const Card = ({room,index}) =>{
    return( 
@@ -34,13 +63,13 @@ const Card = ({room,index}) =>{
 
 }}> 
 
-    <Image source={room.image} style={{width:'40%',height:'105%', borderRadius:10}}>
+    <Image source={{ uri: room?.image2 }} style={{width:'40%',height:'105%', borderRadius:10}}>
     </Image>
 
     <View style={{flex:1,
         flexDirection:'column', paddingHorizontal:15}}>
     
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:20}}>{room.type}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:20}}>{room.name}</Text>
     <View style={{flexDirection:'row', }}>
     <Icon name="airline-seat-flat" size={24} color={COLORS.primary} style={{marginRight:10}}/>
     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{room.availability}</Text>
@@ -55,7 +84,10 @@ const Card = ({room,index}) =>{
 
     <View style={{flexDirection:'row',justifyContent:'space-between', alignContent:'space-between' }}>
 
-    <TouchableOpacity onPress={() => navigation.navigate('Confirm') }>
+    <TouchableOpacity onPress={() => navigation.navigate('Confirm',{
+        CheckIn:CheckIn,
+        CheckOut:CheckOut
+    }) }>
     {/* <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>Select</Text> */}
     <Icon name="add-circle" size={24} color={COLORS.primary} />
 
@@ -119,7 +151,7 @@ const Card = ({room,index}) =>{
 
         <View>
             <FlatList 
-            data={room}
+            data={addHotels}
             contentContainerStyle={{paddingLeft:20}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item,index}) => <Card room={item} index={index}/>}

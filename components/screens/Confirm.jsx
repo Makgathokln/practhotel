@@ -13,7 +13,9 @@ import COLORS from '../consts/colors';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormInput from './FormInput';
 
-const Confirm = ({navigation}) =>{
+const Confirm = ({navigation,route}) =>{
+        const CheckIn=route.params.CheckIn
+        const CheckOut=route.params.CheckOut
     function renderCard(){
         return(
 
@@ -117,21 +119,19 @@ const Confirm = ({navigation}) =>{
         </View>
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
-        <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold'}}>23/03/2022</Text>
-        <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold', paddingLeft:100}}>25/2/2022</Text>
+        <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold'}}>{CheckIn}</Text>
+        <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold', paddingLeft:100}}>{CheckOut}</Text>
 
         </View>
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
-        <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold'}}>No. Of Adults</Text>
-        <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold', paddingLeft:90}}>No. Of Children</Text>
+        <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold'}}>No. Of Guests</Text>
 
         </View>
 
-        <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
+        <View style={{paddingHorizontal:20, paddingTop:10, }}>
         <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18,
-         fontWeight:'bold',paddingLeft:50}}>3</Text>
-        <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18, fontWeight:'bold', paddingLeft:190}}>3</Text>
+         fontWeight:'bold'}}>3</Text>
 
         </View>
 

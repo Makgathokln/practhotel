@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
     const [images, setImages] = useState('');
     const [addHotels, setAddHotels] = useState([]);
     const [textInput, setTextInput] = useState('')
-    const [searchName, setsearchName] = useState([])
+    // const [searchName, setsearchName] = useState([])
     const [searchtext, setSearchtext] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
@@ -53,22 +53,7 @@ const HomeScreen = ({ navigation }) => {
     //     setMasterDataSource(NearHotels);
     // }, [])
 
-    const searchFilterFunction =(text)=>{
-        if(text){
-            const newData = masterDataSource.filter(function(item){
-                const itemData = item.name ? item.name.toUpperCase()
-                :''.toUpperCase();
-                const textData = text.toUpperCase();
-                return itemData.indexOf( textData)>-1;
-
-            })
-            setFilteredDataSource(newData);
-            setSearchtext(text)
-        }else {
-            setFilteredDataSource(masterDataSource);
-            setSearchtext(text)
-        }
-    }    //const history = useHistory();
+     //const history = useHistory();
 
     // useEffect(() => {
     //     setFilteredDataSource(NearHotels);
@@ -81,11 +66,15 @@ const HomeScreen = ({ navigation }) => {
     //     .then(setsearchName)
     // }, [textInput])
 
-    const handleSearch = (e) =>{
-        e.preventDefault();
-        history.push(`/search?name=${search}`);
-        setSearch("");
-    }
+    const searchName =(input) =>{
+        let data = addHotels;
+        let searchData = data.filter((item)=>{
+            return item.name.toLowerCase().includes(input.toLowerCase());
+        });
+        setAddHotels(searchData);
+    };
+    
+    
 
     const uid = auth.currentUser.uid;
     console.log(uid)
@@ -118,6 +107,7 @@ const HomeScreen = ({ navigation }) => {
                     key: key,
                     name: data.name,
                     images: data.images[0].url,
+                    image2: data.image2,
                     location: data.location,
                     description: data.description,
                     city: data.city,
@@ -140,6 +130,15 @@ const HomeScreen = ({ navigation }) => {
     //       }
     //     });
     //   },[])
+
+    // const searchName =(input) =>{
+    //     let data = addHotels;
+    //     let searchData = data.filter((item)=>{
+    //         return item.name.toLowerCase().includes(input.toLowerCase());
+    //     });
+    //     setAddHotels(searchData);
+    // };
+    
 
     const CategoryList = () => {
         return (
@@ -176,6 +175,8 @@ const HomeScreen = ({ navigation }) => {
         );
     };
 
+    
+
     const Card = ({ hotel, index }) => {
 
         const inputRange = [
@@ -199,7 +200,7 @@ const HomeScreen = ({ navigation }) => {
 
         return (
             <TouchableOpacity activeOpacity={1}
-                onPress={() => navigation.navigate("Leah", hotel)}>
+                onPress={() => navigation.navigate("Rooms", hotel)}>
 
                 <Animated.View style={{ ...style.card }}>
 
@@ -294,7 +295,9 @@ const HomeScreen = ({ navigation }) => {
                     <Icon name="search" size={30} style={{ marginLeft: 20 }} />
                     <TextInput placeholder="Search"
                         style={{ paddingLeft: 10 }}
-                        onChangeText={(text) => searchFilterFunction(text)}                    />
+                        onChangeText={(input) => {
+                        searchName(input)   }}                                     
+                        />
                 </View>
                 {/* <TextInput placeholder="Search"
 onChangeText={setTextInput}

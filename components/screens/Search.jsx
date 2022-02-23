@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory, useLocation, Link } from 'react-router'
 import {
     FlatList,
     TextInput
@@ -20,10 +21,17 @@ import {
 }
     from 'react-native';
 
-
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import hotel from '../consts/hotel';
+import COLORS from '../consts/colors';
 //import hoteldata from "../backend/hoteldata";
 import firebase from "../backend/firebase";
 import { auth, db } from "../backend/firebase";
+import SearchUserItem from "../search/userItem/hotelitem";
+import queryHotelsByName from "../services/addHotel";
+import { useNavigation } from '@react-navigation/native';
 
 // const data = [
 //     {id:1, name:"sohil"},
@@ -34,71 +42,74 @@ import { auth, db } from "../backend/firebase";
 
 const Search = () => {
 
-// const [dataFromState, setData]= useState(addHotels);
-// const [searchName, setsearchName] = useState([])
-// const [addHotels, setAddHotels] = useState([]);
+//const [dataFromState, setData]= useState(addHotels);
+//const [searchName, setsearchName] = useState([])
+const [addHotels, setAddHotels] = useState();
 
-// useEffect(() => {
-//     db.ref('/addHotels').on('value', snapshot => {
-//         const dataFromState = []
-//         snapshot.forEach(action => {
-//             const key = action.key
+useEffect(() => {
+    db.ref('/addHotels').on('value', snapshot => {
+        const addHotels = []
+        snapshot.forEach(action => {
+            const key = action.key
 
-//             const data = action.val()
-//             dataFromState.push({
-//                 key: key,
-//                 name: data.name,
-//                 images: data.images[0].url,
-//                 location: data.location,
-//                 description: data.description,
-//                 city: data.city,
-//                 price1: data.price1
-//             })
-//             setData(dataFromState)
-//         })
-//         console.log(dataFromState)
-//     })
-// }, [])
+            const data = action.val()
+            addHotels.push({
+                key: key,
+                name: data.name,
+                images: data.images[0].url,
+                location: data.location,
+                description: data.description,
+                city: data.city,
+                price1: data.price1
+            })
+            setAddHotels(addHotels)
+        })
+        console.log(addHotels)
+    })
+}, [])
 // console.log(dataFromState[0]?.images, '<------------')
 
-// const item = ({item}) =>{
-//         return(
-//             <View>
-//                 {/* <Text>{item.name}</Text> */}
-//             </View>
-//         )
-//     }
+const item = ({item}) =>{
+        return(
+            <View>
+                <Text>{item.name}</Text>
+            </View>
+        )
+    }
 
 
 
-// const searchName =(input) =>{
-//     let data = dataFromState;
-//     let searchData = data.filter((item)=>{
-//         return item.name.toLowerCase().includes(input.toLowerCase());
-//     });
-//     setData(searchData);
-// };
+const searchName =(input) =>{
+   if(input) {
+    let data = addHotels;
+    let searchData = data.filter((item)=>{
+        return item.name.toLowerCase().includes(input.toLowerCase());
+    });
+    setAddHotels(searchData);
+} else {
+    setAddHotels(addHotels);
+    }
+}
 
 
     return (
         <View style={{flex:1, padding:10}}>
-                {/* <Text>Hello |World</Text> */}
-
-{/* <TextInput
+                <Text>Hello |World</Text>
+<TextInput
 placeholder='Search'
 onChangeText={(input) => {
     searchName(input)
 }}
 /> 
 <FlatList
-data={dataFromState}
+data={addHotels}
 renderItem={item}
 keyExtractor={(item,index)=>index.toString()}
 />  
   
-      */}
+     
                         
-                    )
+                    
                 
         </View>
     )
