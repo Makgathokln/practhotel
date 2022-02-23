@@ -199,7 +199,7 @@ const HomeScreen = ({ navigation }) => {
 
         return (
             <TouchableOpacity activeOpacity={1}
-                onPress={() => navigation.navigate("Search", hotel)}>
+                onPress={() => navigation.navigate("Leah", hotel)}>
 
                 <Animated.View style={{ ...style.card }}>
 
