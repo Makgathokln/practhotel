@@ -132,7 +132,7 @@ const profile = ({ navigation }) => {
 
                                         <TextInput
                                             style={{ height: 50, width: '90%', borderColor: '#0b1674', borderWidth: 3,
-                                             borderRadius: 20, marginLeft: 15, color: '#0b1674', fontWeight: 'bold', }}
+                                             borderRadius: 20, marginLeft: 15, color: '#0b1674', fontWeight: 'bold', padding:15 }}
 
                                             onChangeText={text => setName(text)}
                                             value={name}
