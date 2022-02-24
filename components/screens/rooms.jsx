@@ -14,7 +14,7 @@ import { auth, db } from "../backend/firebase";
 
 const Rooms=({navigation,route}) =>{
     const [addHotels, setAddHotels] = useState([]);
-
+    const item =route.params.item
     const CheckIn=route.params.CheckIn
     const CheckOut=route.params.CheckOut
     const categories = ['All', 'Popular','Top Rated']
@@ -22,34 +22,13 @@ const Rooms=({navigation,route}) =>{
     // const [selectedPrice, setSelectedPrice] = useState();
     const sort = ["highest to lowest", "lowest to highest"]
 
-    useEffect(() => {
-        db.ref('/addHotels').on('value', snapshot => {
-            const addHotels = []
-            snapshot.forEach(action => {
-                const key = action.key
-
-                const data = action.val()
-                addHotels.push({
-                    key: key,
-                    name: data.name,
-                    images: data.images[0].url,
-                    image2: data.image2,
-                    image3: data.image3,
-                    location: data.location,
-                    description: data.description,
-                    city: data.city,
-                    price1: data.price1
-                })
-                setAddHotels(addHotels)
-            })
-            console.log(addHotels)
-        })
-    }, [])
+   
     // console.log(addHotels[0]?.images, '<------------')
 
 const Card = ({room,index}) =>{
    return( 
     <ScrollView showsVerticalScrollIndicator={false}>
+        
     <View style={{
         flex:1,
         flexDirection:'row', justifyContent:'space-between',
@@ -63,16 +42,16 @@ const Card = ({room,index}) =>{
 
 }}> 
 
-    <Image source={{ uri: room?.image2 }} style={{width:'40%',height:'105%', borderRadius:10}}>
+    <Image source={{ uri: room?.roomurl }} style={{width:'40%',height:'105%', borderRadius:10}}>
     </Image>
 
     <View style={{flex:1,
         flexDirection:'column', paddingHorizontal:15}}>
     
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:20}}>{room.name}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:20}}>{room.roomtype}</Text>
     <View style={{flexDirection:'row', }}>
     <Icon name="airline-seat-flat" size={24} color={COLORS.primary} style={{marginRight:10}}/>
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{room.availability}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{room.roomprice}</Text>
 
     </View>
 
@@ -151,7 +130,7 @@ const Card = ({room,index}) =>{
 
         <View>
             <FlatList 
-            data={addHotels}
+            data={item.room}
             contentContainerStyle={{paddingLeft:20}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item,index}) => <Card room={item} index={index}/>}

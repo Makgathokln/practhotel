@@ -158,7 +158,7 @@ const  DetailsScreen = ({navigation, route}) => {
                      <TouchableOpacity
                  style={{backgroundColor:COLORS.secondary,width:'50%',height:'100%',borderRadius:10, marginRight:20,
                 alignItems:'center', marginTop:20}}
-                 onPress={()=>navigation.navigate('Bookings')}>
+                 onPress={()=>navigation.navigate('Bookings',{item:item})}>
                 <Text style={{padding:5,color:'#fff',fontSize: 18, marginTop: 20, marginRight:4,}}>
                     Check Availability
                 </Text>

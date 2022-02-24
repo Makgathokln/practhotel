@@ -15,10 +15,10 @@ import DatePicker from 'react-native-datepicker';
 import Feather from 'react-native-vector-icons/Feather';
 import moment from 'moment'
 
-const bookings = ({ navigation }) => {
+const bookings = ({ navigation,route }) => {
   // const item = route.params;
   // console.log(item);
-
+  const item = route.params.item
   const [CheckIn, setCheckIn] = useState(0);
   const [CheckOut, setCheckOut] = useState(0);
   const [adultPlus, setAdultPlus] = useState(0);
@@ -247,6 +247,7 @@ const bookings = ({ navigation }) => {
             onPress={() => navigation.navigate('Rooms',{
               CheckIn:CheckIn,
               CheckOut:CheckOut,
+              item:item,
             })}>
             <Text style={{ padding: 5, color: '#fff', fontSize: 18, }}>
               Proceed

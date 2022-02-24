@@ -111,7 +111,10 @@ const HomeScreen = ({ navigation }) => {
                     location: data.location,
                     description: data.description,
                     city: data.city,
-                    price1: data.price1
+                    price1: data.price1,
+                    room: data.room,
+                    roomprice: data.roomprice,
+                    roomtype:data.roomtype 
                 })
                 setAddHotels(addHotels)
             })
@@ -200,7 +203,7 @@ const HomeScreen = ({ navigation }) => {
 
         return (
             <TouchableOpacity activeOpacity={1}
-                onPress={() => navigation.navigate("Rooms", hotel)}>
+                onPress={() => navigation.navigate("DetailsScreen", hotel)}>
 
                 <Animated.View style={{ ...style.card }}>
 
