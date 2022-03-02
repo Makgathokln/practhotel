@@ -7,6 +7,8 @@ import { FlatList,
     ScrollView,
     TextInput, 
     } from 'react-native-gesture-handler';
+import  { Paystack }  from 'react-native-paystack-webview';
+
 import {Picker} from '@react-native-picker/picker';
 import SelectDropdown from 'react-native-select-dropdown'
 import { auth, db } from "../backend/firebase";
@@ -17,7 +19,12 @@ const Rooms=({navigation,route}) =>{
     const item =route.params.item
     const CheckIn=route.params.CheckIn
     const CheckOut=route.params.CheckOut
+    const adultPlus=route.params.adultPlus
     const categories = ['All', 'Popular','Top Rated']
+
+    // const paystackWebViewRef = useRef<paystackProps.PayStackRef>();
+
+    
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
     // const [selectedPrice, setSelectedPrice] = useState();
     const sort = ["highest to lowest", "lowest to highest"]
@@ -48,28 +55,50 @@ const Card = ({room,index}) =>{
     <View style={{flex:1,
         flexDirection:'column', paddingHorizontal:15}}>
     
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:20}}>{room.roomtype}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:20}}>{room.roomtype} Room </Text>
     <View style={{flexDirection:'row', }}>
     <Icon name="airline-seat-flat" size={24} color={COLORS.primary} style={{marginRight:10}}/>
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{room.roomprice}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{room.beds}bed(s) </Text>
 
     </View>
 
     <View style={{flexDirection:'row', }}>
     <Icon name="money" size={24} color={COLORS.primary} style={{marginRight:10}}/>
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{room.price}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>R{room.roomprice}.00</Text>
 
     </View>
 
     <View style={{flexDirection:'row',justifyContent:'space-between', alignContent:'space-between' }}>
 
+    {/* <Paystack 
+        buttonText="pay now"
+       
+        paystackKey="pk_test_7454ec1e01d4ccb65293add51de6808ab68f1165"
+        amount={'1.00'}
+        billingEmail="makgathokln@gmail.com"
+     
+        activityIndicatorColor="green"
+        currency={'ZAR'}
+        onCancel={(e) => {
+            navigation.goBack
+          }}
+          onSuccess={(res) => {
+            navigation.goBack          }}
+          autoStart={true}
+          />
+{/*  */}
+    {/* <TouchableOpacity onPress={()=> paystackWebViewRef.current.startTransaction()}>
+          <Text>Pay Now</Text>
+        </TouchableOpacity>  */}
     <TouchableOpacity onPress={() => navigation.navigate('Confirm',{
         CheckIn:CheckIn,
-        CheckOut:CheckOut
+        CheckOut:CheckOut,
+        adultPlus:adultPlus
     }) }>
     {/* <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>Select</Text> */}
     <Icon name="add-circle" size={24} color={COLORS.primary} />
-
+    <Text> {item.room.length} Available Rooms</Text>
+    
     </TouchableOpacity>
 </View>
 </View>
@@ -88,16 +117,16 @@ const Card = ({room,index}) =>{
         style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>      
 
        
-            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}>  Warloff Hotel</Text>
+            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginBottom:30}}>  Select Room Type </Text>
             {/* <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white}}> {room.name}</Text> */}
 
         </View>
 
         <View>
-        <Text style={{ fontSize:26, 
+        {/* <Text style={{ fontSize:26, 
             fontWeight:'bold', 
             color:COLORS.secondary,
-             paddingTop:10, paddingHorizontal:20, textAlign:'center'}}> Select Room Type {room.name}</Text>
+             paddingTop:10, paddingHorizontal:20, textAlign:'center'}}> Select Room Type {room.name}</Text> */}
  
         </View>
 
@@ -128,7 +157,7 @@ const Card = ({room,index}) =>{
       
 
 
-        <View>
+        <View style={{marginTop:20}}>
             <FlatList 
             data={item.room}
             contentContainerStyle={{paddingLeft:20}}

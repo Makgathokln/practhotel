@@ -3,19 +3,23 @@ import { StyleSheet,
     View, Text, 
     TouchableOpacity, 
     ScrollView,
-    ImageBackground,
+    ImageBackground, Pressable,
     Image } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput } from 'react-native-gesture-handler';
+import  { Paystack }  from 'react-native-paystack-webview';
 
 import COLORS from '../consts/colors';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormInput from './FormInput';
 
 const Confirm = ({navigation,route}) =>{
+    const [adultPluss, setAdultPluss] = useState(0);
+
         const CheckIn=route.params.CheckIn
         const CheckOut=route.params.CheckOut
+        const adultPlus=route.params.adultPlus
     function renderCard(){
         return(
 
@@ -106,10 +110,40 @@ const Confirm = ({navigation,route}) =>{
            Please note that you are about to make a payment for your bookings. </Text>
         </View>
 
-        <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
+        <View style={{flexDirection:'row',alignContent:'space-between',justifyContent:'space-between',paddingHorizontal:20, paddingTop:10}}>
         <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold'}}>No. Of Rooms</Text>
-        <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold', paddingLeft:120}}>3</Text>
+        {/* <Text style={{flexDirection:'row',color:COLORS.secondary, fontSize:18, fontWeight:'bold', paddingLeft:120}}>3</Text> */}
+        <View style={{
+            flexDirection: 'row',
+            alignContent: 'space-between',
+            justifyContent: 'space-between',
+            borderRadius: 10,
+            padding: 10, backgroundColor: '#EDEDED',
+            elevation: 2, width: '40%',
+          }}>
 
+
+            <Pressable style={[styles.buttonAdding, {
+              backgroundColor: '#fff',
+              flexDirection: 'row'
+            }]}
+              onPress={() => setAdultPluss(Math.max(1, adultPluss + 1))}
+            >
+              <Feather name="plus" color={COLORS.primary} size={22} />
+
+            </Pressable>
+            <Text style={{ fontSize: 21 }}>{adultPluss}</Text>
+            <Pressable style={[styles.buttonAdding, {
+              backgroundColor: '#fff',
+              flexDirection: 'row'
+            }]}
+              onPress={() => setAdultPluss(Math.max(1, adultPluss - 1))}
+            >
+              <Feather name="minus" color={COLORS.primary} size={22} />
+
+            </Pressable>
+
+          </View>
         </View>
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:20}}>
@@ -131,7 +165,7 @@ const Confirm = ({navigation,route}) =>{
 
         <View style={{paddingHorizontal:20, paddingTop:10, }}>
         <Text style={{flexDirection:'row',color:COLORS.gray, fontSize:18,
-         fontWeight:'bold'}}>3</Text>
+         fontWeight:'bold'}}>{adultPlus}</Text>
 
         </View>
 
@@ -143,6 +177,8 @@ const Confirm = ({navigation,route}) =>{
         </View>
 
         <View style={{paddingTop:10, paddingHorizontal:20}}>
+
+     
 <TouchableOpacity
                  style={{backgroundColor:COLORS.secondary,width:'100%',height:55,borderRadius:10,
                 alignItems:'center'}}
@@ -150,6 +186,8 @@ const Confirm = ({navigation,route}) =>{
                 <Text style={{color:'#fff',fontSize: 16, marginTop:15, fontWeight:'bold'}}>
                     Pay
                 </Text>
+
+                
             </TouchableOpacity>
 </View>
 
@@ -157,3 +195,59 @@ const Confirm = ({navigation,route}) =>{
     )
 }
 export default Confirm;
+
+const styles = StyleSheet.create({
+    header: {
+      width: '100%',
+      height: '30%',
+      paddingVertical: 30,
+      borderRadius: 10,
+      alignItems: 'center',
+      backgroundColor: '#0b1674',
+      borderBottomLeftRadius: 20,
+      borderBottomRightRadius: 20,
+    },
+  
+    searchContainer: {
+      height: 50,
+      width: 100,
+      borderColor: COLORS.primary,
+      borderRadius: 10,
+      borderWidth: 3,
+  
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginHorizontal: 20,
+  
+    },
+  
+    inputText: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: COLORS.secondary,
+      flex: 1,
+  
+    },
+  
+    categoryListContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginHorizontal: 'space-between',
+      marginHorizontal: 20,
+      marginTop: 30,
+    },
+  
+    categoryListText: {
+      fontSize: 17,
+      fontWeight: 'bold',
+    },
+  
+    buttonAdding: {
+      width: 30,
+      height: 30,
+      borderRadius: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
+  })

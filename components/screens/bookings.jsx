@@ -21,8 +21,10 @@ const bookings = ({ navigation,route }) => {
   const item = route.params.item
   const [CheckIn, setCheckIn] = useState(0);
   const [CheckOut, setCheckOut] = useState(0);
+  const [Guest, setGuest] = useState(0)
   const [adultPlus, setAdultPlus] = useState(0);
   const [childPlus, setChildPlus] = useState(0);
+ 
   var datetoday= new Date()
   var a =moment(CheckOut)
       var b =moment(CheckIn)
@@ -229,6 +231,7 @@ const bookings = ({ navigation,route }) => {
             onPress={() => navigation.navigate('Rooms',{
               CheckIn:CheckIn,
               CheckOut:CheckOut,
+              adultPlus:adultPlus,
             })}>
             <Text style={{ padding: 5, color: '#fff', fontSize: 18, }}>
               Proceed
@@ -247,6 +250,7 @@ const bookings = ({ navigation,route }) => {
             onPress={() => navigation.navigate('Rooms',{
               CheckIn:CheckIn,
               CheckOut:CheckOut,
+              adultPlus:adultPlus,
               item:item,
             })}>
             <Text style={{ padding: 5, color: '#fff', fontSize: 18, }}>

@@ -33,7 +33,9 @@ const  DetailsScreen = ({navigation, route}) => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{
                 backgroundColor:'#fff',
-                paddingBottom: 20,}}>
+                paddingBottom: 20,}}
+                style={{flex:1, backgroundColor: '#fff'}}    
+            >
 
             <StatusBar barStyle="light-content" translucent 
             backgroundColor="rgba(0,0,0,0)"/>     
@@ -153,7 +155,7 @@ const  DetailsScreen = ({navigation, route}) => {
                  paddingLeft:20,
                  alignItems:'center' }}>
                      <Text style={{color:COLORS.primary, fontWeight:'bold', 
-                     fontSize:20}}>R {item.price1} / Night</Text>
+                     fontSize:20}}>R {item.hotelprice} / Night</Text>
                
                      <TouchableOpacity
                  style={{backgroundColor:COLORS.secondary,width:'50%',height:'100%',borderRadius:10, marginRight:20,

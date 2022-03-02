@@ -113,8 +113,10 @@ const HomeScreen = ({ navigation }) => {
                     city: data.city,
                     price1: data.price1,
                     room: data.room,
+                    hotelprice : data.hotelprice,
                     roomprice: data.roomprice,
-                    roomtype:data.roomtype 
+                    roomtype:data.roomtype,
+                    beds: data.beds
                 })
                 setAddHotels(addHotels)
             })
