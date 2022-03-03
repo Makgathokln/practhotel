@@ -1,8 +1,11 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 import hotel from '../consts/hotel';
+import { db, auth } from '../backend/firebase';
+
 import { FlatList,
     ScrollView,
     TextInput, 
@@ -10,41 +13,77 @@ import { FlatList,
 
 
 const HistoryScreen=({navigation}) =>{
-    
+    const [addBookings, setAddBookings] = useState([]);
+
+    useEffect(() => {
+        db.ref('/addBookings').on('value', snapshot => {
+            
+            const addBookings = []
+            snapshot.forEach(action => {
+                const key = action.key
+
+                const data = action.val()
+                    addBookings.push({
+                    key: key,
+                    name: data.name,
+                    images: data.images,
+                    CheckIn: data.CheckIn,
+                   CheckOut: data.CheckOut,
+                    adultPlus: data.adultplus,
+                    description: data.description,
+                    price1: data.price1,
+                    room: data.room,
+                    status : data.status,
+                 
+                })
+                setAddBookings(addBookings)
+            })
+            console.log(addBookings)
+        })
+    }, [])
+    console.log(addBookings[0]?.images,)
+
     const categories = ['All', 'Hotel','Status']
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
-    const CategoryList =({})=>{
-        return(
-        <View style={styles.categoryListContainer}>
-            {categories.map((item,index) =>(
-                <TouchableOpacity key={index} 
-                activeOpacity={0.8}
-                onPress={()=>setSelectedCategoryIndex(index)}
-                >
-                    <View>
-                        <Text style={{...styles.categoryListText, color:
-                            selectedCategoryIndex == index 
-                            ? COLORS.primary
-                            : COLORS.secondary
-                            }}>{item}
-                            </Text>
-                            {selectedCategoryIndex == index && (  <View style={{height:3, width:30,backgroundColor:COLORS.primary,
-                                marginTop:2,
-                            }}
-                            />
-                        )}
+    // const CategoryList =({})=>{
+    //     return(
+    //     <View style={styles.categoryListContainer}>
+    //         {categories.map((item,index) =>(
+    //             <TouchableOpacity key={index} 
+    //             activeOpacity={0.8}
+    //             onPress={()=>setSelectedCategoryIndex(index)}
+    //             >
+    //                 <View>
+    //                     <Text style={{...styles.categoryListText, color:
+    //                         selectedCategoryIndex == index 
+    //                         ? COLORS.primary
+    //                         : COLORS.secondary
+    //                         }}>{item}
+    //                         </Text>
+    //                         {selectedCategoryIndex == index && (  <View style={{height:3, width:30,backgroundColor:COLORS.primary,
+    //                             marginTop:2,
+    //                         }}
+    //                         />
+    //                     )}
                                             
 
-                    </View>
-                </TouchableOpacity>
-                ))}
+    //                 </View>
+    //             </TouchableOpacity>
+    //             ))}
+    //         </View>
+    //     );
+    // };
+    const item = ({item}) =>{
+        return(
+            <View>
+                <Text>{item.name}</Text>
             </View>
-        );
-    };
-
+        )
+    }
 const Card = ({hotel,index}) =>{
    return( 
-    <View style={{
+    <ScrollView
+    style={{
         flex:1,
         flexDirection:'row',
         justifyContent:'space-between',
@@ -52,28 +91,30 @@ const Card = ({hotel,index}) =>{
         marginTop:20,
         borderColor: COLORS.primary,
         borderRadius:10,
-        borderWidth: 3,
+       
         paddingHorizontal:20,
         width:'95%',
         height:'150%'
     }}> 
 
-    <Image source={hotel.image} style={{width:'30%',height:'80%', borderRadius:10,marginTop:7,}}>
+    <Image source={{ uri: hotel?.images }} style={{width:'20%',height:'80%', borderRadius:5,marginTop:7,}}>
     </Image>
 
     <View style={{flex:1,
-        flexDirection:'column', paddingHorizontal:15}}>
+         paddingHorizontal:15}}>
+    
     
     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18}}>{hotel.name}</Text>
-    <Text style={{fontWeight:'bold', color:COLORS.gray, fontSize:16}}>{hotel.date}</Text>
-    
+    <View style={{flexDirection:'row',}}>
+    <Text style={{fontWeight:'bold', color:COLORS.primary,fontSize:12}}>{hotel.CheckIn} to {hotel.CheckIn} </Text>
+    </View>
     <TouchableOpacity onPress={() => navigation.navigate('signIn') }>
-    <Text style={{fontWeight:'bold', color:COLORS.primary, fontSize:16}}>{hotel.status}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{hotel.description}</Text>
     </TouchableOpacity>
 
 
     </View> 
-    </View>
+    </ScrollView>
    )}
 
     return(
@@ -90,31 +131,36 @@ const Card = ({hotel,index}) =>{
         <View style={{
             flexDirection:'row', justifyContent:'space-between',alignContent:'space-between', marginTop:20}}>
         
-            <View style={styles.searchContainer}>
+            {/* <View style={styles.searchContainer}>
             <Icon name="search" size={25} color={COLORS.secondary} style={{marginLeft: 20}}/>
            
             <TextInput 
             styles={styles.inputText}
             placeholder='Search For Notifications'/>
       
-        </View>
+        </View> */}
 
-        <View>
+        {/* <View>
         <Icon name="delete-sweep" size={34} color={COLORS.secondary} style={{marginTop:10, marginRight:10}}/>
-        </View>
+        </View> */}
 
 
         </View>
 
-        <CategoryList/>
+        {/* <CategoryList/> */}
 
         <View>
             <FlatList 
-            data={hotel}
+            data={addBookings}
             contentContainerStyle={{paddingVertical:10,paddingLeft:20}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item,index}) => <Card hotel={item} index={index}/>}
             />
+            {
+                    addBookings.map((item) => {
+                        <Text>{item.name}</Text>
+                    })
+                }
         </View>
 
         
@@ -127,7 +173,7 @@ const styles = StyleSheet.create({
     width:'100%',
     height:'30%',
     paddingVertical: 30,
-    borderRadius:10,
+   
     alignItems:'center',
     backgroundColor: '#0b1674',
     borderBottomLeftRadius: 20,

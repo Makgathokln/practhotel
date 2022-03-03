@@ -102,7 +102,7 @@ const signUp = ({navigation}) => {
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Name</Text>
 
             <TextInput
-            style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+            style={{height: 50, width: '100%', paddingHorizontal:20, borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
   
              onChangeText={props.handleChange('name')}
              value={props.values.name}
@@ -113,7 +113,7 @@ const signUp = ({navigation}) => {
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Contact Number</Text>
 
             <TextInput
-          style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+          style={{height: 50, width: '100%', borderColor: '#0b1674',paddingHorizontal:20, borderWidth: 3, borderRadius:20}}
             keyboardType='numeric'
              onChangeText={props.handleChange('phonenumber')}
              value={props.values.phonenumber}
@@ -125,7 +125,7 @@ const signUp = ({navigation}) => {
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Email Address</Text>
 
             <TextInput
-            style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+            style={{height: 50, width: '100%', borderColor: '#0b1674',paddingHorizontal:20, borderWidth: 3, borderRadius:20}}
              keyboardType='email-address'
              onChangeText={props.handleChange('email')}
              value={props.values.email}
@@ -137,7 +137,7 @@ const signUp = ({navigation}) => {
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
 
             <TextInput
-              style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+              style={{height: 50, width: '100%',paddingHorizontal:20, borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
 
             secureTextEntry={isPasswordShow? false :true}
             
@@ -155,7 +155,7 @@ const signUp = ({navigation}) => {
 
             <TextInput
             secureTextEntry={isPasswordShow? false :true}
-            style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+            style={{height: 50, width: '100%', paddingHorizontal:20, borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
              onChangeText={props.handleChange('confirmpassword')}
              value={props.values.confirmpassword}
              onBlur={props.handleBlur('confirmpassword')}

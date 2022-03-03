@@ -20,10 +20,12 @@ const Rooms=({navigation,route}) =>{
     const CheckIn=route.params.CheckIn
     const CheckOut=route.params.CheckOut
     const adultPlus=route.params.adultPlus
+    const roomprice=route.params.roomprice
+    const roomnumber=item.room
     const categories = ['All', 'Popular','Top Rated']
 
     // const paystackWebViewRef = useRef<paystackProps.PayStackRef>();
-
+    console.log(roomprice)
     
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
     // const [selectedPrice, setSelectedPrice] = useState();
@@ -47,7 +49,7 @@ const Card = ({room,index}) =>{
         height:'250%',
         padding:10,
 
-}}> 
+      }}> 
 
     <Image source={{ uri: room?.roomurl }} style={{width:'40%',height:'105%', borderRadius:10}}>
     </Image>
@@ -93,12 +95,18 @@ const Card = ({room,index}) =>{
     <TouchableOpacity onPress={() => navigation.navigate('Confirm',{
         CheckIn:CheckIn,
         CheckOut:CheckOut,
-        adultPlus:adultPlus
+        adultPlus:adultPlus,
+        roomprice:roomprice,
+        item:item,
+        room:room
+        
     }) }>
     {/* <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>Select</Text> */}
-    <Icon name="add-circle" size={24} color={COLORS.primary} />
-    <Text> {item.room.length} Available Rooms</Text>
-    
+    <View style={{flexDirection:'row', justifyContent:'flex-end',alignContent:'flex-end'}}>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}> {item.room.length} Available </Text>
+    <Icon name="east" size={24} color={COLORS.primary} />
+
+    </View>
     </TouchableOpacity>
 </View>
 </View>

@@ -98,7 +98,7 @@ style={{paddingLeft:10}}
 </View> */}
 
        <TextInput
-        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20, flex:1}}
+        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20, flex:1, paddingHorizontal:20}}
         onChangeText={props.handleChange('email')}
         value={props.values.email}
         onBlur={props.handleBlur('email')}
@@ -109,7 +109,7 @@ style={{paddingLeft:10}}
     </View>
     <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
         <TextInput
-        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+        style={{height: 50, width: '100%', paddingHorizontal:20, borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
         secureTextEntry={isPasswordShow? false :true}
 
         onChangeText={props.handleChange('password')}

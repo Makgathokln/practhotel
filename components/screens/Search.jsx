@@ -47,7 +47,7 @@ const Search = () => {
 const [addHotels, setAddHotels] = useState();
 
 useEffect(() => {
-    db.ref('/addHotels').on('value', snapshot => {
+    db.ref('/addBookings').on('value', snapshot => {
         const addHotels = []
         snapshot.forEach(action => {
             const key = action.key

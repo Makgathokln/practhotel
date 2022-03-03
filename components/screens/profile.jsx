@@ -131,7 +131,7 @@ const profile = ({ navigation }) => {
                                         <Text style={{ margin: 10, color: '#0b1674', fontWeight: 'bold', marginLeft: 15, marginTop:30 }}>Name</Text>
 
                                         <TextInput
-                                            style={{ height: 50, width: '90%', borderColor: '#0b1674', borderWidth: 3,
+                                            style={{ height: 50, width: '90%', borderColor: '#0b1674', borderWidth: 3,paddingHorizontal:20,
                                              borderRadius: 20, marginLeft: 15, color: '#0b1674', fontWeight: 'bold', padding:15 }}
 
                                             onChangeText={text => setName(text)}
@@ -144,7 +144,7 @@ const profile = ({ navigation }) => {
                                         <Text style={{ margin: 10, color: '#0b1674', fontWeight: 'bold', marginLeft: 15 }}>Contact Number </Text>
 
                                         <TextInput
-                                            style={{ height: 50, width: '90%', borderColor: '#0b1674',
+                                            style={{ height: 50, width: '90%', borderColor: '#0b1674',paddingHorizontal:20,
                                             borderWidth: 3, borderRadius: 20, marginLeft: 15, color: '#0b1674', fontWeight: 'bold', }}
                                             keyboardType='numeric'
                                             onChangeText={text => setPhonenumber(text)}
@@ -158,7 +158,7 @@ const profile = ({ navigation }) => {
                                         <Text style={{ margin: 10, color: '#0b1674', fontWeight: 'bold', marginLeft: 15 }}>Email Address </Text>
                                             
                                         <TextInput
-                                            style={{ height: 50, width: '90%', borderColor: '#0b1674', borderWidth: 3,
+                                            style={{ height: 50, width: '90%', borderColor: '#0b1674', borderWidth: 3,paddingHorizontal:20,
                                              borderRadius: 20, marginLeft: 15, color: '#0b1674', fontWeight: 'bold', marginRight:20 }}
                                             keyboardType='email-address'
                                             onChangeText={text => setEmail(text)}

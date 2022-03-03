@@ -13,14 +13,41 @@ import  { Paystack }  from 'react-native-paystack-webview';
 import COLORS from '../consts/colors';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormInput from './FormInput';
+import { db, auth } from '../backend/firebase';
 
 const Confirm = ({navigation,route}) =>{
-    const [adultPluss, setAdultPluss] = useState(0);
-
-        const CheckIn=route.params.CheckIn
-        const CheckOut=route.params.CheckOut
+    const [room, setRoom] = useState(0);
+      const  room1=route.params.room
+        // const CheckIn=route.params.CheckIn
+        // const CheckOut=route.params.CheckOut
         const adultPlus=route.params.adultPlus
-    function renderCard(){
+         const roomprice=route.params.roomprice
+        const item=route.params.item
+         
+        const name=item.name
+        //  const diff=route.params.diff
+
+        const[CheckIn,setCheckIn]=useState(route.params.CheckIn)
+        const [CheckOut, setCheckOut]=useState(route.params.CheckOut)
+        const [images, setImages]=useState(item?.images)
+        // const [roomprice, setroomprice]=useState(route.params.roomprice)
+        const [status,setStatus]=useState('Pending')
+        const [description, setDescription]=useState('Succesfully paid booking')
+        const [statement, setStatement]=useState('Succesfully paid booking'+CheckIn+CheckOut)
+
+
+        const addBooking=()=>{
+          const userid=auth.currentUser.uid
+
+          db.ref('addBookings').push({
+            userid,status,
+            description,name,CheckIn,
+            CheckOut,adultPlus,room1,images
+          })
+        }
+
+
+        function renderCard(){
         return(
 
             <ImageBackground 
@@ -76,7 +103,7 @@ const Confirm = ({navigation,route}) =>{
         )
 
     }
-
+var Rp=0
     
 
     return(
@@ -127,17 +154,17 @@ const Confirm = ({navigation,route}) =>{
               backgroundColor: '#fff',
               flexDirection: 'row'
             }]}
-              onPress={() => setAdultPluss(Math.max(1, adultPluss + 1))}
+              onPress={() => setRoom(Math.min(item.room.length, room + 1))}
             >
               <Feather name="plus" color={COLORS.primary} size={22} />
 
             </Pressable>
-            <Text style={{ fontSize: 21 }}>{adultPluss}</Text>
+            <Text style={{ fontSize: 21 }}>{room}</Text>
             <Pressable style={[styles.buttonAdding, {
               backgroundColor: '#fff',
               flexDirection: 'row'
             }]}
-              onPress={() => setAdultPluss(Math.max(1, adultPluss - 1))}
+              onPress={() => setRoom(Math.max(0, room - 1))}
             >
               <Feather name="minus" color={COLORS.primary} size={22} />
 
@@ -171,24 +198,42 @@ const Confirm = ({navigation,route}) =>{
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
         <Text style={{flexDirection:'row',color:COLORS.primary, fontSize:22,
-         fontWeight:'bold',}}>Total:</Text>
-        <Text style={{flexDirection:'row',color:COLORS.primary, fontSize:22, fontWeight:'bold', paddingLeft:70}}>R7500</Text>
+         fontWeight:'bold',}}>Total:{Rp=room*room1.roomprice}</Text>
+        <Text style={{flexDirection:'row',color:COLORS.primary, fontSize:22, fontWeight:'bold', paddingLeft:70}}>{roomprice}</Text>
 
         </View>
 
-        <View style={{paddingTop:10, paddingHorizontal:20}}>
-
-     
-<TouchableOpacity
-                 style={{backgroundColor:COLORS.secondary,width:'100%',height:55,borderRadius:10,
+        <View style={{paddingTop:10, paddingHorizontal:20, flexDirection:'row', justifyContent:'space-between'}}>
+        {/* <TouchableOpacity
+                 style={{backgroundColor:COLORS.secondary,width:'40%',height:55,borderRadius:10,
                 alignItems:'center'}}
-                onPress={()=>navigation.navigate('PaymentConfirmation')}>
+                onPress={addBooking}>
+                <Text style={{color:'#fff',fontSize: 16, marginTop:15, fontWeight:'bold'}}>
+                    Book
+                </Text>
+
+                
+            </TouchableOpacity> */}
+     
+              <TouchableOpacity
+                 style={{backgroundColor:COLORS.secondary,width:'40%',height:55,borderRadius:10,
+                alignItems:'center'}}
+                onPress={()=>navigation.navigate('PaymentConfirmation',{
+                  CheckIn:CheckIn,
+        CheckOut:CheckOut,
+        adultPlus:adultPlus,
+        roomprice:roomprice,
+        item:item,
+        room:room,Rp:Rp
+                })}>
                 <Text style={{color:'#fff',fontSize: 16, marginTop:15, fontWeight:'bold'}}>
                     Pay
                 </Text>
 
                 
             </TouchableOpacity>
+
+            
 </View>
 
         </View>     

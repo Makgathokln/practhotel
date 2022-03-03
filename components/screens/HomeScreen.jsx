@@ -98,6 +98,7 @@ const HomeScreen = ({ navigation }) => {
 
     useEffect(() => {
         db.ref('/addHotels').on('value', snapshot => {
+           
             const addHotels = []
             snapshot.forEach(action => {
                 const key = action.key

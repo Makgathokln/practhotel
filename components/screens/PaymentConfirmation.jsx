@@ -6,12 +6,42 @@ import { StyleSheet,
 import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
+import { db, auth } from '../backend/firebase';
+
 import  { Paystack }  from 'react-native-paystack-webview';
 
-const PaymentConfirmation = ({navigation}) =>{
-//    function renderHeader(){
+const PaymentConfirmation = ({navigation,route}) =>{
+  const [room, setRoom] = useState(0);
+  const  room1=route.params.room
+    // const CheckIn=route.params.CheckIn
+    // const CheckOut=route.params.CheckOut
+    const adultPlus=route.params.adultPlus
+   const Rp=route.params.Rp
+    const item=route.params.item
+     
+    const name=item.name
+    //  const diff=route.params.diff
 
-//    }
+    const[CheckIn,setCheckIn]=useState(route.params.CheckIn)
+    const [CheckOut, setCheckOut]=useState(route.params.CheckOut)
+    const [images, setImages]=useState(item?.images)
+     //const [roomprice, setroomprice]=useState(route.params.Rp)
+    const [status,setStatus]=useState('Pending')
+    const [description, setDescription]=useState('Succesfully paid booking')
+    const [statement, setStatement]=useState('Succesfully paid booking'+CheckIn+CheckOut)
+
+
+const addBooking=()=>{
+  const userid=auth.currentUser.uid
+
+  db.ref('addBookings').push({
+    userid,status,
+    description,name,CheckIn,
+    CheckOut,adultPlus,room1,images,Rp
+  })
+}
+console.log('price',Rp)
+
     return(
         
         <View style={{
@@ -41,16 +71,16 @@ const PaymentConfirmation = ({navigation}) =>{
         buttonText="pay now"
        
         paystackKey="pk_test_7454ec1e01d4ccb65293add51de6808ab68f1165"
-        amount={'1.00'}
+        amount={Rp}
         billingEmail="makgathokln@gmail.com"
      
         activityIndicatorColor="green"
         currency={'ZAR'}
         onCancel={(e) => {
-            navigation.goBack
+          navigation.navigate('HomeScreen')
+
           }}
-          onSuccess={(res) => {
-            navigation.goBack }}
+          onSuccess={addBooking}
           autoStart={true}
           />
            </View>
