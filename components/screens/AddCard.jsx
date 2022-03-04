@@ -8,18 +8,46 @@ import { StyleSheet,
 import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TextInput } from 'react-native-gesture-handler';
+import { Formik } from 'formik';
+import {useAuth } from '../contexts/UserAuthContext'
+import {db, auth} from '../backend/firebase';
+import * as yup from 'yup'
 
 import COLORS from '../consts/colors';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FormInput from './FormInput';
+
 const AddCard = ({navigation}) =>{
+
+    const ReviewSchem=yup.object({
+        CardName:yup.string().required().min(2),
+        CardNumber:yup.string().required().min(16).max(16),
+        ExpDate:yup.string().required().min(4).max(4),
+        CVV:yup.string().required().min(4).max(4),
+    })
+
+    const [CardName, setCardName] = useState("");
+    const [CardNumber, setCardNumber] = useState("");
+    const [ExpDate, setExpDate] = useState("");
+    const [CVV, setCVV] = useState("");
+
+    const addCard=()=>{
+        const userid=auth.currentUser.uid
+
+        db.ref('addCard').push({
+            CardName,CardNumber,
+            ExpDate,CVV
+        })
+      }
+
+
     function renderCard(){
         return(
             <ImageBackground 
             source={require('./images/master.png')}
             style={{ width:350,
                 height:200, 
-                resizeMode: 'cover', paddingLeft:20,paddingBottom:20,
+                resizeMode: 'cover', paddingBottom:20, left:5,
                 borderRadius:20, overflow:'hidden'}}>
 
                     {/* Logo */}
@@ -71,7 +99,7 @@ const AddCard = ({navigation}) =>{
     return(
         
 
-        <View style={{
+        <ScrollView style={{
             flex:1,
         }}>
         
@@ -95,18 +123,39 @@ const AddCard = ({navigation}) =>{
         {renderCard()}
         
         <View style={{paddingHorizontal:20, paddingTop:10}}>
+
+        <Formik
+        initialValues={{CardName:'',CardNumber:'',CVV:'',ExpDate:''}}
+        validationSchema={ReviewSchem}
+        onSubmit={(values,action)=>{
+            action.resetForm()
+         addUser(values)
+        }}
+       >
+           {(props)=>(
+         <KeyboardAwareScrollView
+             style={styles.innerContainer}>
+        
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Card Holder Name</Text>
+        <Text style={{color:'red',marginTop:-10}}>{props.touched.CardName && props.errors.CardName}</Text>
+
     <TextInput
-  style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:10}}
-  inlineImageLeft="username"
-  inlineImagePadding={2}
+  style={{height: 50, width: '100%', paddingHorizontal:20,borderColor: '#0b1674', borderWidth: 3, borderRadius:10}}
+ placeholder='Card Holder Name'
+ onChange={(e) => setCardName(e.target.value)}
+ value={CardName}
+ onBlur={props.handleBlur('CardName')}
         />
 
 <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Card Number</Text>
+<Text style={{color:'red',marginTop:-10}}>{props.touched.CardNumber && props.errors.CardNumber}</Text>
+
     <TextInput
-  style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:10}}
-  inlineImageLeft="username"
-  inlineImagePadding={2}
+  style={{height: 50, width: '100%',paddingHorizontal:20, borderColor: '#0b1674', borderWidth: 3, borderRadius:10}}
+  placeholder='Card Number'
+  onChange={(e) => setCardNumber(e.target.value)}
+  value={CardNumber}
+  onBlur={props.handleBlur('CardNumber')}
 />
 
 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
@@ -115,36 +164,61 @@ const AddCard = ({navigation}) =>{
 </View>
 
 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-<TextInput
-  style={{height: 50, width: '25%', borderColor: '#0b1674', borderWidth: 3, borderRadius:10}}
-  inlineImageLeft="username"
-  inlineImagePadding={2}
-/>
-<TextInput
-  style={{height: 50, width: '25%', borderColor: '#0b1674', borderWidth: 3, borderRadius:10}}
-  inlineImageLeft="username"
-  inlineImagePadding={2}
-/>
+<Text style={{color:'red',marginTop:-10}}>{props.touched.ExpDate && props.errors.ExpDate}</Text>
 
 <TextInput
-  style={{height: 50, width: '40%', borderColor: '#0b1674', borderWidth: 3, borderRadius:10}}
-  inlineImageLeft="username"
-  inlineImagePadding={2}
+  style={{height: 50, width: '45%', paddingHorizontal:20, borderColor: '#0b1674', borderWidth: 3, borderRadius:10}}
+  placeholder='DD/MM'
+  onChange={(e) => setExpDate(e.target.value)}
+  value={ExpDate}
+  onBlur={props.handleBlur('ExpDate')}
+/>
+{/* <TextInput
+  style={{height: 50, width: '25%', borderColor: '#0b1674', paddingHorizontal:20,borderWidth: 3, borderRadius:10}}
+  placeholder='DD'
+
+/> */}
+        <Text style={{color:'red',marginTop:-10}}>{props.touched.CVV && props.errors.CVV}</Text>
+
+<TextInput
+  style={{height: 50, width: '40%', paddingHorizontal:20,borderColor: '#0b1674', borderWidth: 3, borderRadius:10}}
+  placeholder='CVV'
+  onChange={(e) => setCVV(e.target.value)}
+  value={CVV}
+  onBlur={props.handleBlur('CVV')}
 />
 </View>
-<View style={{paddingTop:50}}>
+<View style={{paddingTop:20}}>
 <TouchableOpacity
                  style={{backgroundColor:COLORS.secondary,width:'45%',height:55,borderRadius:10,
                 alignItems:'center'}}
-                onPress={navigation.goBack}>
+                onPress={addCard}>
                 <Text style={{color:'#fff',fontSize: 16, marginTop:15, fontWeight:'bold'}}>
                     Add Card
                 </Text>
             </TouchableOpacity>
 </View>
-
-        </View>
-        </View>     
+</KeyboardAwareScrollView>
+            )}</Formik>  
+                  </View>
+        
+        </ScrollView>     
     )
 }
 export default AddCard;
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+
+ 
+ 
+innerContainer:{
+  marginTop:20
+},
+ 
+})

@@ -3,10 +3,12 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 import hotel from '../consts/hotel';
-import { FlatList,
+import {
+    FlatList,
     ScrollView,
-    TextInput, 
-    } from 'react-native-gesture-handler';
+    TextInput
+} from 'react-native-gesture-handler';
+
 
 
 const NotificationScreen=({navigation}) =>{
@@ -66,7 +68,7 @@ const Card = ({hotel,index}) =>{
         flexDirection:'row', justifyContent:'space-between',alignContent:'space-between',
 
 }}> 
-    <Text style={{fontWeight:'bold', color:COLORS.primary, fontSize:16}}>Cancel Booking</Text>
+    {/* <Text style={{fontWeight:'bold', color:COLORS.primary, fontSize:16}}>Cancel Booking</Text> */}
 
     <Icon name="delete" size={24} color={COLORS.primary} style={{marginRight:10}}/>
 
@@ -106,12 +108,11 @@ const Card = ({hotel,index}) =>{
 
         </View>
 
-        <CategoryList/>
-
+       
         <View>
             <FlatList 
             data={hotel}
-            contentContainerStyle={{paddingVertical:30,paddingLeft:20}}
+            contentContainerStyle={{paddingVertical:30,paddingLeft:20, justifyContent:'space-between'}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item,index}) => <Card hotel={item} index={index}/>}
             />
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     width:'100%',
     height:'30%',
     paddingVertical: 30,
-    borderRadius:10,
+    
     alignItems:'center',
     backgroundColor: '#0b1674',
     borderBottomLeftRadius: 20,

@@ -109,7 +109,7 @@ var Rp=0
     return(
         
 
-        <View style={{
+        <ScrollView showsVerticalScrollIndicator={false} style={{
             flex:1,
         }}>
         
@@ -198,7 +198,7 @@ var Rp=0
 
         <View style={{flexDirection:'row',paddingHorizontal:20, paddingTop:10}}>
         <Text style={{flexDirection:'row',color:COLORS.primary, fontSize:22,
-         fontWeight:'bold',}}>Total:{Rp=room*room1.roomprice}</Text>
+         fontWeight:'bold',}}>Total:R {Rp=room*room1.roomprice}</Text>
         <Text style={{flexDirection:'row',color:COLORS.primary, fontSize:22, fontWeight:'bold', paddingLeft:70}}>{roomprice}</Text>
 
         </View>
@@ -236,7 +236,7 @@ var Rp=0
             
 </View>
 
-        </View>     
+        </ScrollView>     
     )
 }
 export default Confirm;

@@ -16,6 +16,8 @@ import {
     from 'react-native';
 
 //Screens
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import HomeScreen from './screens/HomeScreen'
 import HistoryScreen from './screens/HistoryScreen'
 import NotificationScreen from './screens/NotificationScreen'

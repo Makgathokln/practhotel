@@ -118,7 +118,7 @@ const userDetails = ({ navigation }) => {
                             width: '95%',
                             height: 50
                         }}
-                        onPress={() => navigation.navigate('NotificationScreen')}>
+                        onPress={() => navigation.navigate('HistoryScreen')}>
 
                         <Icon name="notifications" size={22} style={{ color: COLORS.secondary, marginTop: 10, marginLeft: 5 }} />
 
@@ -142,7 +142,7 @@ const userDetails = ({ navigation }) => {
                             shadowRadius: 3,
                             height: 50
                         }}
-                        onPress={() => navigation.navigate('HistoryScreen')}>
+                        onPress={() => navigation.navigate('NotificationScreen')}>
 
                         <Icon name="history" size={22} style={{ color: COLORS.secondary, marginTop: 10, marginLeft: 5 }} />
 
@@ -178,7 +178,7 @@ const userDetails = ({ navigation }) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         style={{
                             flexDirection: 'row', justifyContent: 'flex-start', margin: 10, borderColor: COLORS.gray,
                             borderRadius: 10,
@@ -200,7 +200,7 @@ const userDetails = ({ navigation }) => {
 
                         <Icon name="arrow-forward-ios" size={20} style={{ color: COLORS.gray, marginTop: 14, paddingLeft: 130, marginLeft: 25 }} />
 
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
                 </View>
 

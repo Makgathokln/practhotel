@@ -31,6 +31,8 @@ import Luxury from './components/screens/Luxury';
 import Top from './components/screens/Top';
 import UserDetails from './components/screens/UserDetails';
 import Search from './components/screens/Search';
+import HistoryScreen from './components/screens/HistoryScreen';
+import NotificationScreen from './components/screens/NotificationScreen';
 import { AuthProvider } from './components/contexts/UserAuthContext';
 
 
@@ -52,6 +54,10 @@ const Menu = ()=>{
             {/* <Stack.Screen name={'Home'} component={HomeScreen} />    */}
             <Stack.Screen name={"DetailsScreen"} component={DetailsScreen} />   
             <Stack.Screen name={"HomeScreen"} component={HomeScreen} />   
+            <Stack.Screen name={"HistoryScreen"} component={HistoryScreen} />   
+            <Stack.Screen name={"NotificationScreen"} component={NotificationScreen} />   
+
+
             <Stack.Screen name={"Bookings"} component={Bookings} />   
             <Stack.Screen name={"Rooms"} component={Rooms} />   
             <Stack.Screen name={"Availability"} component={Availability} />   

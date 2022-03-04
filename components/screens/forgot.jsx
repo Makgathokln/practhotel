@@ -44,7 +44,7 @@ Enter Your Email Address And We Will Email You A Link To Reset Your Password</Te
 <View>
       <Text style={{margin: 10, color:'#0b1674', fontWeight:'bold'}}>Email</Text>
       <TextInput
-        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
+        style={{height: 50, width: '100%', borderColor: '#0b1674', borderWidth: 3, borderRadius:20, paddingHorizontal:20}}
         value={email}
         onChangeText={(e)=>(setEmail(e))}
 

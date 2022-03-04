@@ -82,7 +82,7 @@ const HistoryScreen=({navigation}) =>{
     }
 const Card = ({hotel,index}) =>{
    return( 
-    <ScrollView
+    <View
     style={{
         flex:1,
         flexDirection:'row',
@@ -104,17 +104,17 @@ const Card = ({hotel,index}) =>{
          paddingHorizontal:15}}>
     
     
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18}}>{hotel.name}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.gray, fontSize:12}}>You have succesfully paid for your stay at {hotel.name} from {hotel.CheckIn} to {hotel.CheckIn}.</Text>
     <View style={{flexDirection:'row',}}>
-    <Text style={{fontWeight:'bold', color:COLORS.primary,fontSize:12}}>{hotel.CheckIn} to {hotel.CheckIn} </Text>
+    {/* <Text style={{fontWeight:'bold', color:COLORS.gray,fontSize:10}}>{hotel.CheckIn} to {hotel.CheckIn} </Text> */}
     </View>
-    <TouchableOpacity onPress={() => navigation.navigate('signIn') }>
+    {/* <TouchableOpacity onPress={() => navigation.navigate('signIn') }>
     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{hotel.description}</Text>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
 
 
     </View> 
-    </ScrollView>
+    </View>
    )}
 
     return(

@@ -22,8 +22,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const signUp = ({navigation}) => {
     const [isPasswordShow,setPasswordShow]=useState(false)
     const ReviewSchem=yup.object({
-        name:yup.string().required().min(2),
-        phonenumber:yup.string().required().min(10).max(10),
+        name:yup.string().required().min(8),
+        phonenumber:yup.string().required().min(10),
         email:yup.string().required().min(6),
         password:yup.string().required().min(6),
         confirmpassword:yup.string().required().min(6).oneOf([yup.ref('password'),null],'password does not match')
@@ -53,7 +53,7 @@ const signUp = ({navigation}) => {
         catch(error){
           if(error.code === 'auth/email-already-in-use'){
             Alert.alert(
-              'That email adress is already inuse'
+              'That email adress is already in use'
             )
           }
           if(error.code === 'auth/invalid-email'){
@@ -108,8 +108,9 @@ const signUp = ({navigation}) => {
              value={props.values.name}
              onBlur={props.handleBlur('name')}
              />
-        
-        
+                <Text style={{color:'red',marginTop:-15}}>{props.touched.name && props.errors.name}</Text>
+
+
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Contact Number</Text>
 
             <TextInput
@@ -121,7 +122,8 @@ const signUp = ({navigation}) => {
              />
         
         <Text style={{color:'red',marginTop:-15}}>{props.touched.phonenumber && props.errors.phonenumber}</Text>
-        
+
+
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Email Address</Text>
 
             <TextInput
@@ -131,8 +133,8 @@ const signUp = ({navigation}) => {
              value={props.values.email}
              onBlur={props.handleBlur('email')}
              />
-        
-        <Text style={{color:'red',marginTop:-15}}>{props.touched.email && props.errors.email}</Text>
+                <Text style={{color:'red',marginTop:-15}}>{props.touched.email && props.errors.email}</Text>
+
         
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
 
@@ -145,11 +147,13 @@ const signUp = ({navigation}) => {
              value={props.values.password}
              onBlur={props.handleBlur('password')}
              />
+
+<Text style={{color:'red',marginTop:-15}}>{props.touched.password && props.errors.password}</Text>
+
          {/* <Icon name={isPasswordShow?'eye-off':"eye"}
             style={{color:'black',textAlign:'center',
         fontSize:18,}}
            onPress={()=>setPasswordShow(!isPasswordShow)} /> */}
-        <Text style={{color:'red',marginTop:-15}}>{props.touched.password && props.errors.password}</Text>
         
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}> Confirm Password</Text>
 
@@ -160,12 +164,15 @@ const signUp = ({navigation}) => {
              value={props.values.confirmpassword}
              onBlur={props.handleBlur('confirmpassword')}
              />
+
+<Text style={{color:'red',marginTop:-15}}>{props.touched.confirmpassword && props.errors.confirmpassword}</Text>
+
          {/* <Icon name={isPasswordShow?'eye-off':"eye"}
             style={{color:'black',textAlign:'center',
         fontSize:18,}}
            onPress={()=>setPasswordShow(!isPasswordShow)} /> */}
            
-        <Text style={{color:'red',marginTop:-15}}>{props.touched.confirmpassword && props.errors.confirmpassword}</Text>
+        {/* <Text style={{color:'red',marginTop:-15}}>{props.touched.confirmpassword && props.errors.confirmpassword}</Text> */}
         
         <View style={{marginTop:20,alignItems:'center',justifyContent:'center'}}>
         <TouchableOpacity
@@ -255,7 +262,9 @@ const styles = StyleSheet.create({
     borderColor:'#0b1674',
     top:30,
 },
-
+innerContainer:{
+  marginTop:20
+},
  buttonText: {
     fontSize: 20,
     color: '#ff6e1a',

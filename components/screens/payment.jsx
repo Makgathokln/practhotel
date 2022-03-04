@@ -24,7 +24,7 @@ const Payment=({navigation}) =>{
 
     return(
 
-        <View style={{ flex:1}}>
+        <ScrollView style={{ flex:1}}>
 
         <View style={styles.header} >
         <Icon name="keyboard-arrow-left" size={38} color='#fff'
@@ -252,7 +252,7 @@ const Payment=({navigation}) =>{
                 </View>
 
         
-        </View>
+        </ScrollView>
     )
 }
 

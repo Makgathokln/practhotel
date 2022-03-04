@@ -180,7 +180,7 @@ const profile = ({ navigation }) => {
                                             }}
                                             onPress={updateUser}>
                                             <Text style={{ marginTop: 7, color: '#fff', fontSize: 22 }}>
-                                                Submit
+                                                Update
                                             </Text>
                                         </TouchableOpacity>
 

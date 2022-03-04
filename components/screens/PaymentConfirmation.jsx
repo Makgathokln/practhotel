@@ -39,6 +39,7 @@ const addBooking=()=>{
     description,name,CheckIn,
     CheckOut,adultPlus,room1,images,Rp
   })
+  navigation.navigate("MainContainer")
 }
 console.log('price',Rp)
 

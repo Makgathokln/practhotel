@@ -35,7 +35,7 @@ const cardWidth = width / 1.8;
 import { useHistory } from "react-router";
 
 const HomeScreen = ({ navigation }) => {
-    const categories = ['All', 'Popular', 'Top Rated', 'Featured', 'Luxury'];
+    const categories = ['Top Hotels'];
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
     const scrollX = React.useRef(new Animated.Value(0)).current;
     const [name, setName] = useState('');
@@ -222,6 +222,7 @@ const HomeScreen = ({ navigation }) => {
                                 <Text style={{ color: COLORS.primary, fontWeight: 'bold', fontSize: 17, }}>
                                     {hotel.name}
                                 </Text>
+                                
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'space-between' }}>
 
                                     <Icon name="location-pin" size={24} color={COLORS.secondary} />
@@ -230,7 +231,8 @@ const HomeScreen = ({ navigation }) => {
                                         {hotel.location}
                                     </Text>
                                 </View>
-                            </View>
+                                
+                                                            </View>
 
                         </View>
                     </View>
@@ -243,6 +245,7 @@ const HomeScreen = ({ navigation }) => {
 
     const TopHotelCard = ({ hotel }) => {
         return (
+            <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate("DetailsScreen", hotel)}>
             <View style={style.topHotelCard}>
                 <View style={{
                     position: 'absolute',
@@ -262,15 +265,13 @@ const HomeScreen = ({ navigation }) => {
                     </Text>
 
                     <Text style={{ fontSize: 7, fontWeight: 'bold', color: COLORS.secondary }}>
-                        {hotel.location}
+                        {hotel.location} {hotel.city}
                     </Text>
 
-                    <Text style={{ fontSize: 7, fontWeight: 'bold', color: COLORS.secondary }}>
-                        {hotel.city}
-                    </Text>
-
+                   
                 </View>
             </View>
+            </TouchableOpacity>
         )
     }
 
@@ -338,9 +339,9 @@ keyExtractor={(item) => item.id}
                     marginHorizontal: 20
                 }}>
 
-                    <Text style={{ fontWeight: 'bold', color: COLORS.secondary, fontSize: 17 }}> Top Hotels</Text>
+                    <Text style={{ fontWeight: 'bold', color: COLORS.secondary, fontSize: 17 }}> Most Visited Hotels</Text>
 
-                    <Text style={{ color: COLORS.primary, fontSize: 17, fontWeight: 'bold' }}> Show All</Text>
+                    {/* <Text style={{ color: COLORS.primary, fontSize: 17, fontWeight: 'bold' }}> Show All</Text> */}
                 </View>
 
                 <FlatList
