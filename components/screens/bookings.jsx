@@ -13,7 +13,9 @@ import COLORS from '../consts/colors'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import DatePicker from 'react-native-datepicker';
 import Feather from 'react-native-vector-icons/Feather';
-import moment from 'moment'
+import moment from 'moment';
+import DropShadow from "react-native-drop-shadow";
+
 
 const bookings = ({ navigation,route }) => {
   // const item = route.params;
@@ -48,10 +50,34 @@ const bookings = ({ navigation,route }) => {
         <Icon name="keyboard-arrow-left" size={38} color='#fff' style={{ justifyContent: 'flex-start', marginRight: '85%', marginTop: '5%' }} onPress={navigation.goBack} />
 
 
-        <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.white, marginTop: 30 }}> Bookings</Text>
+        <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.white, marginTop: 50 }}> Bookings</Text>
+        
       </View>
+<View style={{ height: 140,
+        width: 300,
+        backgroundColor: '#e6e6ff',
+        elevation: 15,
+        marginHorizontal: 10,
+        borderRadius: 10,
+        top:150,
+        left:50,
+        position:'absolute'
+        }}>
+                  <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 50 ,textAlign:'center'}}> Bookings</Text>
 
-      <View>
+          </View>
+
+          <View style={{ height: 400,
+        width: 380,
+        backgroundColor: COLORS.white,
+        elevation: 15,
+        marginHorizontal: 10,
+        borderRadius: 10,
+        top:360,
+        left:5,
+        
+        position:'absolute'}}>
+      <View >
         <Text style={{
           color: COLORS.secondary,
           fontSize: 20, marginTop: 20,
@@ -265,7 +291,7 @@ const bookings = ({ navigation,route }) => {
       </View>
 
     </View>
-
+    </View>
   );
 
 
@@ -284,13 +310,19 @@ export default bookings
 
 const styles = StyleSheet.create({
   header: {
-    width: '100%',
-    height: '30%',
-    paddingVertical: 30,
-    alignItems: 'center',
-    backgroundColor: '#0b1674',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    height:550,
+    width:500,
+    backgroundColor:COLORS.secondary,
+    marginLeft:-45,
+    borderRadius:500,
+    top:-280
+    // width: '100%',
+    // height: '30%',
+    // paddingVertical: 30,
+    // alignItems: 'center',
+    // backgroundColor: '#0b1674',
+    // borderBottomLeftRadius: 20,
+    // borderBottomRightRadius: 20,
   },
 
   searchContainer: {

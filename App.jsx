@@ -57,7 +57,6 @@ const Menu = ()=>{
             <Stack.Screen name={"HistoryScreen"} component={HistoryScreen} />   
             <Stack.Screen name={"NotificationScreen"} component={NotificationScreen} />   
 
-
             <Stack.Screen name={"Bookings"} component={Bookings} />   
             <Stack.Screen name={"Rooms"} component={Rooms} />   
             <Stack.Screen name={"Availability"} component={Availability} />   

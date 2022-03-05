@@ -33,8 +33,9 @@ const PaymentConfirmation = ({navigation,route}) =>{
 
 const addBooking=()=>{
   const userid=auth.currentUser.uid
-
-  db.ref('addBookings').push({
+  const uid = auth.currentUser.uid;
+  console.log(uid)
+  db.ref('addBookings'+ uid).push({
     userid,status,
     description,name,CheckIn,
     CheckOut,adultPlus,room1,images,Rp

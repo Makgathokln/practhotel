@@ -6,7 +6,7 @@ import { SafeAreaView, StyleSheet,
    TouchableOpacity,
    ImageBackground,
    Dimensions,
-   ScrollView} from 'react-native'
+   ScrollView, ToastAndroid} from 'react-native'
 //import { COLORS } from '../styles/Colors'
 //import Flatbutton from '../styles/button'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -21,13 +21,19 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 const signUp = ({navigation}) => {
     const [isPasswordShow,setPasswordShow]=useState(false)
+    
     const ReviewSchem=yup.object({
-        name:yup.string().required().min(8),
-        phonenumber:yup.string().required().min(10),
-        email:yup.string().required().min(6),
-        password:yup.string().required().min(6),
-        confirmpassword:yup.string().required().min(6).oneOf([yup.ref('password'),null],'password does not match')
+        name:yup.string().required().min(3).max(7),
+        phonenumber:yup.string().required().min(10).max(10),
+        email:yup.string().required().min(5).max(30),
+        password:yup.string().required().min(6).max(10),
+        confirmpassword:yup.string().required().max(6).oneOf([yup.ref('password'),null],'password does not match')
     })
+
+    const setToastMsg =msg=>{
+      ToastAndroid.showWithGravity(msg,ToastAndroid.SHORT,ToastAndroid.CENTER)
+  }
+
     const {signup}=useAuth()
 
     const addUser = async (data)=>{
@@ -43,8 +49,20 @@ const signUp = ({navigation}) => {
             name:name,
             email:email,
             Phonenumber:phonenumber,
-            uid:res.user.uid
+            uid:res.user.uid,
+            
+          }
+          ).then((res)=>{
+            
+            alert(" Registered succesfully" +'\n'+"congrats")
+            navigation.navigate('signIn')
+
           })
+
+          .catch((err) =>{
+            alert("something went wrong")
+          })
+          
           })
         
    
@@ -52,19 +70,20 @@ const signUp = ({navigation}) => {
         }
         catch(error){
           if(error.code === 'auth/email-already-in-use'){
-            Alert.alert(
+            alert(
               'That email adress is already in use'
             )
           }
           if(error.code === 'auth/invalid-email'){
-            Alert.alert(
+            alert(
               'That email address is invalid'
             )
           }
           else{
-            Alert.alert(error.code)
+            alert(error.code)
           }
-          
+          navigation.navigate('signUp')
+
         }
         
       }
@@ -107,8 +126,9 @@ const signUp = ({navigation}) => {
              onChangeText={props.handleChange('name')}
              value={props.values.name}
              onBlur={props.handleBlur('name')}
+             maxLength={7}
              />
-                <Text style={{color:'red',marginTop:-15}}>{props.touched.name && props.errors.name}</Text>
+                <Text style={{color:'red', fontWeight:'bold'}}>{props.touched.name && props.errors.name}</Text>
 
 
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Contact Number</Text>
@@ -119,21 +139,26 @@ const signUp = ({navigation}) => {
              onChangeText={props.handleChange('phonenumber')}
              value={props.values.phonenumber}
              onBlur={props.handleBlur('phonenumber')}
+             maxLength={10}
+
              />
         
-        <Text style={{color:'red',marginTop:-15}}>{props.touched.phonenumber && props.errors.phonenumber}</Text>
+        <Text style={{color:'red', fontWeight:'bold'}}>{props.touched.phonenumber && props.errors.phonenumber}</Text>
 
 
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Email Address</Text>
 
             <TextInput
+            type="email"
             style={{height: 50, width: '100%', borderColor: '#0b1674',paddingHorizontal:20, borderWidth: 3, borderRadius:20}}
              keyboardType='email-address'
              onChangeText={props.handleChange('email')}
              value={props.values.email}
              onBlur={props.handleBlur('email')}
+             maxLength={30}
+
              />
-                <Text style={{color:'red',marginTop:-15}}>{props.touched.email && props.errors.email}</Text>
+                <Text style={{color:'red',fontWeight:'bold'}}>{props.touched.email && props.errors.email}</Text>
 
         
         <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
@@ -146,9 +171,11 @@ const signUp = ({navigation}) => {
              onChangeText={props.handleChange('password')}
              value={props.values.password}
              onBlur={props.handleBlur('password')}
+             maxLength={7}
+
              />
 
-<Text style={{color:'red',marginTop:-15}}>{props.touched.password && props.errors.password}</Text>
+<Text style={{color:'red', fontWeight:'bold'}}>{props.touched.password && props.errors.password}</Text>
 
          {/* <Icon name={isPasswordShow?'eye-off':"eye"}
             style={{color:'black',textAlign:'center',
@@ -163,9 +190,11 @@ const signUp = ({navigation}) => {
              onChangeText={props.handleChange('confirmpassword')}
              value={props.values.confirmpassword}
              onBlur={props.handleBlur('confirmpassword')}
+             maxLength={7}
+
              />
 
-<Text style={{color:'red',marginTop:-15}}>{props.touched.confirmpassword && props.errors.confirmpassword}</Text>
+<Text style={{color:'red', fontWeight:'bold'}}>{props.touched.confirmpassword && props.errors.confirmpassword}</Text>
 
          {/* <Icon name={isPasswordShow?'eye-off':"eye"}
             style={{color:'black',textAlign:'center',

@@ -14,9 +14,10 @@ import { FlatList,
 
 const HistoryScreen=({navigation}) =>{
     const [addBookings, setAddBookings] = useState([]);
-
+    const uid = auth.currentUser.uid;
+    console.log(uid)
     useEffect(() => {
-        db.ref('/addBookings').on('value', snapshot => {
+        db.ref('/addBookings' + uid).on('value', snapshot => {
             
             const addBookings = []
             snapshot.forEach(action => {

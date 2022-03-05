@@ -36,7 +36,7 @@ const profile = ({ navigation }) => {
     const [isPasswordShow, setPasswordShow] = useState(false)
 
     const ReviewSchem = yup.object({
-        name: yup.string().required().min(2),
+        name: yup.string().required().max(7),
         phonenumber: yup.string().required().min(10).max(10),
         email: yup.string().required().min(6),
         password: yup.string().required().min(6),
@@ -137,6 +137,7 @@ const profile = ({ navigation }) => {
                                             onChangeText={text => setName(text)}
                                             value={name}
 
+                                            maxLength={7}
 
                                         />
 
@@ -149,6 +150,8 @@ const profile = ({ navigation }) => {
                                             keyboardType='numeric'
                                             onChangeText={text => setPhonenumber(text)}
                                             value={Phonenumber}
+                                            maxLength={10}
+
 
                                         />
 
@@ -164,6 +167,8 @@ const profile = ({ navigation }) => {
                                             onChangeText={text => setEmail(text)}
                                             value={email}
                                             onBlur={props.handleBlur('email')}
+                                            maxLength={16}
+
                                         />
                                        
 

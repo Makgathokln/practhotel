@@ -102,6 +102,7 @@ style={{paddingLeft:10}}
         onChangeText={props.handleChange('email')}
         value={props.values.email}
         onBlur={props.handleBlur('email')}
+        maxLength={30}
         />
 
 {/* <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{marginRight:80}} onPress={navigation.goBack}/>       */}
@@ -115,6 +116,7 @@ style={{paddingLeft:10}}
         onChangeText={props.handleChange('password')}
         value={props.values.password}
         onBlur={props.handleBlur('password')}
+        maxLength={30}
         />
 
  
