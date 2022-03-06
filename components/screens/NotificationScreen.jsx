@@ -1,8 +1,10 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 import hotel from '../consts/hotel';
+import { db, auth } from '../backend/firebase';
+
 import {
     FlatList,
     ScrollView,
@@ -13,6 +15,37 @@ import {
 
 const NotificationScreen=({navigation}) =>{
     
+
+    const [addBookings, setAddBookings] = useState([]);
+    const uid = auth.currentUser.uid;
+    console.log(uid)
+    useEffect(() => {
+        db.ref('/addBookings' + uid).on('value', snapshot => {
+            
+            const addBookings = []
+            snapshot.forEach(action => {
+                const key = action.key
+
+                const data = action.val()
+                    addBookings.push({
+                    key: key,
+                    name: data.name,
+                    images: data.images,
+                    CheckIn: data.CheckIn,
+                   CheckOut: data.CheckOut,
+                    adultPlus: data.adultplus,
+                    description: data.description,
+                    Rp: data.Rp,
+                    room: data.room,
+                    room1 : data.room1,
+                 
+                })
+                setAddBookings(addBookings)
+            })
+            console.log(addBookings)
+        })
+    }, [])
+    console.log(addBookings[0]?.images,)
     const categories = ['All', 'Popular','Top Rated']
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
     const CategoryList =({})=>{
@@ -52,14 +85,14 @@ const Card = ({hotel,index}) =>{
 
 }}> 
 
-    <Image source={hotel.image} style={{width:'40%',height:'105%', borderRadius:10,}}>
+    <Image source={{ uri: hotel?.images }} style={{width:'40%',height:'105%', borderRadius:10,}}>
     </Image>
 
     <View style={{flex:1,
         flexDirection:'column', paddingHorizontal:15}}>
     
     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:20}}>{hotel.name}</Text>
-    <Text style={{fontWeight:'bold', color:COLORS.gray, fontSize:16}}>{hotel.location}</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.gray, fontSize:16}}>Price paid R{hotel.Rp}.</Text>
     
     
 
@@ -111,7 +144,7 @@ const Card = ({hotel,index}) =>{
        
         <View>
             <FlatList 
-            data={hotel}
+            data={addBookings}
             contentContainerStyle={{paddingVertical:30,paddingLeft:20, justifyContent:'space-between'}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item,index}) => <Card hotel={item} index={index}/>}

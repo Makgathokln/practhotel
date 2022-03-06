@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
@@ -34,9 +34,9 @@ const HistoryScreen=({navigation}) =>{
                    CheckOut: data.CheckOut,
                     adultPlus: data.adultplus,
                     description: data.description,
-                    price1: data.price1,
+                    Rp: data.Rp,
                     room: data.room,
-                    status : data.status,
+                    room1 : data.room1,
                  
                 })
                 setAddBookings(addBookings)
@@ -89,12 +89,14 @@ const Card = ({hotel,index}) =>{
         justifyContent:'space-between',
         alignContent:'space-between',
         marginBottom:20,
+        backgroundColor:COLORS.white,
+        bottom:40,
         borderColor: COLORS.primary,
         borderRadius:10,
        
         paddingHorizontal:20,
         width:'95%',
-        height:'150%'
+        height:'150%',
     }}> 
 
 
@@ -119,29 +121,36 @@ const Card = ({hotel,index}) =>{
 
     return(
 
-        <View style={{ flex:1}}>
+        <View >
 
         <View style={styles.header} >
-        <Icon name="keyboard-arrow-left" size={38} color='#fff' style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>      
-
        
-            <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}> Notifications</Text>
         </View>
         
-        <View style={{top:-250, paddingHorizontal:20}}>
+        <View style={{top:-250, paddingHorizontal:20, backgroundColor:'red' }}>
         <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'space-between', }}> 
-<Text> All</Text>
+<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}> All</Text>
 
-<Text>Mark as read</Text>
-
+<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}>Mark as read</Text>
 </View>
+
         <View
   style={{
     borderBottomColor: COLORS.primary,
     borderBottomWidth: 2,
   }}
 />
-       
+<View style={{marginTop:80}}>
+<FlatList 
+            data={addBookings}
+            contentContainerStyle={{paddingVertical:10,paddingLeft:20}}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item,index}) => <Card hotel={item} index={index}/>}
+            />
+
+</View>
+
+
         </View>
        
 
@@ -159,7 +168,7 @@ const Card = ({hotel,index}) =>{
 
           </View>
       
-          <View >
+          {/* <View style={{backgroundColor:'green'}}>
 
             
             <FlatList 
@@ -175,7 +184,7 @@ const Card = ({hotel,index}) =>{
                 }
         </View>
 
-        
+         */}
         </View>
     )
 }

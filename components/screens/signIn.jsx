@@ -20,13 +20,19 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const signIn =({navigation})=>{
     const [isSelected,setSelection]=useState(false)
     const [isPasswordShow,setPasswordShow]=useState(false)
+    const [loading, setLoading] = useState(false);
 
     const ReviewSchem =yup.object({
          email:yup.string().required().min(5).max(30),
         password:yup.string().required().min(6).max(10),
     })
 
-
+    const startLoading = () => {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 3000);
+      };
     const setToastMsg =msg=>{
         ToastAndroid.showWithGravity(msg,ToastAndroid.SHORT,ToastAndroid.CENTER)
     }
@@ -39,6 +45,10 @@ const signIn =({navigation})=>{
           const user = await login(
               email.trim().toLowerCase(), password
             ).then(res=>{
+                setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
                 if(res.user){
                     navigation.navigate('MainContainer')
                 }
@@ -132,15 +142,31 @@ style={{paddingLeft:10}}
                 </Text>
 </TouchableOpacity>
 
- 
+{loading ? (
+          <ActivityIndicator
+            //visibility of Overlay Loading Spinner
+            visible={loading}
+            //Text with the Spinner
+            textContent={'Loading...'}
+            //Text style of the Spinner Text
+            textStyle={styles.spinnerTextStyle}
+          />
+        ) : (
+          <>
+            <Text style={{textAlign: 'center', fontSize: 20}}>
+              React Native ActivityIndicator
+            </Text>
+            <Button
+              title="Start Loading"
+              onPress={props.handleSubmit}              >
+            </Button>
+            </>
+        )}
                 <TouchableOpacity
                  style={{margin:10,backgroundColor:'#0b1674',width:'95%',height:60,borderRadius:30,
                 alignItems:'center'}}
                 onPress={props.handleSubmit}>
-                    <ActivityIndicator />
-    <ActivityIndicator size="large" />
-    <ActivityIndicator size="small" color="#0000ff" />
-    <ActivityIndicator size="large" color="#00ff00" />
+                    
                 <Text style={{padding:10,color:'#fff',fontSize: 24}}>
                     Sign In
                 </Text>
@@ -196,7 +222,9 @@ const styles = StyleSheet.create({
       padding: 10,
     
     },
-
+    spinnerTextStyle: {
+        color: 'red',
+      },
     inputContainer:{
         top:20
   
