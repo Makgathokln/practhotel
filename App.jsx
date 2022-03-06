@@ -17,6 +17,7 @@ import Rooms from './components/screens/rooms';
 import Availability from './components/screens/availability';
 import Profile from './components/screens/profile';
 import Edit from './components/screens/edit';
+import Notify from './components/screens/Notify';
 import Payment from './components/screens/payment';
 import PaymentScreen from './components/screens/PaymentScreen';
 import PaymentView from './components/screens/PaymentView';
@@ -34,7 +35,6 @@ import Search from './components/screens/Search';
 import HistoryScreen from './components/screens/HistoryScreen';
 import NotificationScreen from './components/screens/NotificationScreen';
 import { AuthProvider } from './components/contexts/UserAuthContext';
-
 
 const Menu = ()=>{
   const Stack = createNativeStackNavigator()
@@ -76,6 +76,7 @@ const Menu = ()=>{
 
             <Stack.Screen name={"PaymentConfirmation"} component={PaymentConfirmation}/>
             <Stack.Screen name={"Popular"} component={Popular}/>
+            <Stack.Screen name={"Notify"} component={Notify}/>
 
 
 

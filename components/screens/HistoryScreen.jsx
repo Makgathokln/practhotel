@@ -13,6 +13,8 @@ import { FlatList,
 
 
 const HistoryScreen=({navigation}) =>{
+    
+
     const [addBookings, setAddBookings] = useState([]);
     const uid = auth.currentUser.uid;
     console.log(uid)
@@ -74,22 +76,19 @@ const HistoryScreen=({navigation}) =>{
     //         </View>
     //     );
     // };
-    const item = ({item}) =>{
-        return(
-            <View>
-                <Text>{item.name}</Text>
-            </View>
-        )
-    }
+    
 const Card = ({hotel,index}) =>{
    return( 
+
+<TouchableOpacity  onPress={()=>navigation.navigate('Notify', hotel)}>
+
     <View
     style={{
         flex:1,
         flexDirection:'row',
         justifyContent:'space-between',
         alignContent:'space-between',
-        marginTop:20,
+        marginBottom:20,
         borderColor: COLORS.primary,
         borderRadius:10,
        
@@ -97,6 +96,7 @@ const Card = ({hotel,index}) =>{
         width:'95%',
         height:'150%'
     }}> 
+
 
     <Image source={{ uri: hotel?.images }} style={{width:'20%',height:'80%', borderRadius:5,marginTop:7,}}>
     </Image>
@@ -113,9 +113,8 @@ const Card = ({hotel,index}) =>{
     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:16}}>{hotel.description}</Text>
     </TouchableOpacity> */}
 
-
-    </View> 
-    </View>
+</View>
+    </View></TouchableOpacity> 
    )}
 
     return(
@@ -128,29 +127,41 @@ const Card = ({hotel,index}) =>{
        
             <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}> Notifications</Text>
         </View>
- 
-        <View style={{
-            flexDirection:'row', justifyContent:'space-between',alignContent:'space-between', marginTop:20}}>
         
-            {/* <View style={styles.searchContainer}>
-            <Icon name="search" size={25} color={COLORS.secondary} style={{marginLeft: 20}}/>
-           
-            <TextInput 
-            styles={styles.inputText}
-            placeholder='Search For Notifications'/>
-      
-        </View> */}
+        <View style={{top:-250, paddingHorizontal:20}}>
+        <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'space-between', }}> 
+<Text> All</Text>
 
-        {/* <View>
-        <Icon name="delete-sweep" size={34} color={COLORS.secondary} style={{marginTop:10, marginRight:10}}/>
-        </View> */}
+<Text>Mark as read</Text>
 
-
+</View>
+        <View
+  style={{
+    borderBottomColor: COLORS.primary,
+    borderBottomWidth: 2,
+  }}
+/>
+       
         </View>
+       
 
-        {/* <CategoryList/> */}
+        <View style={{ height: 140,
+        width: 300,
+        backgroundColor: COLORS.white,
+        elevation: 15,
+        marginHorizontal: 10,
+        borderRadius: 10,
+        top:150,
+        left:50,
+        position:'absolute'
+        }}>
+                  <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 50 ,textAlign:'center'}}> Notifications</Text>
 
-        <View>
+          </View>
+      
+          <View >
+
+            
             <FlatList 
             data={addBookings}
             contentContainerStyle={{paddingVertical:10,paddingLeft:20}}
@@ -171,14 +182,12 @@ const Card = ({hotel,index}) =>{
 
 const styles = StyleSheet.create({
     header: {
-    width:'100%',
-    height:'30%',
-    paddingVertical: 30,
-   
-    alignItems:'center',
-    backgroundColor: '#0b1674',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+        height:550,
+        width:500,
+        backgroundColor:COLORS.secondary,
+        marginLeft:-45,
+        borderRadius:500,
+        top:-280
     },
 
     searchContainer:{

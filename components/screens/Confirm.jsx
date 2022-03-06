@@ -50,15 +50,17 @@ const Confirm = ({navigation,route}) =>{
         function renderCard(){
         return(
 
-            <ImageBackground 
-            source={require('./images/master.png')}
-            style={{ width:310,
-                height:180, 
-                resizeMode: 'cover',
+            <View 
+            // source={require('./images/master.png')}
+            style={{ width:'90%',
+                height:220, 
+                padding:20,
                 paddingBottom:20,
-                marginLeft:25,
-               paddingHorizontal:5,
-                borderRadius:20, overflow:'hidden'}}>
+               paddingHorizontal:20,
+                borderRadius:20, 
+                backgroundColor: COLORS.secondary,
+                marginLeft:20
+                }}>
 
                     {/* Logo */}
 
@@ -83,22 +85,24 @@ const Confirm = ({navigation,route}) =>{
                     paddingHorizontal:20                    }}
                     >
                         <Text
-                        style={{color:COLORS.secondary,
-                        fontSize:20}}
+                        style={{color:COLORS.white,
+                        fontSize:22, fontWeight:'bold'}}
                         >
                             Leah Makgatho
                         </Text>
-                        <View style={{flexDirection:'row'
+                        <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'space-between'
                     }}>
-                        <Text style={{flex:1, color:COLORS.secondary,}}>
+                        <Text style={{color:COLORS.white,
+                        fontSize:18, fontWeight:'bold'}}>
                             1234 1234 1234 1234
                         </Text>
-                        <Text style={{color:COLORS.secondary}}>12/25</Text>
+                        <Text style={{color:COLORS.white,
+                        fontSize:18, fontWeight:'bold'}}>12/25</Text>
                         </View>
                     </View>
                         
                    
-                </ImageBackground>
+                </View>
          
         )
 

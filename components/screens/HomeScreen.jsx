@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
     const [images, setImages] = useState('');
     const [addHotels, setAddHotels] = useState([]);
     const [textInput, setTextInput] = useState('')
-    // const [searchName, setsearchName] = useState([])
+    const [Search, setSearch] = useState([])
     const [searchtext, setSearchtext] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
@@ -66,15 +66,71 @@ const HomeScreen = ({ navigation }) => {
     //     .then(setsearchName)
     // }, [textInput])
 
-    const searchName =(input) =>{
-        let data = addHotels;
-        let searchData = data.filter((item)=>{
-            return item.name.toLowerCase().includes(input.toLowerCase());
-        });
-        setAddHotels(searchData);
-    };
+    // const searchName =(input) =>{
+    //     let data = addHotels;
+    //     let searchData = data.filter((item)=>{
+    //         return item.name.toLowerCase().includes(input.toLowerCase());
+    //     });
+    //     setAddHotels(searchData);
+    // };
     
+    // const searchFilterFunction = (input) =>{
+    //     if(input) {
+    //         const newData = masterDataSource.filter(
+    //             function(item) {
+    //                 const itemData = item.name
+
+    //                 ? 
+    //                 item.name.toUpperCase()
+    //                 : ''.toUpperCase();
+    //                 const name = input.toUpperCase();
+    //                 return
+    //                 itemData.indexOf(name) >-1;
+
+            
+    //             }
+
+    //         )
+    //             setFilteredDataSource(addHotels);
+    //             setSearch(input);
+    //     }else {
+    //         setFilteredDataSource(masterDataSource);
+    //         setSearch(input)
+    //     }
+    // }
     
+    // const Search = () => {
+    //     // const q = query(loc, where("location", "==", queries));
+    //     // console.log(q);
+    //     console.log('RUUNING',queries)
+    //     if(queries){
+    
+    //       loc.where("location", "==", queries).get()
+    //         .then(async(querySnapshot) => {
+      
+    //          await querySnapshot.forEach((doc) => {
+    //             // doc.data() is never undefined for query doc snapshots
+    //             console.log(doc.id, "============= => ", doc.data());
+    //           });
+    //         })
+    //         .catch((error) => {
+    //           console.log("Error getting documents: ", error);
+    //         });
+    //     }else{
+    //       loc.where("location", "==", 'limpopo').get()
+    //         .then(async(querySnapshot) => {
+      
+    //          await querySnapshot.forEach((doc) => {
+    //             // doc.data() is never undefined for query doc snapshots
+    //             console.log(doc.data.id, "============= => ", doc.data);
+    //           });
+    //         })
+    //         .catch((error) => {
+    //           console.log("Error getting documents: ", error);
+    //         });
+    //     }
+    
+    //   };
 
     const uid = auth.currentUser.uid;
     console.log(uid)
@@ -302,8 +358,11 @@ const HomeScreen = ({ navigation }) => {
                     <Icon name="search" size={30} style={{ marginLeft: 20 }} />
                     <TextInput placeholder="Search"
                         style={{ paddingLeft: 10 }}
+                        // onBlur={()=>Search()}
+                        // onChangeText={(text)=>setquery(text)}
+                        // value={queries}
                         onChangeText={(input) => {
-                        searchName(input)   }}                                     
+                            searchFilterFunction(input)   }}                                     
                         />
                 </View>
                 {/* <TextInput placeholder="Search"

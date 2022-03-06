@@ -3,7 +3,7 @@ import {Text,  Pressable,
     TouchableOpacity,
     ImageBackground,
     ScrollView, Dimensions,
-    View,Button, StyleSheet,Alert, ToastAndroid} from 'react-native';
+    View,Button, StyleSheet,Alert, ToastAndroid, ActivityIndicator} from 'react-native';
 import { useAuth } from "../contexts/UserAuthContext";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
@@ -20,9 +20,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const signIn =({navigation})=>{
     const [isSelected,setSelection]=useState(false)
     const [isPasswordShow,setPasswordShow]=useState(false)
+
     const ReviewSchem =yup.object({
-        email:yup.string().required().min(6),
-        password:yup.string().required().min(6),
+         email:yup.string().required().min(5).max(30),
+        password:yup.string().required().min(6).max(10),
     })
 
 
@@ -108,6 +109,8 @@ style={{paddingLeft:10}}
 {/* <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{marginRight:80}} onPress={navigation.goBack}/>       */}
 
     </View>
+    <Text style={{color:'red',fontWeight:'bold'}}>{props.touched.email && props.errors.email}</Text>
+
     <Text style={{margin: 10,color:'#0b1674', fontWeight:'bold' }}>Password</Text>
         <TextInput
         style={{height: 50, width: '100%', paddingHorizontal:20, borderColor: '#0b1674', borderWidth: 3, borderRadius:20}}
@@ -116,8 +119,9 @@ style={{paddingLeft:10}}
         onChangeText={props.handleChange('password')}
         value={props.values.password}
         onBlur={props.handleBlur('password')}
-        maxLength={30}
+        maxLength={7}
         />
+<Text style={{color:'red', fontWeight:'bold'}}>{props.touched.password && props.errors.password}</Text>
 
  
 <TouchableOpacity
@@ -133,6 +137,10 @@ style={{paddingLeft:10}}
                  style={{margin:10,backgroundColor:'#0b1674',width:'95%',height:60,borderRadius:30,
                 alignItems:'center'}}
                 onPress={props.handleSubmit}>
+                    <ActivityIndicator />
+    <ActivityIndicator size="large" />
+    <ActivityIndicator size="small" color="#0000ff" />
+    <ActivityIndicator size="large" color="#00ff00" />
                 <Text style={{padding:10,color:'#fff',fontSize: 24}}>
                     Sign In
                 </Text>

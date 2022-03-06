@@ -72,7 +72,7 @@ const  DetailsScreen = ({navigation, route}) => {
 
                 </View>
               
-               <View style={{flexDirection:'row', marginTop:14 }}>
+               <View style={{flexDirection:'row', marrouinTop:14 }}>
                
                <Icon name="place" color={COLORS.gray} size={22}/>
                 <Text style={{fontSize:16, fontWeight:'bold', color:COLORS.gray}}>{item.location} {item.city}</Text>
