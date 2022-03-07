@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   View, Text, StyleSheet,
   ImageBackground, Pressable,
-  TouchableOpacity,
+  TouchableOpacity,Dimensions
 } from 'react-native';
 // import { FlatList,
 //     ScrollView,
@@ -18,6 +18,8 @@ import DropShadow from "react-native-drop-shadow";
 
 
 const bookings = ({ navigation,route }) => {
+  
+  const {width, height } = Dimensions.get("screen");
   // const item = route.params;
   // console.log(item);
   const item = route.params.item
@@ -53,27 +55,28 @@ const bookings = ({ navigation,route }) => {
         <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.white, marginTop: 50 }}> Bookings</Text>
         
       </View>
-<View style={{ height: 140,
-        width: 300,
-        backgroundColor: '#e6e6ff',
-        elevation: 15,
-        marginHorizontal: 10,
-        borderRadius: 10,
-        top:150,
-        left:50,
-        position:'absolute'
-        }}>
-                  <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 50 ,textAlign:'center'}}> Bookings</Text>
-
-          </View>
-
-          <View style={{ height: 400,
-        width: 380,
+<View style={{
+          width:width / 1.3,
+    height:height /6.3,
         backgroundColor: COLORS.white,
         elevation: 15,
         marginHorizontal: 10,
         borderRadius: 10,
-        top:360,
+        top:170,
+        left:35,
+        position:'absolute'
+        }}>
+                  <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> Bookings</Text>
+
+          </View>
+
+          <View style={{  width:width / 1.1,
+    height:height /2.2,
+        backgroundColor: COLORS.white,
+        elevation: 15,
+        marginHorizontal: 10,
+        borderRadius: 10,
+        top:340,
         left:5,
         
         position:'absolute'}}>
@@ -81,15 +84,15 @@ const bookings = ({ navigation,route }) => {
         <Text style={{
           color: COLORS.secondary,
           fontSize: 20, marginTop: 20,
-          fontWeight: 'bold', paddingHorizontal: 20,
+          fontWeight: 'bold', paddingHorizontal: 10,
           marginBottom: 20
         }}>
-          Please select your booking date :</Text>
+          Select your booking date :</Text>
 
         <View style={{
           fontWeight: 'bold',
           flexDirection: 'row',
-          paddingHorizontal: 20,
+          paddingHorizontal: 10,
           alignContent: 'space-between',
           justifyContent: 'space-between'
         }}>
@@ -160,26 +163,13 @@ const bookings = ({ navigation,route }) => {
 
         </View>
         <Text style={{
-              fontSize: 16, paddingHorizontal:20,
+              fontSize: 16, paddingHorizontal:10,
               fontWeight: 'bold', color: COLORS.primary, marginTop: 10}}>{diff=(a.diff(b,'days'))} Nights</Text>
         <View style={{
-          fontWeight: 'bold', flexDirection: 'row', paddingHorizontal: 20,
+          fontWeight: 'bold', flexDirection: 'row', paddingHorizontal: 10,
           justifyContent: 'space-between', marginTop: 10
         }}>
           <Text style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.secondary, marginBottom: 10 }}>Guests</Text>
-
-
-
-          {/* <Text style={{fontSize:16, fontWeight:'bold', color:COLORS.secondary, marginBottom:10}}>No. of Children</Text> */}
-
-        </View>
-
-        <View style={{
-          flexDirection: 'row', justifyContent: 'space-between',
-          alignContent: 'space-between', paddingHorizontal: 20
-        }}>
-
-
 
           <View style={{
             flexDirection: 'row',
@@ -212,6 +202,49 @@ const bookings = ({ navigation,route }) => {
             </Pressable>
 
           </View>
+
+          {/* <Text style={{fontSize:16, fontWeight:'bold', color:COLORS.secondary, marginBottom:10}}>No. of Children</Text> */}
+
+        </View>
+
+        <View style={{
+          flexDirection: 'row', justifyContent: 'space-between',
+          alignContent: 'space-between', paddingHorizontal: 20
+        }}>
+
+
+
+          {/* <View style={{
+            flexDirection: 'row',
+            alignContent: 'space-between',
+            justifyContent: 'space-between',
+            borderRadius: 10,
+            padding: 10, backgroundColor: '#EDEDED',
+            elevation: 2, width: '40%',
+          }}>
+
+
+            <Pressable style={[styles.buttonAdding, {
+              backgroundColor: '#fff',
+              flexDirection: 'row'
+            }]}
+              onPress={() => setAdultPlus(Math.max(1, adultPlus + 1))}
+            >
+              <Feather name="plus" color={COLORS.primary} size={22} />
+
+            </Pressable>
+            <Text style={{ fontSize: 21 }}>{adultPlus}</Text>
+            <Pressable style={[styles.buttonAdding, {
+              backgroundColor: '#fff',
+              flexDirection: 'row'
+            }]}
+              onPress={() => setAdultPlus(Math.max(1, adultPlus - 1))}
+            >
+              <Feather name="minus" color={COLORS.primary} size={22} />
+
+            </Pressable>
+
+          </View> */}
 
           {/* <View style={{flexDirection:'row',
       alignContent:'space-between', 
@@ -246,12 +279,12 @@ const bookings = ({ navigation,route }) => {
 
 {
   diff<=0?(
-<View style={{ paddingTop: 30 }}>
+<View style={{ flexDirection:'row',justifyContent:'center',alignItems:'center',width:'100%',marginTop:10}}>
           <TouchableOpacity
             style={{
-              backgroundColor: COLORS.secondary, width: '55%', height: '35%',
-              borderRadius: 10, flexDirection: 'column',
-              justifyContent: 'center', alignContent: 'center', marginLeft: 85,
+              backgroundColor: COLORS.secondary, width: '55%', height: 50,
+              borderRadius: 10,
+              justifyContent: 'center', 
               alignItems: 'center'
             }} disabled={true}
             onPress={() => navigation.navigate('Rooms',{
@@ -266,12 +299,13 @@ const bookings = ({ navigation,route }) => {
         </View>
   ):(
     <View style={{ paddingTop: 30 }}>
+          
           <TouchableOpacity
             style={{
               backgroundColor: COLORS.secondary, width: '55%', height: '35%',
               borderRadius: 10, flexDirection: 'column',
               justifyContent: 'center', alignContent: 'center', marginLeft: 85,
-              alignItems: 'center'
+              alignItems: 'center', marginBottom:10
             }}
             onPress={() => navigation.navigate('Rooms',{
               CheckIn:CheckIn,
@@ -311,9 +345,9 @@ export default bookings
 const styles = StyleSheet.create({
   header: {
     height:550,
-    width:500,
+    width:480,
     backgroundColor:COLORS.secondary,
-    marginLeft:-45,
+    marginLeft:-60,
     borderRadius:500,
     top:-280
     // width: '100%',

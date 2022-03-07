@@ -53,12 +53,12 @@ const Confirm = ({navigation,route}) =>{
             <View 
             // source={require('./images/master.png')}
             style={{ width:'90%',
-                height:220, 
+                height:200, 
                 padding:20,
                 paddingBottom:20,
                paddingHorizontal:20,
                 borderRadius:20, 
-                backgroundColor: COLORS.secondary,
+                backgroundColor: COLORS.primary,
                 marginLeft:20
                 }}>
 
@@ -220,7 +220,7 @@ var Rp=0
             </TouchableOpacity> */}
      
               <TouchableOpacity
-                 style={{backgroundColor:COLORS.secondary,width:'40%',height:55,borderRadius:10,
+                 style={{backgroundColor:COLORS.secondary,width:'40%',height:50,borderRadius:10, marginBottom:10,
                 alignItems:'center'}}
                 onPress={()=>navigation.navigate('PaymentConfirmation',{
                   CheckIn:CheckIn,

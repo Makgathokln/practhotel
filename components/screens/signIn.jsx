@@ -57,7 +57,7 @@ const signIn =({navigation})=>{
         
           
     
-          setToastMsg('succesfully logged in')
+          setToastMsg('Succesfully logged in')
         }
         catch (error) {
     
@@ -142,26 +142,7 @@ style={{paddingLeft:10}}
                 </Text>
 </TouchableOpacity>
 
-{loading ? (
-          <ActivityIndicator
-            //visibility of Overlay Loading Spinner
-            visible={loading}
-            //Text with the Spinner
-            textContent={'Loading...'}
-            //Text style of the Spinner Text
-            textStyle={styles.spinnerTextStyle}
-          />
-        ) : (
-          <>
-            <Text style={{textAlign: 'center', fontSize: 20}}>
-              React Native ActivityIndicator
-            </Text>
-            <Button
-              title="Start Loading"
-              onPress={props.handleSubmit}              >
-            </Button>
-            </>
-        )}
+
                 <TouchableOpacity
                  style={{margin:10,backgroundColor:'#0b1674',width:'95%',height:60,borderRadius:30,
                 alignItems:'center'}}

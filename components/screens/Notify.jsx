@@ -24,13 +24,13 @@ const Notify =({navigation, route})=>{
 
             </View>
             </ImageBackground>
-            <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20, marginTop:30}}>Good Day,</Text>
+            <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20, marginTop:10}}>Good Day,</Text>
 
-<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20, marginTop:30}}>You have succesfully paid for your stay at {item.name} from {item.CheckIn} to {item.CheckOut}.We are glad to have you as our guests.</Text>
-<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20, marginTop:30}}>You have paid R{item.Rp} for {item.room1} nights for  {item.adultPlus} guest. We are glad to have you as our guests.</Text>
+<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20, marginTop:20}}>You have succesfully paid for your stay at {item.name} from {item.CheckIn} to {item.CheckOut}.We are glad to have you as our guest.</Text>
+<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20, marginTop:20}}>You have paid R{item.Rp} for {item.room1} nights for  {item.adultPlus} guest. We are glad to have you as our guests.</Text>
 
-<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20, marginTop:30}}>Regards,</Text>
-<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20, marginTop:10}}>The Admin Of {item.name}</Text>
+<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20, marginTop:20}}>Regards,</Text>
+<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:18, paddingHorizontal:20}}>The Admin Of {item.name}</Text>
 
 
 
@@ -57,7 +57,7 @@ marginTop:40,
 backgroundColor: COLORS.secondary
     },
     headerImage:{
-        height:320,
+        height:270,
         borderBottomRightRadius:40,
         borderBottomLeftRadius:40,
         overflow:'hidden',

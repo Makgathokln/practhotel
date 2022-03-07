@@ -14,10 +14,9 @@ import {
     StyleSheet,
     SearchBar,
     TouchableOpacity,
-    Dimensions,
     SafeAreaView,
     Animated,
-    ScrollView
+    ScrollView, Dimensions
 }
     from 'react-native';
 
@@ -33,86 +32,147 @@ import SearchUserItem from "../search/userItem/hotelitem";
 import queryHotelsByName from "../services/addHotel";
 import { useNavigation } from '@react-navigation/native';
 
-// const data = [
-//     {id:1, name:"sohil"},
-//     {id:2, name:"like"},
-//     {id:3, name:"add"},
-//     {id:4, name:"cate"}
-// ]
+const { width } = Dimensions.get('screen');
+const cardWidth = width / 1.8;
 
-const Search = () => {
+const Search = ({navigation,route}) => {
+    const [addHotels, setAddHotels] = useState([]);
+    const [searchresult,setSearchresult]=useState([])
 
-//const [dataFromState, setData]= useState(addHotels);
-//const [searchName, setsearchName] = useState([])
-const [addHotels, setAddHotels] = useState();
+    const scrollX = React.useRef(new Animated.Value(0)).current;
 
-useEffect(() => {
-    db.ref('/addBookings').on('value', snapshot => {
-        const addHotels = []
-        snapshot.forEach(action => {
-            const key = action.key
+    const item = route.params;
+    console.log(item); 
 
-            const data = action.val()
-            addHotels.push({
-                key: key,
-                name: data.name,
-                images: data.images[0].url,
-                location: data.location,
-                description: data.description,
-                city: data.city,
-                price1: data.price1
-            })
-            setAddHotels(addHotels)
-        })
-        console.log(addHotels)
-    })
-}, [])
-// console.log(dataFromState[0]?.images, '<------------')
-
-const item = ({item}) =>{
-        return(
-            <View>
-                <Text>{item.name}</Text>
-            </View>
-        )
-    }
+    const {data}=route.params
+    console.log('route',data.length)
 
 
+const Card = ({ hotel, index }) => {
 
-const searchName =(input) =>{
-   if(input) {
-    let data = addHotels;
-    let searchData = data.filter((item)=>{
-        return item.name.toLowerCase().includes(input.toLowerCase());
-    });
-    setAddHotels(searchData);
-} else {
-    setAddHotels(addHotels);
-    }
-}
+    const inputRange = [
+        (index - 1) * cardWidth,
+        index * cardWidth,
+        (index + 1) * cardWidth,
+    ];
+    const opacity =
+        scrollX.interpolate({
+            inputRange,
+            outputRange: [0.7, 0, 0.7],
 
+        });
+
+    // const scale = dfdghyg
+    // scrollX.interpolate({
+    //     inputRange,
+    //     outputRange:[0.8, 1, 0.8],
+
+    // });
 
     return (
-        <View style={{flex:1, padding:10}}>
-                <Text>Hello |World</Text>
-<TextInput
-placeholder='Search'
-onChangeText={(input) => {
-    searchName(input)
-}}
-/> 
+       
+        <TouchableOpacity activeOpacity={1}
+            onPress={() => navigation.navigate("DetailsScreen", hotel)}>
+
+            <Animated.View style={{ ...style.card }}>
+
+                <Animated.View style={{ ...style.cardOverlay, opacity }} />
+                <Image source={{ uri: hotel?.images }}
+                    style={style.cardImage} />
+
+
+
+                <View style={{ ...style.cardDetails }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'space-between' }}>
+                        <View>
+                            <Text style={{ color: COLORS.primary, fontWeight: 'bold', fontSize: 17, }}>
+                                {item.name}
+                            </Text>
+                            
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignContent: 'space-between' }}>
+
+                                <Icon name="location-pin" size={24} color={COLORS.secondary} />
+
+                                <Text style={{ color: COLORS.secondary, fontSize: 15, fontWeight: 'bold' }}>
+                                    {item.location}
+                                </Text>
+                            </View>
+                            
+                                                        </View>
+
+                    </View>
+                </View>
+            </Animated.View>
+
+        </TouchableOpacity>
+
+    );
+};
+return(
+    <>
 <FlatList
-data={addHotels}
-renderItem={item}
-keyExtractor={(item,index)=>index.toString()}
-/>  
-  
-     
-                        
-                    
-                
-        </View>
-    )
+    horizontal
+    data={data}
+    contentContainerStyle={{ paddingVertical: 30, paddingLeft: 20, paddingRight: cardWidth / 2 - 40, }}
+    showsHorizontalScrollIndicator={false}
+    renderItem={({ item, index }) => <Card hotel={item} index={index} />}
+    snapToInterval={cardWidth}
+/> 
+   </>
+)
 }
 
+const style = StyleSheet.create({
+   
+    card: {
+        height: 280,
+        width: cardWidth,
+        elevation: 15,
+        marginRight: 20,
+        borderRadius: 15,
+        backgroundColor: COLORS.white,
+    },
+    cardImage: {
+        height: 200,
+        width: "100%",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+
+    },
+
+    cardDetails: {
+        height: 100,
+        borderRadius: 15,
+        backgroundColor: '#fff',
+        position: 'absolute',
+        bottom: 0,
+        padding: 20,
+        width: '100%',
+
+    },
+
+    cardOverlay: {
+        height: 280,
+        backgroundColor: '#fff',
+        position: 'absolute',
+        zIndex: cardWidth,
+        borderRadius: 15,
+    },
+
+    topHotelCard: {
+        height: 140,
+        width: 120,
+        backgroundColor: COLORS.white,
+        elevation: 15,
+        marginHorizontal: 10,
+        borderRadius: 10,
+    },
+
+    topHotelCardImage: {
+        height: 100,
+        width: '100%',
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10
+    }
+})
 export default Search

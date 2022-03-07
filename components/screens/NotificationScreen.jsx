@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image,Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 import hotel from '../consts/hotel';
@@ -14,7 +14,11 @@ import {
 
 
 const NotificationScreen=({navigation}) =>{
-    
+    const {width, height } = Dimensions.get("screen");
+    const [Search, setSearch] = useState([])
+    const [searchtext, setSearchtext] = useState('');
+    const [filteredDataSource, setFilteredDataSource] = useState([]);
+    const [masterDataSource, setMasterDataSource] = useState([]);
 
     const [addBookings, setAddBookings] = useState([]);
     const uid = auth.currentUser.uid;
@@ -41,6 +45,8 @@ const NotificationScreen=({navigation}) =>{
                  
                 })
                 setAddBookings(addBookings)
+                setFilteredDataSource(addBookings)
+                setMasterDataSource(addBookings)
             })
             console.log(addBookings)
         })
@@ -48,6 +54,35 @@ const NotificationScreen=({navigation}) =>{
     console.log(addBookings[0]?.images,)
     const categories = ['All', 'Popular','Top Rated']
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
+
+    const searchFilterFunction = (text) => {
+        // Check if searched text is not blank
+        if (text) {
+          // Inserted text is not blank
+          // Filter the masterDataSource and update FilteredDataSource
+          const newData = masterDataSource.filter(
+            function (item) {
+              // Applying filter for the inserted text in search bar
+              const itemData = item.name
+                  ? item.name.toUpperCase()
+                  : ''.toUpperCase();
+              const textData = text.toUpperCase();
+              return itemData.indexOf(textData) > -1;
+            }
+          );
+          setFilteredDataSource(newData);
+          setSearch(text);
+        } else {
+          // Inserted text is blank
+          // Update FilteredDataSource with masterDataSource
+          setFilteredDataSource(masterDataSource);
+          setSearch(text);
+        }
+      };
+
+
+
+
     const CategoryList =({})=>{
         return(
         <View style={styles.categoryListContainer}>
@@ -130,7 +165,10 @@ const Card = ({hotel,index}) =>{
            
             <TextInput 
             styles={styles.inputText}
-            placeholder='Search For History'/>
+            placeholder='Search For History'
+            onChangeText={(text)=>searchFilterFunction(text)}
+
+            />
       
         </View>
 

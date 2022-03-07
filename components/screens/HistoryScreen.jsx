@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground, Dimensions} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
@@ -13,7 +13,8 @@ import { FlatList,
 
 
 const HistoryScreen=({navigation}) =>{
-    
+    const {width, height } = Dimensions.get("screen");
+
 
     const [addBookings, setAddBookings] = useState([]);
     const uid = auth.currentUser.uid;
@@ -96,7 +97,7 @@ const Card = ({hotel,index}) =>{
        
         paddingHorizontal:20,
         width:'95%',
-        height:'150%',
+        height:50,
     }}> 
 
 
@@ -107,7 +108,7 @@ const Card = ({hotel,index}) =>{
          paddingHorizontal:15}}>
     
     
-    <Text style={{fontWeight:'bold', color:COLORS.gray, fontSize:12}}>You have succesfully paid for your stay at {hotel.name} from {hotel.CheckIn} to {hotel.CheckIn}.</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}>You have succesfully paid for your stay at {hotel.name} from {hotel.CheckIn} to {hotel.CheckIn}.</Text>
     <View style={{flexDirection:'row',}}>
     {/* <Text style={{fontWeight:'bold', color:COLORS.gray,fontSize:10}}>{hotel.CheckIn} to {hotel.CheckIn} </Text> */}
     </View>
@@ -127,12 +128,14 @@ const Card = ({hotel,index}) =>{
        
         </View>
         
-        <View style={{top:-250, paddingHorizontal:20, backgroundColor:'red' }}>
+        <View style={{top:-250, paddingHorizontal:20, backgroundColor:COLORS.white }}>
         <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'space-between', }}> 
 <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}> All</Text>
 
 <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}>Mark as read</Text>
 </View>
+
+
 
         <View
   style={{
@@ -154,14 +157,14 @@ const Card = ({hotel,index}) =>{
         </View>
        
 
-        <View style={{ height: 140,
-        width: 300,
+        <View style={{  width:width / 1.3,
+    height:height /6.3,
         backgroundColor: COLORS.white,
         elevation: 15,
         marginHorizontal: 10,
         borderRadius: 10,
-        top:150,
-        left:50,
+        top:170,
+        left:35,
         position:'absolute'
         }}>
                   <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 50 ,textAlign:'center'}}> Notifications</Text>
@@ -192,9 +195,9 @@ const Card = ({hotel,index}) =>{
 const styles = StyleSheet.create({
     header: {
         height:550,
-        width:500,
+        width:480,
         backgroundColor:COLORS.secondary,
-        marginLeft:-45,
+        marginLeft:-60,
         borderRadius:500,
         top:-280
     },

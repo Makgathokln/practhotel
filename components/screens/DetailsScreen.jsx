@@ -27,6 +27,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const  DetailsScreen = ({navigation, route}) => {
     const item = route.params;
     console.log(item);
+   
     return(
 
             <ScrollView
@@ -72,7 +73,7 @@ const  DetailsScreen = ({navigation, route}) => {
 
                 </View>
               
-               <View style={{flexDirection:'row', marrouinTop:14 }}>
+               <View style={{flexDirection:'row', marginTop:14 }}>
                
                <Icon name="place" color={COLORS.gray} size={22}/>
                 <Text style={{fontSize:16, fontWeight:'bold', color:COLORS.gray}}>{item.location} {item.city}</Text>

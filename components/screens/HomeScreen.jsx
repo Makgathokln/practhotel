@@ -31,6 +31,7 @@ import { auth, db } from "../backend/firebase";
 import SearchUserItem from "../search/userItem/hotelitem";
 import queryHotelsByName from "../services/addHotel";
 const { width } = Dimensions.get('screen');
+
 const cardWidth = width / 1.8;
 import { useHistory } from "react-router";
 
@@ -47,93 +48,31 @@ const HomeScreen = ({ navigation }) => {
     const [searchtext, setSearchtext] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
+    const [searchresult,setSearchresult]=useState([])
+    const [queries, setquery] = useState();
     
-    // useEffect(() => {
-    //     setFilteredDataSource(NearHotels);
-    //     setMasterDataSource(NearHotels);
-    // }, [])
-
-     //const history = useHistory();
-
-    // useEffect(() => {
-    //     setFilteredDataSource(NearHotels);
-    //     setMasterDataSource(NearHotels);
-    // }, [])
-
-   
-    // useEffect(() =>{
-    //     queryHotelsByName(textInput)
-    //     .then(setsearchName)
-    // }, [textInput])
-
-    // const searchName =(input) =>{
-    //     let data = addHotels;
-    //     let searchData = data.filter((item)=>{
-    //         return item.name.toLowerCase().includes(input.toLowerCase());
-    //     });
-    //     setAddHotels(searchData);
-    // };
     
-    // const searchFilterFunction = (input) =>{
-    //     if(input) {
-    //         const newData = masterDataSource.filter(
-    //             function(item) {
-    //                 const itemData = item.name
-
-    //                 ? 
-    //                 item.name.toUpperCase()
-    //                 : ''.toUpperCase();
-    //                 const name = input.toUpperCase();
-    //                 return
-    //                 itemData.indexOf(name) >-1;
-
-            
-    //             }
-
-    //         )
-    //             setFilteredDataSource(addHotels);
-    //             setSearch(input);
-    //     }else {
-    //         setFilteredDataSource(masterDataSource);
-    //         setSearch(input)
-    //     }
-    // }
+    var ref=db.ref('addHotels')
     
     // const Search = () => {
-    //     // const q = query(loc, where("location", "==", queries));
-    //     // console.log(q);
-    //     console.log('RUUNING',queries)
-    //     if(queries){
-    
-    //       loc.where("location", "==", queries).get()
-    //         .then(async(querySnapshot) => {
-      
-    //          await querySnapshot.forEach((doc) => {
-    //             // doc.data() is never undefined for query doc snapshots
-    //             console.log(doc.id, "============= => ", doc.data());
-    //           });
-    //         })
-    //         .catch((error) => {
-    //           console.log("Error getting documents: ", error);
-    //         });
-    //     }else{
-    //       loc.where("location", "==", 'limpopo').get()
-    //         .then(async(querySnapshot) => {
-      
-    //          await querySnapshot.forEach((doc) => {
-    //             // doc.data() is never undefined for query doc snapshots
-    //             console.log(doc.data.id, "============= => ", doc.data);
-    //           });
-    //         })
-    //         .catch((error) => {
-    //           console.log("Error getting documents: ", error);
-    //         });
-    //     }
-    
-    //   };
+    //     let arr=[]
+    //     if(queries!==""){
 
+            // ref.orderByChild('province').equalTo(queries).on("value",function(snapshot){
+            //     snapshot.forEach((child)=>{
+            //         arr.push(child)
+            //     })
+            // })
+    //         ref.orderByChild('province').equalTo("Limpopo").once('value').then((snapshot)=>{
+    //             console.log(snapshot,'mysnapshort')
+    //         })
+    //         setSearchresult(arr)
+    //         navigation.navigate('Search',{data:searchresult})
+    //     }
+    // };
+    
     const uid = auth.currentUser.uid;
-    console.log(uid)
+    // console.log(uid)
     const getUser = () => {
         db.ref('/user/' + uid).update({
             name: name,
@@ -144,7 +83,7 @@ const HomeScreen = ({ navigation }) => {
 
     useEffect(() => {
         db.ref('/user/' + uid).on('value', value => {
-            console.log(value, 'value')
+            // console.log(value, 'value')
             setName(value?.val().name)
 
 
@@ -173,14 +112,17 @@ const HomeScreen = ({ navigation }) => {
                     hotelprice : data.hotelprice,
                     roomprice: data.roomprice,
                     roomtype:data.roomtype,
-                    beds: data.beds
+                    beds: data.beds,
+                    province: data.province
                 })
                 setAddHotels(addHotels)
+                setFilteredDataSource(addHotels)
+                setMasterDataSource(addHotels)
+
             })
-            console.log(addHotels)
+            // console.log(addHotels)
         })
     }, [])
-    console.log(addHotels[0]?.images, '<------------')
     // React.useEffect(() =>{
     //     onValue(ref(db, "/addRooms/"), (snapshot) =>{
     //       setAddRooms([]);
@@ -201,6 +143,31 @@ const HomeScreen = ({ navigation }) => {
     //     setAddHotels(searchData);
     // };
     
+
+    const searchFilterFunction = (text) => {
+        // Check if searched text is not blank
+        if (text) {
+          // Inserted text is not blank
+          // Filter the masterDataSource and update FilteredDataSource
+          const newData = masterDataSource.filter(
+            function (item) {
+              // Applying filter for the inserted text in search bar
+              const itemData = item.province
+                  ? item.province.toUpperCase()
+                  : ''.toUpperCase();
+              const textData = text.toUpperCase();
+              return itemData.indexOf(textData) > -1;
+            }
+          );
+          setFilteredDataSource(newData);
+          setSearch(text);
+        } else {
+          // Inserted text is blank
+          // Update FilteredDataSource with masterDataSource
+          setFilteredDataSource(masterDataSource);
+          setSearch(text);
+        }
+      };
 
     const CategoryList = () => {
         return (
@@ -284,9 +251,17 @@ const HomeScreen = ({ navigation }) => {
                                     <Icon name="location-pin" size={24} color={COLORS.secondary} />
 
                                     <Text style={{ color: COLORS.secondary, fontSize: 15, fontWeight: 'bold' }}>
-                                        {hotel.location}
+                                        {hotel.location}                                        
+
                                     </Text>
+
+                                    
                                 </View>
+
+                                <Text style={{ color: COLORS.secondary, fontSize: 15, fontWeight: 'bold' }}>
+                                        {hotel.city}                                        
+
+                                    </Text>
                                 
                                                             </View>
 
@@ -354,17 +329,30 @@ const HomeScreen = ({ navigation }) => {
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false}>
+                
                 <View style={style.searchInputContainer}>
                     <Icon name="search" size={30} style={{ marginLeft: 20 }} />
                     <TextInput placeholder="Search"
                         style={{ paddingLeft: 10 }}
-                        // onBlur={()=>Search()}
-                        // onChangeText={(text)=>setquery(text)}
+                        // onBlur={()=>Search(queries)}
+                        onChangeText={(text)=>searchFilterFunction(text)}
                         // value={queries}
-                        onChangeText={(input) => {
-                            searchFilterFunction(input)   }}                                     
+                        // onChangeText={(input) => {
+                        //     searchFilterFunction(input)   }}                                     
                         />
+
+
+
+
                 </View>
+                {/* <TouchableOpacity
+                 style={{margin:10,backgroundColor:'#0b1674',width:60,height:50,borderRadius:10,justifyContent:'flex-end', marginLeft:20}}
+                onPress={Search}>
+                    
+                <Text style={{padding:10,color:'#fff',fontSize: 24}}>
+                    Sign In
+                </Text>
+                </TouchableOpacity> */}
                 {/* <TextInput placeholder="Search"
 onChangeText={setTextInput}
 
@@ -381,16 +369,16 @@ keyExtractor={(item) => item.id}
                 <View>
 
 
-                    <FlatList
-                        horizontal
-                        data={addHotels}
-                        contentContainerStyle={{ paddingVertical: 30, paddingLeft: 20, paddingRight: cardWidth / 2 - 40, }}
-                        showsHorizontalScrollIndicator={false}
-                        renderItem={({ item, index }) => <Card hotel={item} index={index} />}
-                        snapToInterval={cardWidth}
-                    />
+<FlatList
+    horizontal
+    data={filteredDataSource}
+    contentContainerStyle={{ paddingVertical: 30, paddingLeft: 20, paddingRight: cardWidth / 2 - 40, }}
+    showsHorizontalScrollIndicator={false}
+    renderItem={({ item, index }) => <Card hotel={item} index={index} />}
+    snapToInterval={cardWidth}
+/>
 
-                </View>
+</View>
 
                 <View style={{
                     flexDirection: 'row',

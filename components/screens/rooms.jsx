@@ -189,9 +189,10 @@ const Card = ({room,index}) =>{
 
 const styles = StyleSheet.create({
     header: {
-    width:'100%',
+     width:'100%',
     height:'30%',
     paddingVertical: 30,
+    
     alignItems:'center',
     backgroundColor: '#0b1674',
     borderBottomLeftRadius: 20,
