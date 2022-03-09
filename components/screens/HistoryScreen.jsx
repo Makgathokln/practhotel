@@ -193,15 +193,10 @@ const Card = ({hotel,index}) =>{
     )
 }
 
-
-
-export default HistoryScreen
-const {width, height } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-
     header: {
-        width:width / 1.3,
-        height:height /6.3,
+        height:550,
+        width:480,
         backgroundColor:COLORS.secondary,
         marginLeft:-60,
         borderRadius:500,
@@ -243,3 +238,5 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
 })
+
+export default HistoryScreen
