@@ -138,8 +138,9 @@ const Card = ({hotel,index}) =>{
 }}> 
     {/* <Text style={{fontWeight:'bold', color:COLORS.primary, fontSize:16}}>Cancel Booking</Text> */}
 
+<TouchableOpacity>
     <Icon name="delete" size={24} color={COLORS.primary} style={{marginRight:10}}/>
-
+    </TouchableOpacity>
 </View>
     </View> 
     </View>
@@ -156,9 +157,21 @@ const Card = ({hotel,index}) =>{
        
             <Text style={{ fontSize:26, fontWeight:'bold', color:COLORS.white, marginTop:30}}> Booking History</Text>
         </View>
- 
+        <View style={{  width:width / 1.3,
+    height:height /6.3,
+        backgroundColor: COLORS.white,
+        elevation: 15,
+        marginHorizontal: 10,
+        borderRadius: 10,
+        top:100,
+        left:35,
+        position:'absolute'
+        }}>
+                  <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> History</Text>
+
+          </View>
         <View style={{
-            flexDirection:'row', justifyContent:'space-between',alignContent:'space-between', marginTop:20}}>
+            flexDirection:'row', justifyContent:'space-between',alignContent:'space-between', marginTop:20, top:-250}}>
         
             <View style={styles.searchContainer}>
             <Icon name="search" size={25} color={COLORS.secondary} style={{marginLeft: 20}}/>
@@ -180,9 +193,9 @@ const Card = ({hotel,index}) =>{
         </View>
 
        
-        <View>
+        <View style={{top:-280}}>
             <FlatList 
-            data={addBookings}
+            data={filteredDataSource}
             contentContainerStyle={{paddingVertical:30,paddingLeft:20, justifyContent:'space-between'}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item,index}) => <Card hotel={item} index={index}/>}
@@ -196,14 +209,12 @@ const Card = ({hotel,index}) =>{
 
 const styles = StyleSheet.create({
     header: {
-    width:'100%',
-    height:'30%',
-    paddingVertical: 30,
-    
-    alignItems:'center',
-    backgroundColor: '#0b1674',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+        height:470,
+        width:480,
+        backgroundColor:COLORS.secondary,
+        marginLeft:-60,
+        borderRadius:500,
+        top:-260
     },
 
     searchContainer:{

@@ -58,7 +58,7 @@ const Confirm = ({navigation,route}) =>{
                 paddingBottom:20,
                paddingHorizontal:20,
                 borderRadius:20, 
-                backgroundColor: COLORS.primary,
+                backgroundColor: COLORS.secondary,
                 marginLeft:20
                 }}>
 

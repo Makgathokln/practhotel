@@ -168,6 +168,9 @@ const Rooms = ({ navigation, route }) => {
     <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 50 ,textAlign:'center'}}> Rooms</Text>
     <Icon name="keyboard-arrow-left" size={38} color='#fff' style={{top:-190, left:-40}} 
     onPress={navigation.goBack} />
+    <Text style={{ fontSize: 20, fontWeight: 'bold', color: COLORS.secondary,textAlign:'center', top:10}}> Please select your room type:</Text>
+
+   
           </View>
 
 

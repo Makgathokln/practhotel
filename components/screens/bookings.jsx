@@ -66,8 +66,10 @@ const bookings = ({ navigation,route }) => {
         }}>
         
         <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> Bookings</Text>
-        <Icon name="keyboard-arrow-left" size={38} color='#fff' style={{top:-190, left:-40}} 
+       <TouchableOpacity>
+        <Icon name="keyboard-arrow-left" size={38} color='red' style={{top:-190, left:-40}} 
         onPress={navigation.goBack} />
+       </TouchableOpacity>
 
       </View>
 

@@ -88,13 +88,13 @@ const userDetails = ({ navigation }) => {
 
                 </View>
 
-                <View style={{ paddingHorizontal: 20 }}>
+                <View style={{ paddingHorizontal: 20, marginTop:20 }}>
 
                     <TouchableOpacity
                         style={{
                             flexDirection: 'row', justifyContent: 'flex-start', margin: 10, borderColor: COLORS.gray,
                             borderRadius: 10,
-                            borderWidth: 1,
+                            borderWidth: 2,
                             width: '95%',
                             height: 50
                         }}
@@ -114,7 +114,8 @@ const userDetails = ({ navigation }) => {
                         style={{
                             flexDirection: 'row', justifyContent: 'flex-start', margin: 10, borderColor: COLORS.gray,
                             borderRadius: 10,
-                            borderWidth: 1,
+                            borderWidth: 2,
+                            marginTop:20,
                             width: '95%',
                             height: 50
                         }}
@@ -134,8 +135,9 @@ const userDetails = ({ navigation }) => {
                         style={{
                             flexDirection: 'row', justifyContent: 'flex-start', margin: 10, borderColor: COLORS.gray,
                             borderRadius: 10,
-                            borderWidth: 1,
+                            borderWidth: 2,
                             width: '95%',
+                            marginTop:20,
                             shadowColor: '#171717',
                             shadowOffset: { width: -2, height: 4 },
                             shadowOpacity: 0.8,
@@ -154,7 +156,7 @@ const userDetails = ({ navigation }) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         style={{
                             flexDirection: 'row', justifyContent: 'flex-start', margin: 10, borderColor: COLORS.gray,
                             borderRadius: 10,
@@ -176,7 +178,7 @@ const userDetails = ({ navigation }) => {
 
                         <Icon name="arrow-forward-ios" size={20} style={{ color: COLORS.gray, marginTop: 14, paddingLeft: 125, }} />
 
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
                     {/* <TouchableOpacity
                         style={{
@@ -204,7 +206,13 @@ const userDetails = ({ navigation }) => {
 
                 </View>
 
-
+                <TouchableOpacity  onPress={() => navigation.navigate('signIn')}>
+<View style={{flexDirection:'row', paddingTop:120, paddingHorizontal:20}}>
+<Icon name="logout" size={25} style={{ color: 'red' }}
+                        onPress={navigation.goBack} />
+<Text style={{  color: '#0b1674', fontWeight: 'bold', textAlign: 'right', fontSize: 18 }}>Sign Out</Text>
+</View>
+</TouchableOpacity>
             </View>
         </>
     )

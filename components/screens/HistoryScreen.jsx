@@ -129,7 +129,7 @@ const Card = ({hotel,index}) =>{
        
         </View>
         
-        <ScrollView style={{top:-250, paddingHorizontal:20, backgroundColor:COLORS.white }}>
+        <ScrollView style={{top:-220, paddingHorizontal:20, backgroundColor:COLORS.white }}>
         <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'space-between', }}> 
 <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}> All({addBookings.length})</Text>
 
@@ -164,7 +164,7 @@ const Card = ({hotel,index}) =>{
         elevation: 15,
         marginHorizontal: 10,
         borderRadius: 10,
-        top:170,
+        top:100,
         left:35,
         position:'absolute'
         }}>
@@ -195,12 +195,12 @@ const Card = ({hotel,index}) =>{
 
 const styles = StyleSheet.create({
     header: {
-        height:550,
+        height:470,
         width:480,
         backgroundColor:COLORS.secondary,
         marginLeft:-60,
         borderRadius:500,
-        top:-280
+        top:-260
     },
 
     searchContainer:{
