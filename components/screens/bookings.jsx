@@ -49,10 +49,8 @@ const bookings = ({ navigation,route }) => {
     // </ScrollView>
     <View style={{ flex: 1 }}>
       <View style={styles.header} >
-        <Icon name="keyboard-arrow-left" size={38} color='#fff' style={{ justifyContent: 'flex-start', marginRight: '85%', marginTop: '5%' }} onPress={navigation.goBack} />
+      
 
-
-        <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.white, marginTop: 50 }}> Bookings</Text>
         
       </View>
 <View style={{
@@ -66,9 +64,12 @@ const bookings = ({ navigation,route }) => {
         left:35,
         position:'absolute'
         }}>
-                  <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> Bookings</Text>
+        
+        <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> Bookings</Text>
+        <Icon name="keyboard-arrow-left" size={38} color='#fff' style={{top:-190, left:-40}} 
+        onPress={navigation.goBack} />
 
-          </View>
+      </View>
 
           <View style={{  width:width / 1.1,
     height:height /2.2,
@@ -81,6 +82,7 @@ const bookings = ({ navigation,route }) => {
         
         position:'absolute'}}>
       <View >
+        
         <Text style={{
           color: COLORS.secondary,
           fontSize: 20, marginTop: 20,
@@ -344,12 +346,13 @@ export default bookings
 
 const styles = StyleSheet.create({
   header: {
-    height:550,
-    width:480,
-    backgroundColor:COLORS.secondary,
-    marginLeft:-60,
-    borderRadius:500,
-    top:-280
+    height: 350,
+    width: 480,
+    backgroundColor: COLORS.secondary,
+    marginLeft: -60,
+    borderRadius: 500,
+
+    top: -100,
     // width: '100%',
     // height: '30%',
     // paddingVertical: 30,

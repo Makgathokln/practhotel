@@ -1,39 +1,43 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, 
-    View, Text, 
+    View, Dimensions , 
     TouchableOpacity, 
     ScrollView } from 'react-native';
+    import MapView from 'react-native-maps';
+
 import Feather from 'react-native-vector-icons/Feather';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 
-const CardItem = ({item, isSelected, onPress}) =>{
-//    function renderHeader(){
-
-//    }
-    return(
-        
-        <View style={{
-            flex:1,
-        }}>
-        
-        {/* Header */}
-      {/* //  {renderHeader} */}
-
-        <View style={{flexDirection:'row',
-         
-         paddingTop:20 }}>
-        <Icon name="keyboard-arrow-left" size={38} color='#0b1674' style={{justifyContent:'flex-start',marginRight:'85%', marginTop:'5%'}} onPress={navigation.goBack}/>      
+const CardItem = ({navigation,route}) =>{
+    const item = route.params;
+    console.log(item);
+    return (
+        <View style={styles.container}>
+          {/* <MapView style={styles.map} /> */}
+          
+          <MapView style={styles.map}
+    initialRegion={{
+      latitude: {latitude},
+      longitude: {longitude},
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }}
+  />
         </View>
-
-        <View>
-        <Text style={{fontWeight:'bold', fontSize:22, paddingTop:10, 
-         color:COLORS.secondary, textAlign:'center'}}>
-           Add New Card</Text>
-
-        </View>
-        </View>
-        
-    )
-}
+      );
+    }
+    
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      map: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+      },
+    });
 export default CardItem;

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image, ImageBackground, Dimensions,ScrollView} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
@@ -7,7 +7,7 @@ import hotel from '../consts/hotel';
 import { db, auth } from '../backend/firebase';
 
 import { FlatList,
-    ScrollView,
+    
     TextInput, 
     } from 'react-native-gesture-handler';
 
@@ -81,7 +81,6 @@ const HistoryScreen=({navigation}) =>{
 const Card = ({hotel,index}) =>{
    return( 
 
-<TouchableOpacity  onPress={()=>navigation.navigate('Notify', hotel)}>
 
     <View
     style={{
@@ -89,9 +88,8 @@ const Card = ({hotel,index}) =>{
         flexDirection:'row',
         justifyContent:'space-between',
         alignContent:'space-between',
-        marginBottom:20,
+        marginBottom:10,
         backgroundColor:COLORS.white,
-        bottom:40,
         borderColor: COLORS.primary,
         borderRadius:10,
        
@@ -107,8 +105,11 @@ const Card = ({hotel,index}) =>{
     <View style={{flex:1,
          paddingHorizontal:15}}>
     
-    
+    <TouchableOpacity  onPress={()=>navigation.navigate('Notify', hotel)}>
+
     <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}>You have succesfully paid for your stay at {hotel.name} from {hotel.CheckIn} to {hotel.CheckIn}.</Text>
+    </TouchableOpacity> 
+
     <View style={{flexDirection:'row',}}>
     {/* <Text style={{fontWeight:'bold', color:COLORS.gray,fontSize:10}}>{hotel.CheckIn} to {hotel.CheckIn} </Text> */}
     </View>
@@ -117,7 +118,7 @@ const Card = ({hotel,index}) =>{
     </TouchableOpacity> */}
 
 </View>
-    </View></TouchableOpacity> 
+    </View>
    )}
 
     return(
@@ -128,9 +129,9 @@ const Card = ({hotel,index}) =>{
        
         </View>
         
-        <View style={{top:-250, paddingHorizontal:20, backgroundColor:COLORS.white }}>
+        <ScrollView style={{top:-250, paddingHorizontal:20, backgroundColor:COLORS.white }}>
         <View style={{flexDirection:'row', justifyContent:'space-between', alignContent:'space-between', }}> 
-<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}> All</Text>
+<Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}> All({addBookings.length})</Text>
 
 <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}>Mark as read</Text>
 </View>
@@ -143,7 +144,7 @@ const Card = ({hotel,index}) =>{
     borderBottomWidth: 2,
   }}
 />
-<View style={{marginTop:80}}>
+<View style={{marginTop:10}}>
 <FlatList 
             data={addBookings}
             contentContainerStyle={{paddingVertical:10,paddingLeft:20}}
@@ -154,7 +155,7 @@ const Card = ({hotel,index}) =>{
 </View>
 
 
-        </View>
+        </ScrollView>
        
 
         <View style={{  width:width / 1.3,
@@ -192,10 +193,15 @@ const Card = ({hotel,index}) =>{
     )
 }
 
+
+
+export default HistoryScreen
+const {width, height } = Dimensions.get("screen");
 const styles = StyleSheet.create({
+
     header: {
-        height:550,
-        width:480,
+        width:width / 1.3,
+        height:height /6.3,
         backgroundColor:COLORS.secondary,
         marginLeft:-60,
         borderRadius:500,
@@ -237,5 +243,3 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
 })
-
-export default HistoryScreen

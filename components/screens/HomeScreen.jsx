@@ -109,6 +109,8 @@ const HomeScreen = ({ navigation }) => {
                     city: data.city,
                     price1: data.price1,
                     room: data.room,
+                    latitude: data.latitude,
+                    longitude: data.longitude,
                     hotelprice : data.hotelprice,
                     roomprice: data.roomprice,
                     roomtype:data.roomtype,
