@@ -38,7 +38,7 @@ const profile = ({ navigation }) => {
     const ReviewSchem = yup.object({
         name: yup.string().required().max(7),
         phonenumber: yup.string().required().min(10).max(10),
-        email: yup.string().required().min(6),
+        email:yup.string().required().min(5).max(30),
         password: yup.string().required().min(6),
         confirmpassword: yup.string().required().min(6).oneOf([yup.ref('password'), null], 'password does not match')
     })
@@ -167,7 +167,7 @@ const profile = ({ navigation }) => {
                                             onChangeText={text => setEmail(text)}
                                             value={email}
                                             onBlur={props.handleBlur('email')}
-                                            maxLength={16}
+                                            maxLength={30}
 
                                         />
                                        

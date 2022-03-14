@@ -67,6 +67,8 @@ const userDetails = ({ navigation }) => {
  />   */}
                     <Image source={require('./images/profile.jpeg')}
                         style={{ width: 100, height: 100, marginLeft: 100, borderRadius: 20 }}></Image>
+                   
+                   
                     <View style={{ paddingTop: '20%' }}>
                         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                             <Icon name="create" size={20} style={{ color: COLORS.secondary }} />

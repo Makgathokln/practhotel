@@ -81,8 +81,7 @@ const HistoryScreen=({navigation}) =>{
 const Card = ({hotel,index}) =>{
    return( 
 
-
-    <View
+<View
     style={{
         flex:1,
         flexDirection:'row',
@@ -92,10 +91,12 @@ const Card = ({hotel,index}) =>{
         backgroundColor:COLORS.white,
         borderColor: COLORS.primary,
         borderRadius:10,
-       
+       elevation:10,
         paddingHorizontal:20,
         width:'95%',
-        height:50,
+        height:70,
+        borderWidth:1,
+        borderColor:'rgba(0,0,0,.09)'
     }}> 
 
 
@@ -103,11 +104,13 @@ const Card = ({hotel,index}) =>{
     </Image>
 
     <View style={{flex:1,
-         paddingHorizontal:15}}>
+         paddingHorizontal:15, flexDirection:'row', justifyContent:'space-between'}}>
     
     <TouchableOpacity  onPress={()=>navigation.navigate('Notify', hotel)}>
 
-    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12}}>You have succesfully paid for your stay at {hotel.name} from {hotel.CheckIn} to {hotel.CheckIn}.</Text>
+    <Text style={{fontWeight:'bold', color:COLORS.secondary, fontSize:12, marginTop:10}}>
+        You have succesfully paid for your stay at {hotel.name} from {hotel.CheckIn} to {hotel.CheckIn}.</Text>
+    <Text></Text>
     </TouchableOpacity> 
 
     <View style={{flexDirection:'row',}}>
@@ -144,7 +147,7 @@ const Card = ({hotel,index}) =>{
     borderBottomWidth: 2,
   }}
 />
-<View style={{marginTop:10}}>
+<View style={{paddingBottom:300}}>
 <FlatList 
             data={addBookings}
             contentContainerStyle={{paddingVertical:10,paddingLeft:20}}
@@ -168,27 +171,11 @@ const Card = ({hotel,index}) =>{
         left:35,
         position:'absolute'
         }}>
-                  <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 50 ,textAlign:'center'}}> Notifications</Text>
+                <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> Notification</Text>
 
           </View>
       
-          {/* <View style={{backgroundColor:'green'}}>
-
-            
-            <FlatList 
-            data={addBookings}
-            contentContainerStyle={{paddingVertical:10,paddingLeft:20}}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({item,index}) => <Card hotel={item} index={index}/>}
-            />
-            {
-                    addBookings.map((item) => {
-                        <Text>{item.name}</Text>
-                    })
-                }
-        </View>
-
-         */}
+         
         </View>
     )
 }

@@ -154,7 +154,9 @@ const Rooms = ({ navigation, route }) => {
      
         <View style={styles.header}>
 
-            
+        <Icon name="keyboard-arrow-left" size={38} color='red' style={{ position:'absolute'}} 
+    onPress={navigation.goBack} />
+      
         <View style={{  width:width / 1.3,
     height:height /6.3,
         backgroundColor: COLORS.white,
@@ -165,15 +167,18 @@ const Rooms = ({ navigation, route }) => {
         left:90,
         position:'absolute'
         }}>
-    <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 50 ,textAlign:'center'}}> Rooms</Text>
-    <Icon name="keyboard-arrow-left" size={38} color='#fff' style={{top:-190, left:-40}} 
-    onPress={navigation.goBack} />
-    <Text style={{ fontSize: 20, fontWeight: 'bold', color: COLORS.secondary,textAlign:'center', top:10}}> Please select your room type:</Text>
-
+    <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> Rooms</Text>
+  
    
+    <Text style={{ fontSize: 20, fontWeight: 'bold', color: COLORS.secondary,textAlign:'center', top:60}}> Please select your room type:</Text>
+
+         
           </View>
 
-
+          <TouchableOpacity style={{ width:80,height:80,zIndex:999,position:'absolute',top:150, left:60}} onPress={()=>navigation.goBack()}>
+        <Icon name="keyboard-arrow-left" size={38} color='white' style={{position:'absolute' }} 
+         />
+       </TouchableOpacity>
 
           <Text
             style={{
@@ -197,7 +202,7 @@ const Rooms = ({ navigation, route }) => {
           />
    
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{ margin: 10, justifyContent: "flex-end" }}
           onPress={() => navigation.navigate("PaymentScreen")}
         >
@@ -211,7 +216,7 @@ const Rooms = ({ navigation, route }) => {
           >
             Proceed to payment
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
     </ScrollView>
   );

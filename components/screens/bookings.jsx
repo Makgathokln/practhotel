@@ -21,7 +21,7 @@ const bookings = ({ navigation,route }) => {
   
   const {width, height } = Dimensions.get("screen");
   // const item = route.params;
-  // console.log(item);
+  console.log()
   const item = route.params.item
   const [CheckIn, setCheckIn] = useState(0);
   const [CheckOut, setCheckOut] = useState(0);
@@ -50,9 +50,12 @@ const bookings = ({ navigation,route }) => {
     <View style={{ flex: 1 }}>
       <View style={styles.header} >
       
-
         
       </View>
+      <TouchableOpacity style={{width:80,height:80,zIndex:999,position:'absolute',top:50}} onPress={()=>navigation.goBack()}>
+        <Icon name="keyboard-arrow-left" size={38} color='white' style={{position:'absolute' }} 
+         />
+       </TouchableOpacity>
 <View style={{
           width:width / 1.3,
     height:height /6.3,
@@ -66,10 +69,7 @@ const bookings = ({ navigation,route }) => {
         }}>
         
         <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> Bookings</Text>
-       <TouchableOpacity>
-        <Icon name="keyboard-arrow-left" size={38} color='red' style={{top:-190, left:-40}} 
-        onPress={navigation.goBack} />
-       </TouchableOpacity>
+      
 
       </View>
 
@@ -289,7 +289,7 @@ const bookings = ({ navigation,route }) => {
               backgroundColor: COLORS.secondary, width: '55%', height: 50,
               borderRadius: 10,
               justifyContent: 'center', 
-              alignItems: 'center'
+              alignItems: 'center',position:'absolute', top:20
             }} disabled={true}
             onPress={() => navigation.navigate('Rooms',{
               CheckIn:CheckIn,

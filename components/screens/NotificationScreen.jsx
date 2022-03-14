@@ -167,13 +167,19 @@ const Card = ({hotel,index}) =>{
         left:35,
         position:'absolute'
         }}>
-                  <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> History</Text>
-
+    
+    <Text style={{ fontSize: 26, fontWeight: 'bold', color: COLORS.primary, marginTop: 40 ,textAlign:'center'}}> History</Text>
+{/* 
+                  <TouchableOpacity>
+        <Icon name="keyboard-arrow-left" size={38} color='white' style={{top:-160, left:-40}} 
+        onPress={navigation.goBack} />
+       </TouchableOpacity> */}
           </View>
         <View style={{
             flexDirection:'row', justifyContent:'space-between',alignContent:'space-between', marginTop:20, top:-250}}>
         
             <View style={styles.searchContainer}>
+           
             <Icon name="search" size={25} color={COLORS.secondary} style={{marginLeft: 20}}/>
            
             <TextInput 
